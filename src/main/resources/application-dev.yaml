@@ -1,0 +1,16 @@
+server:
+ port: 5051
+
+springdoc:
+ swagger-ui:
+  enabled: true
+ api-docs:
+  enabled: true
+
+spring:
+ application:
+  name: marketplace
+ data:
+  mongodb:
+   uri: mongodb://localhost:27017/User_dev
+   auto-index-creation: true
