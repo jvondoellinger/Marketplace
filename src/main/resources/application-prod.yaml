@@ -1,0 +1,20 @@
+springdoc:
+ swagger-ui:
+  enabled: true
+ api-docs:
+  enabled: true
+
+spring:
+ application:
+  name: marketplace
+ data:
+  mongodb:
+   auto-index-creation: true
+aws:
+ endpoint: ${AWS_ENDPOINT}
+ region: ${AWS_REGION}
+ accessKey: ${AWS_ACCESS_KEY_ID}
+ secretKey: ${AWS_SECRET_KEY}
+ s3:
+  bucket: test
+
