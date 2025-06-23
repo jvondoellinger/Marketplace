@@ -1,0 +1,40 @@
+package zjg.marketplace.application.service.user;
+
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+import zjg.marketplace.application.dto.user.UserInput;
+import zjg.marketplace.application.mapper.UserMapper;
+import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.IUpdateService;
+import zjg.marketplace.core.entity.user.User;
+import zjg.marketplace.core.factory.chain.updater.UserUpdaterHandleFactory;
+import zjg.marketplace.core.factory.chain.validators.UserValidatorHandlerFactory;
+import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.security.TextEncryptor;
+
+@Service
+public class UpdateUserService implements IUpdateService<User, UserInput> {
+    private final IRepository<User> repository;
+    private final IFindService<User> findService;
+    private final TextEncryptor encryptor;
+    public UpdateUserService(IRepository<User> repository, IFindService<User> findService, TextEncryptor encryptor) {
+        this.repository = repository;
+        this.findService = findService;
+        this.encryptor = encryptor;
+    }
+
+    @Override
+    @CacheEvict(value = "user", key = "#id")
+    public Mono<User> update(UserInput userUpdateInput, String id) {
+        var updateHandler = UserUpdaterHandleFactory.factory();
+        var validateHandler = UserValidatorHandlerFactory.factory();
+        return findService.findById(id)
+                .flatMap(target -> {
+                    var mapped = UserMapper.unsafeMap(userUpdateInput, encryptor);
+                    updateHandler.handle(target, mapped); // modify entity -| In One Helper, perhaps?
+                    validateHandler.handle(target); // validate entity ---------|
+                    return repository.update(target);
+                });
+    }
+}

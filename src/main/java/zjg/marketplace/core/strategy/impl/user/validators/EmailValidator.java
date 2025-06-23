@@ -1,0 +1,18 @@
+package zjg.marketplace.core.strategy.impl.user.validators;
+
+import zjg.marketplace.core.entity.user.User;
+import zjg.marketplace.core.exceptions.validations.email.EmailFormatException;
+import zjg.marketplace.core.strategy.interfaces.IValidator;
+
+// Se mudar a tipagem de String para User, fica tranquilo para criar uma cadeia de validações!\
+public class EmailValidator implements IValidator<User> {
+    private final static String DEFAULT_MESSAGE = "You provided a invalid email! Please, send a valid email.";
+    @Override
+    public void validate(User user) {
+        var s = user.getEmail();
+        var indexA = s.indexOf("@");
+        if(indexA == -1) throw new EmailFormatException(DEFAULT_MESSAGE);
+        if(!s.contains(".")) throw new EmailFormatException(DEFAULT_MESSAGE);
+        if(s.substring(0, indexA).length() <= 1) throw new EmailFormatException(DEFAULT_MESSAGE);
+    }
+}
