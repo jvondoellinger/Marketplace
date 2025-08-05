@@ -1,0 +1,17 @@
+// Deve seguir com as funções de usuario, tipo:
+
+UserContext
+    .getInstance()
+    .setRepository(x)
+    .setEvents(y)
+    .operation( x -> x.insert(entity) )
+    ...
+    .commit(); // Vai tambem validar se o repositorio é null, se os events são null, etc
+
+ ProductContext
+    .getInstance()
+    .setRepository(x)
+    .setStorage(storage)
+    .setEvents(y)
+    .operation((Tuple<>) p -> p1.insert(entity), p2.upload(image) )
+    .commit(); // Vai tambem validar se o repositorio é null, se os events são null, etc

@@ -1,0 +1,2 @@
+echo "Inicializando o promtail"
+sudo promtail -config.file /etc/promtail/config.yml

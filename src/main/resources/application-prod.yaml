@@ -1,0 +1,30 @@
+# SERVER ------------------------------
+server:
+  port: ${PORT:8080}
+  address: 0.0.0.0
+# DOCUMENTATION ----------------------------
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+# SPRING ---------------------------------
+spring:
+  application:
+    name: marketplace
+  data:
+    mongodb:
+      uri: ${DATABASE_URI}
+      auto-index-creation: true
+
+# CUSTOM ------------------------
+aws:
+  endpoint: ${AWS_ENDPOINT}
+  region: ${AWS_REGION}
+  accessKey: ${AWS_ACCESS_KEY_ID}
+  secretKey: ${AWS_SECRET_KEY}
+  s3:
+    bucket: test
+  redis:
+    host: localhost
+    port: 6379

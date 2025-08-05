@@ -1,0 +1,42 @@
+networks:
+  zjg_network:
+    driver: bridge
+
+services:
+  app:
+    image: jvondoellinger/zjg_marketplace:beta-0.1
+    ports:
+      - "5051:5051"
+    environment:
+      SPRING_PROFILES_ACTIVE: env
+      AWS_ENDPOINT: http://localstack:4545
+      AWS_REGION: sa-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_KEY: test
+      DATABASE_URL: mongodb://mongodb_container:27017/User_dev
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb_container:27017/User_dev
+    depends_on:
+      - localstack
+      - mongodb_container
+    networks:
+      - zjg_network
+
+  localstack:
+    image: localstack/localstack
+    ports:
+        - "4545:4545"
+    environment:
+        AWS_ACCESS_KEY_ID: test
+        AWS_SECRET_KEY: test
+    networks:
+        - zjg_network
+
+
+  mongodb_container:
+    image: mongo
+    command: mongod --quiet --bind_ip_all
+    ports:
+      - "27017:27017"
+    environment: []
+    networks:
+      - zjg_network
