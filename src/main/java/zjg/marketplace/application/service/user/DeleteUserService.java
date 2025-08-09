@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IDeleteService;
 import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
 public class DeleteUserService implements IDeleteService<User> {
-    private final IRepository<User> repository;
+    private final Repository<User> repository;
 
-    public DeleteUserService(IRepository<User> repository) {
+    public DeleteUserService(Repository<User> repository) {
         this.repository = repository;
     }
 

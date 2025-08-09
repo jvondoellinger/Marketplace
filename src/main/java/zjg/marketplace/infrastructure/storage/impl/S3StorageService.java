@@ -36,9 +36,8 @@ public class S3StorageService implements StorageService {
         }
         var putRequest = PutObjectRequest.builder()
                 .bucket(config.getBucket())
-                .key(file.getPath().getPath())
+                .key(file.getPath().getCompletePath())
                 .build();
-        var fix = PathUtils.removeBars(file.getPath().getPath());
         var futurePutResponse = s3AsyncClient
                 .putObject(putRequest,
                         AsyncRequestBody.fromBytes(file.getBinary()));
@@ -54,7 +53,7 @@ public class S3StorageService implements StorageService {
     public Mono<byte[]> get(ImagePath path) {
         var getRequest = GetObjectRequest.builder()
                 .bucket(config.getBucket())
-                .key(path.getPath())
+                .key(path.getCompletePath())
                 .build();
         return Mono.fromFuture(s3AsyncClient.getObject(getRequest, AsyncResponseTransformer.toBytes()))
                 .map(BytesWrapper::asByteArray)

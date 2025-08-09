@@ -3,64 +3,59 @@ package zjg.marketplace.core.mediator;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.core.entity.file.BasicImageFile;
+import zjg.marketplace.core.entity.product.ProductBuilder;
+import zjg.marketplace.core.factory.chain.updater.ProductUpdaterHandleFactory;
+import zjg.marketplace.core.factory.path.ImagePathsFactory;
 import zjg.marketplace.core.valueObjects.path.ImagePath;
 import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 import zjg.marketplace.core.interfaces.services.storage.StorageService;
+import zjg.marketplace.core.valueObjects.path.ImagePaths;
 
 import java.util.List;
 
 
 public class ProductImageUploadMediator {
-    private final IRepository<Product> repository;
+    private final Repository<Product> repository;
     private final StorageService storageService;
 
-    public ProductImageUploadMediator(IRepository<Product> repository, StorageService storageService) {
+    public ProductImageUploadMediator(Repository<Product> repository, StorageService storageService) {
         this.repository = repository;
         this.storageService = storageService;
     }
     public Mono<Product> uploadImageInEntity(Product product, BasicImageFile file) {
         return storageService.upload(file)
                 .flatMap(last -> {
-                    product.addPath(last.getPath());
+                    product.getPaths().add(last.getPath());
                     return repository.update(product);
                 });
     }
 
     public Mono<Product> uploadImageInEntity(Product product, List<BasicImageFile> files) {
+        var handler = ProductUpdaterHandleFactory.factory();
         return Flux.fromIterable(files)
                 .flatMap(storageService::upload)
                 .map(BasicImageFile::getPath)
+                .map(ImagePath::getCompletePath)
                 .collectList()
+                .map(ImagePathsFactory::factory)
                 .flatMap(paths -> {
-                    product.addBatchPath(paths);
+                    var p = ProductBuilder.builder().path(paths).build();
+                    handler.handle(product, p);
                     return repository.update(product);
                 });
     }
-/*
-    public Mono<Product> uploadImageInEntity(Product product, byte[] bytes, ImageExtension extension) {
-        var path = ImagePath.getInstance(extension, product.getId());
-        var file = new BasicImageFile(bytes, path);
-        return storageService.upload(file)
-                .flatMap(last -> {
-                    List<ImagePath> newList = new ArrayList<>(product.getPaths());
-                    newList.add(last.getPath());
-                    var size = newList.size();
-                    product.setPaths(newList);
-                    return repository.update(product);
-                });
-    }*/
 
     public Mono<Product> removeImage(Product product, ImagePath path) {
         return storageService.remove(path).flatMap(x -> {
-            product.removePath(path);
+            product.getPaths().remove(path);
             return repository.update(product);
         });
     }
 
     public Mono<Product> removeImage(Product product, List<ImagePath> paths) {
         var cloned = product.clone();
-        cloned.removeBatchPath(paths);
+        cloned.getPaths().remove(paths);
         return Flux.fromIterable(paths)
                 .flatMap(storageService::remove)
                 .then(repository.update(cloned))

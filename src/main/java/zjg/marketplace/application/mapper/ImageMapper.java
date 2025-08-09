@@ -13,6 +13,6 @@ public class ImageMapper extends BinaryMapper {
     public Flux<BasicImageFile> toImageFile(List<FilePart> fileParts, String productId) {
         return Flux.fromIterable(fileParts).flatMap(file ->
                 toByteArray(file)
-                        .map(bytes -> ImageFileFactory.factory(bytes, file.filename(), productId)));
+                        .map(bytes -> ImageFileFactory.factory(bytes, file.filename())));
     }
 }

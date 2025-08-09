@@ -6,13 +6,13 @@ import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.mapper.ProductMapper;
 import zjg.marketplace.application.service.promisse.ICreateService;
 import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
 public class CreateProductService implements ICreateService<Product, ProductInput> {
-    private final IRepository<Product> repository;
+    private final Repository<Product> repository;
 
-    public CreateProductService(IRepository<Product> repository) {
+    public CreateProductService(Repository<Product> repository) {
         this.repository = repository;
     }
 

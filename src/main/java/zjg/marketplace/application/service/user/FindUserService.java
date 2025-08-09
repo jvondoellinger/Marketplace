@@ -6,13 +6,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindService;
 import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
 public class FindUserService implements IFindService<User> {
-    private final IRepository<User> repository;
+    private final Repository<User> repository;
 
-    public FindUserService(IRepository<User> repository) {
+    public FindUserService(Repository<User> repository) {
         this.repository = repository;
     }
 

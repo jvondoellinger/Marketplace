@@ -1,10 +1,9 @@
 package zjg.marketplace.core.entity.product;
 
 import zjg.marketplace.core.entity.base.BaseBuilder;
-import zjg.marketplace.core.valueObjects.path.ImagePath;
+import zjg.marketplace.core.valueObjects.path.ImagePaths;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ProductBuilder extends BaseBuilder<Product, ProductBuilder> {
     protected ProductBuilder() {
@@ -29,8 +28,8 @@ public class ProductBuilder extends BaseBuilder<Product, ProductBuilder> {
         entity.setAmount(amount);
         return this;
     }
-    public ProductBuilder imagePath(List<ImagePath> path) {
-        entity.setPaths(path);
+    public ProductBuilder path(ImagePaths paths) {
+        entity.setPaths(paths);
         return this;
     }
 

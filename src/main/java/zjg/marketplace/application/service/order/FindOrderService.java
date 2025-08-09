@@ -7,15 +7,15 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindByUserId;
 import zjg.marketplace.application.service.promisse.IFindService;
 import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 import zjg.marketplace.core.interfaces.services.repository.SearchByUserIdRepository;
 
 @Service
 public class FindOrderService implements IFindService<Order>, IFindByUserId<Order> {
     private final SearchByUserIdRepository<Order> searchByUserIdRepository;
-    private final IRepository<Order> repository;
+    private final Repository<Order> repository;
 
-    public FindOrderService(SearchByUserIdRepository<Order> searchByUserIdRepository, IRepository<Order> repository) {
+    public FindOrderService(SearchByUserIdRepository<Order> searchByUserIdRepository, Repository<Order> repository) {
         this.searchByUserIdRepository = searchByUserIdRepository;
         this.repository = repository;
     }

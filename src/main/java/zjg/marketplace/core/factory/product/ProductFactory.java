@@ -5,6 +5,7 @@ import zjg.marketplace.core.valueObjects.path.ImagePath;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.entity.product.ProductBuilder;
 import zjg.marketplace.core.factory.chain.validators.ProductValidatorHandlerFactory;
+import zjg.marketplace.core.valueObjects.path.ImagePaths;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,35 +15,24 @@ import java.util.List;
 
 @BadCode
 public class ProductFactory {
-    public static Product factory(String title, String description, BigDecimal amount, List<ImagePath> paths) {
+    public static Product factory(String title, String description, BigDecimal amount, ImagePaths paths) {
         var validator = ProductValidatorHandlerFactory.factory();
         var product = ProductBuilder.builder()
                 .title(title)
                 .description(description)
                 .amount(amount)
-                .imagePath(paths)
+                .path(paths)
                 .build();
         validator.handle(product);
         return product;
     }
-    public static Product factory(String title, String description, BigDecimal amount, ImagePath path) {
-        var validator = ProductValidatorHandlerFactory.factory();
-        var product = ProductBuilder.builder()
-                .title(title)
-                .description(description)
-                .amount(amount)
-                .imagePath(new ArrayList<>(List.of(path)))
-                .build();
-        validator.handle(product);
-        return product;
-    }
+
     public static Product factory(String title, String description, BigDecimal amount) {
         var validator = ProductValidatorHandlerFactory.factory();
         var product = ProductBuilder.builder()
                 .title(title)
                 .description(description)
                 .amount(amount)
-                .imagePath(new ArrayList<>())
                 .build();
         validator.handle(product);
         return product;

@@ -6,16 +6,15 @@ import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.mapper.UserMapper;
 import zjg.marketplace.application.service.promisse.ICreateService;
 import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.factory.user.UserFactory;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 import zjg.marketplace.core.interfaces.services.security.TextEncryptor;
 
 @Service
 public class CreateUserService implements ICreateService<User, UserInput> {
-    private final IRepository<User> repository;
+    private final Repository<User> repository;
     private final TextEncryptor encryptor;
 
-    public CreateUserService(IRepository<User> repository, TextEncryptor encryptor) {
+    public CreateUserService(Repository<User> repository, TextEncryptor encryptor) {
         this.repository = repository;
         this.encryptor = encryptor;
     }

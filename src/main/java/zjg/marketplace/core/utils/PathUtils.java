@@ -18,12 +18,7 @@ public class PathUtils {
         return path.replaceAll("/", "");
     }
 
-    public static String getExtension(String filename) {
-        var last = filename.lastIndexOf(".");
-        if(last == -1) {
-            throw new RuntimeException("File name doesn't have an extension");
-        }
-        var ext = filename.substring(last);
-        return ext;
+    public static String getExtension(String str) {
+        return str.replaceAll(".*(\\.[^\\.]+)$", "$1");
     }
 }

@@ -16,11 +16,8 @@ public class ImagePathValidator implements IValidator<Product> {
     @Override
     public void validate(Product product) {
         var paths = product.getPaths();
-        if(Objects.isNull(paths)) return;
-        if(paths.isEmpty()) return;
-        for(var path : paths) {
-            if(Objects.isNull(path)) throw new NullPathException(DEFAULT_MESSAGE);
-            if(Objects.isNull(path.getExtension())) throw new NullExtensionException(NEED_EXTENSION);
-        }
+        if (Objects.isNull(paths)) return;
+        if (Objects.isNull(paths.getAll())) return;
+        if (paths.getAll().isEmpty()) return;
     }
 }

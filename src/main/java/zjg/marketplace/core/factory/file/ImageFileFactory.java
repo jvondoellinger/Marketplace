@@ -1,17 +1,14 @@
 package zjg.marketplace.core.factory.file;
 
 import zjg.marketplace.core.entity.file.BasicImageFile;
-import zjg.marketplace.core.valueObjects.path.ImagePath;
-import zjg.marketplace.core.valueObjects.extension.ImageExtension;
+import zjg.marketplace.core.factory.path.ImagePathFactory;
 
 public class ImageFileFactory {
-    public static BasicImageFile factory(byte[] binary, String containsExtension, String productId) {
+    public static BasicImageFile factory(byte[] binary, String completePath) {
+        var paths = ImagePathFactory.factory(completePath);
         var image = new BasicImageFile();
-        var extension = new ImageExtension(containsExtension);
-        var path = new ImagePath(extension);
-        path.generatePath(productId);
+        image.setPath(paths);
         image.setBinary(binary);
-        image.setPath(path);
         return image;
     }
 }

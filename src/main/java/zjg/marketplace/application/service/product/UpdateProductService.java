@@ -10,14 +10,14 @@ import zjg.marketplace.application.service.promisse.IUpdateService;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.factory.chain.updater.ProductUpdaterHandleFactory;
 import zjg.marketplace.core.factory.chain.validators.ProductValidatorHandlerFactory;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
 public class UpdateProductService implements IUpdateService<Product, ProductInput> {
     private final IFindService<Product> findService;
-    private final IRepository<Product> repository;
+    private final Repository<Product> repository;
 
-    public UpdateProductService(IRepository<Product> repository, IFindService<Product> facade) {
+    public UpdateProductService(Repository<Product> repository, IFindService<Product> facade) {
         this.repository = repository;
         this.findService = facade;
     }

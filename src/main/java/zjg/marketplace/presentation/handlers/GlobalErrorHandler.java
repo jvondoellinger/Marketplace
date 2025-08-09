@@ -47,17 +47,21 @@ public class GlobalErrorHandler implements ErrorWebExceptionHandler {
         HttpStatus status = getByException(ex);
         var error = new ErrorResponse(ex.getMessage());
         byte[] bytes;
-
+        RuntimeException exs = null;
         try {
+            exs = new RuntimeException();
             bytes = mapper.writeValueAsBytes(error);
         } catch (JsonProcessingException e) {
             bytes = "Internal error, please notify the TI department!".getBytes(StandardCharsets.UTF_8);
+            exs = new RuntimeException(e);
         }
 
         exchange.getResponse().setStatusCode(status);
         exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
         var buffer = exchange.getResponse().bufferFactory().wrap(bytes);
-        return exchange.getResponse().writeWith(Mono.just(buffer));
+        if(buffer == null)
+            return exchange.getResponse().writeWith(Mono.just(buffer));
+        else throw new RuntimeException(ex);
     }
 
     private HttpStatus getByException(Throwable ex) {

@@ -9,16 +9,16 @@ import zjg.marketplace.core.entity.order.Order;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.factory.order.OrderFactory;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 import zjg.marketplace.application.dto.order.OrderInput;
 
 @Service
 public class CreateOrder implements ICreateService<Order, OrderInput> {
-    private final IRepository<Order> repository;
+    private final Repository<Order> repository;
     private final IFindService<User> findUserService;
     private final IFindService<Product> findProductService;
     private final FindUserAndProductsHelper findUserAndProductsHelper;
-    public  CreateOrder(IRepository<Order> repository, IFindService<User> findUserService, IFindService<Product> findProductService, FindUserAndProductsHelper findUserAndProductsHelper) {
+    public  CreateOrder(Repository<Order> repository, IFindService<User> findUserService, IFindService<Product> findProductService, FindUserAndProductsHelper findUserAndProductsHelper) {
         this.repository = repository;
         this.findUserService = findUserService;
         this.findProductService = findProductService;

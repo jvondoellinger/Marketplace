@@ -11,14 +11,14 @@ import zjg.marketplace.core.entity.order.Order;
 import zjg.marketplace.core.factory.chain.updater.OrderUpdaterHandleFactory;
 import zjg.marketplace.core.factory.chain.validators.OrderValidatorHandleFactory;
 import zjg.marketplace.core.factory.order.OrderFactory;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
 public class UpdateOrder implements IUpdateService<Order, OrderUpdateInput> {
     private final IFindService<Order> findService;
-    private final IRepository<Order> repository;
+    private final Repository<Order> repository;
     private final FindUserAndProductsHelper findUserAndProductsHelper;
-    public UpdateOrder(IFindService<Order> findService, IRepository<Order> repository, FindUserAndProductsHelper findUserAndProductsHelper) {
+    public UpdateOrder(IFindService<Order> findService, Repository<Order> repository, FindUserAndProductsHelper findUserAndProductsHelper) {
         this.findService = findService;
         this.repository = repository;
         this.findUserAndProductsHelper = findUserAndProductsHelper;
@@ -30,14 +30,14 @@ public class UpdateOrder implements IUpdateService<Order, OrderUpdateInput> {
         var updateHandler = OrderUpdaterHandleFactory.factory();
         var validateHandler = OrderValidatorHandleFactory.factory();
         return findService.findById(id)
-                .flatMap(order ->
-                    findUserAndProductsHelper.findUserAndProducts(order.getBuyerId(), orderUpdateInput.getProductId())
+                .flatMap(order -> {
+                    return findUserAndProductsHelper.findUserAndProducts(order.getBuyerId(), order.getProductsId())
                             .flatMap(pair -> {
                                 var mapped = OrderFactory.factory(pair.getFirst().getId(), pair.getSecond());
                                 updateHandler.handle(order, mapped);
                                 validateHandler.handle(order);
                                 return repository.update(order);
-                            })
-                );
+                            });
+                });
     }
 }

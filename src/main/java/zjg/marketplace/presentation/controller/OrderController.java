@@ -62,10 +62,10 @@ public class OrderController {
 
     // * PUT --------------------------------------------------------------
 
-    @PutMapping
+    @PutMapping("/{orderId}")
     //@PreAuthorize("hasRole('USER')")
-    public Mono<Order> updateOrder(@RequestBody OrderUpdateInput input) {
-        return updateService.update(input, input.getUserId());
+    public Mono<Order> updateOrder(@RequestBody OrderUpdateInput input, @PathVariable String orderId) {
+        return updateService.update(input, orderId);
     }
 
     //@PreAuthorize("hasRole('USER')")

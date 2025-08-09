@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IDeleteService;
 import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.interfaces.services.repository.IRepository;
+import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
 public class DeleteProductService implements IDeleteService<Product> {
-    private final IRepository<Product> repository;
+    private final Repository<Product> repository;
 
-    public DeleteProductService(IRepository<Product> repository) {
+    public DeleteProductService(Repository<Product> repository) {
         this.repository = repository;
     }
 

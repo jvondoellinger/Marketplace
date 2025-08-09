@@ -1,29 +1,24 @@
 package zjg.marketplace.core.entity.product;
-import zjg.marketplace.core.anotation.BadCode;
 import zjg.marketplace.core.entity.base.BaseEntity;
-import zjg.marketplace.core.valueObjects.path.ImagePath;
 import zjg.marketplace.core.interfaces.compositions.builder.Reconstructable;
 import zjg.marketplace.core.interfaces.compositions.clone.IClonable;
 import zjg.marketplace.core.strategy.interfaces.common.IAmountGetterStrategy;
-
+import zjg.marketplace.core.valueObjects.path.ImagePaths;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Product extends BaseEntity implements Reconstructable<ProductBuilder>, IClonable<Product>, IAmountGetterStrategy {
-    // Constructors --------------------------------------------
+    // * Constructors --------------------------------------------
     protected Product() {
         super();
-        paths = new CopyOnWriteArrayList<>();
     }
 
-    // Properties ----------------------------------------------
+    // * Properties ----------------------------------------------
     private String title;
     private String description;
     private BigDecimal amount;
-    private List<ImagePath> paths;
+    private ImagePaths paths;
 
-    // Getter -------------------------------------------------
+    // * Getter -------------------------------------------------
     public BigDecimal getAmount() {
         return amount;
     }
@@ -33,11 +28,11 @@ public class Product extends BaseEntity implements Reconstructable<ProductBuilde
     public String getTitle() {
         return title;
     }
-    public List<ImagePath> getPaths() {
+    public ImagePaths getPaths() {
         return paths;
     }
 
-    // Setters ------------------------------------------------
+    // * Setters ------------------------------------------------
     protected void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
@@ -47,12 +42,11 @@ public class Product extends BaseEntity implements Reconstructable<ProductBuilde
     protected void setTitle(String title) {
         this.title = title;
     }
-    @BadCode
-    public void setPaths(List<ImagePath> paths) {
+    protected void setPaths(ImagePaths paths) {
         this.paths = paths;
-    } // Alterar
+    }
 
-    // Overrides  ----------------------------------------------
+    // * Overrides  ----------------------------------------------
     @Override
     public ProductBuilder toBuilder() {
         return new ProductBuilder(this);
@@ -65,25 +59,10 @@ public class Product extends BaseEntity implements Reconstructable<ProductBuilde
                 .title(getTitle())
                 .description(getDescription())
                 .amount(getAmount())
-                .imagePath(getPaths())
+                .path(getPaths())
                 .createdAt(getCreatedAt())
                 .updatedAt(getUpdatedAt())
                 .build();
-    }
-
-    // Custom ----------------------------------------------
-    public synchronized void addPath(ImagePath path) {
-        this.paths.add(path);
-    }
-    public synchronized void removePath(ImagePath path) {
-        this.paths.remove(path);
-    }
-
-    public synchronized void addBatchPath(List<ImagePath> path) {
-        this.paths.addAll(path);
-    }
-    public synchronized void removeBatchPath(List<ImagePath> path) {
-        this.paths.removeAll(path);
     }
 
     @Override

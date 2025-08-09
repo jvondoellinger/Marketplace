@@ -11,8 +11,9 @@ public class PathsUpdater implements UpdateStrategy<Product> {
     public void applyUpdate(Product target, Product source) {
         UpdaterStrategyUtils.throwIfNullSourceOrTarget(target, source);
         var paths = source.getPaths();
-        if(Objects.isNull(paths)) return;
-        if(paths.isEmpty()) return;
-        target.toBuilder().imagePath(paths);
+        if (Objects.isNull(paths)) return;
+        if (Objects.isNull(paths.getAll())) return;
+        if (paths.getAll().isEmpty()) return;
+        target.toBuilder().path(paths);
     }
 }
