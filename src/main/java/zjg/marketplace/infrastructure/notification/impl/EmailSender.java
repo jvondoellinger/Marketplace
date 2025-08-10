@@ -21,6 +21,7 @@ public class EmailSender implements INotificationSender<EmailNotification> {
 
     @Override
     public Mono<Void> send(EmailNotification notification) {
+        System.out.println("Sended");
         return Mono.fromRunnable(() -> {
             var prop = getProperties();
             var session = getSession(prop);
@@ -31,16 +32,16 @@ public class EmailSender implements INotificationSender<EmailNotification> {
                 throw new RuntimeException(e);
             }
         })
-                .timeout(Duration.ofSeconds(30))
-                .then();
+        .timeout(Duration.ofSeconds(30))
+        .then();
     }
     private Properties getProperties() {
         var prop = new Properties();
         prop.put("mail.smtp.host", config.getSmtpHost());
         prop.put("mail.smtp.port", config.getSmtpPort());
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.socketFactory.port", config.getSmtpPort());
-        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.starttls.required", "true");
         return prop;
     }
 
