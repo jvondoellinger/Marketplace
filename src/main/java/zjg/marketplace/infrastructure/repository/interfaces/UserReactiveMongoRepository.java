@@ -1,4 +1,4 @@
-package zjg.marketplace.infrastructure.repository.spring;
+package zjg.marketplace.infrastructure.repository.interfaces;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;

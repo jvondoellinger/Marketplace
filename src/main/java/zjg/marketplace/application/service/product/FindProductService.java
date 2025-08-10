@@ -6,30 +6,30 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindService;
 import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
 
 @Service
 public class FindProductService implements IFindService<Product> {
-    private final Repository<Product> repository;
+    private final QueryRepository<Product> query;
 
-    public FindProductService(Repository<Product> repository) {
-        this.repository = repository;
+    public FindProductService(QueryRepository<Product> query) {
+        this.query = query;
     }
 
     @Override
     @Cacheable(value = "product", key = "#offset + '-' + #limit")
     public Flux<Product> get(Long offset, Integer limit) {
-        return repository.findWithPagination(offset, limit);
+        return query.findWithPagination(offset, limit);
     }
 
     @Override
     @Cacheable(value = "product", key = "#id")
     public Mono<Product> findById(String id) {
-        return repository.findById(id);
+        return query.findById(id);
     }
 
     @Override
     public Mono<Product> findByIdNoCache(String id) {
-        return repository.findById(id);
+        return query.findById(id);
     }
 }

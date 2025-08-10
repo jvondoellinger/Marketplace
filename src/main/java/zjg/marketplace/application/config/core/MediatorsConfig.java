@@ -8,22 +8,23 @@ import zjg.marketplace.core.factory.mediator.OrderToPaymentMediatorFactory;
 import zjg.marketplace.core.interfaces.services.notification.INotificationSender;
 import zjg.marketplace.core.interfaces.services.payment.pix.IPixPaymentMethodService;
 import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 import zjg.marketplace.core.mediator.OrderToPaymentMediator;
 
 @Component
 public class MediatorsConfig {
-    private final Repository<Order> orderRepository;
+    private final CommandRepository<Order> command;
     private final IPixPaymentMethodService storageService;
     private final INotificationSender<EmailNotification> notificationSender;
-    public MediatorsConfig(Repository<Order> orderRepository,
+    public MediatorsConfig(CommandRepository<Order> command,
                            IPixPaymentMethodService storageService, INotificationSender<EmailNotification> notificationSender) {
-        this.orderRepository = orderRepository;
+        this.command = command;
         this.storageService = storageService;
         this.notificationSender = notificationSender;
     }
 
     @Bean
-    public OrderToPaymentMediator getOrderRepository() {
-        return OrderToPaymentMediatorFactory.factory(storageService, orderRepository, notificationSender);
+    public OrderToPaymentMediator getCommand() {
+        return OrderToPaymentMediatorFactory.factory(storageService, command, notificationSender);
     }
 }

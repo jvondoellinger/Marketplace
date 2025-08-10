@@ -6,19 +6,19 @@ import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.mapper.ProductMapper;
 import zjg.marketplace.application.service.promisse.ICreateService;
 import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 
 @Service
 public class CreateProductService implements ICreateService<Product, ProductInput> {
-    private final Repository<Product> repository;
+    private final CommandRepository<Product> command;
 
-    public CreateProductService(Repository<Product> repository) {
-        this.repository = repository;
+    public CreateProductService(CommandRepository<Product> command) {
+        this.command = command;
     }
 
     @Override
     public Mono<Product> create(ProductInput productInput) {
         var product = ProductMapper.map(productInput);
-        return repository.insert(product);
+        return command.insert(product);
     }
 }

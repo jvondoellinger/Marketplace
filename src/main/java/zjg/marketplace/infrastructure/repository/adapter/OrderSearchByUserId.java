@@ -1,10 +1,10 @@
-package zjg.marketplace.infrastructure.repository.impl;
+package zjg.marketplace.infrastructure.repository.adapter;
 
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import zjg.marketplace.core.entity.order.Order;
 import zjg.marketplace.core.interfaces.services.repository.SearchByUserIdRepository;
-import zjg.marketplace.infrastructure.repository.spring.OrderReactiveMongoRepository;
+import zjg.marketplace.infrastructure.repository.interfaces.OrderReactiveMongoRepository;
 
 @Repository
 public class OrderSearchByUserId implements SearchByUserIdRepository<Order> {

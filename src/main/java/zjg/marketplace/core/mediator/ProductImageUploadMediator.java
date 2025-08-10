@@ -6,6 +6,7 @@ import zjg.marketplace.core.entity.file.BasicImageFile;
 import zjg.marketplace.core.entity.product.ProductBuilder;
 import zjg.marketplace.core.factory.chain.updater.ProductUpdaterHandleFactory;
 import zjg.marketplace.core.factory.path.ImagePathsFactory;
+import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 import zjg.marketplace.core.valueObjects.path.ImagePath;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.interfaces.services.repository.Repository;
@@ -16,10 +17,10 @@ import java.util.List;
 
 
 public class ProductImageUploadMediator {
-    private final Repository<Product> repository;
+    private final CommandRepository<Product> repository;
     private final StorageService storageService;
 
-    public ProductImageUploadMediator(Repository<Product> repository, StorageService storageService) {
+    public ProductImageUploadMediator(CommandRepository<Product> repository, StorageService storageService) {
         this.repository = repository;
         this.storageService = storageService;
     }

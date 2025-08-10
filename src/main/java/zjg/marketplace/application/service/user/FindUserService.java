@@ -6,30 +6,30 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindService;
 import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
 
 @Service
 public class FindUserService implements IFindService<User> {
-    private final Repository<User> repository;
+    private final QueryRepository<User> query;
 
-    public FindUserService(Repository<User> repository) {
-        this.repository = repository;
+    public FindUserService(QueryRepository<User> query) {
+        this.query = query;
     }
 
     @Override
     @Cacheable(value = "user", key = "#offset + '-' + #limit")
     public Flux<User> get(Long offset, Integer limit) {
-        return repository.findWithPagination(offset, limit);
+        return query.findWithPagination(offset, limit);
     }
 
     @Override
     @Cacheable(value = "user", key = "#id")
     public Mono<User> findById(String id) {
-        return repository.findById(id);
+        return query.findById(id);
     }
 
     @Override
     public Mono<User> findByIdNoCache(String id) {
-        return repository.findById(id);
+        return query.findById(id);
     }
 }

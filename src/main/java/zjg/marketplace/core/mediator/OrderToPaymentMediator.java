@@ -11,17 +11,17 @@ import zjg.marketplace.core.enums.OrderStatusEnum;
 import zjg.marketplace.core.factory.chain.updater.OrderUpdaterHandleFactory;
 import zjg.marketplace.core.interfaces.services.notification.INotificationSender;
 import zjg.marketplace.core.interfaces.services.payment.pix.IPixPaymentMethodService;
-import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 
 public class OrderToPaymentMediator {
     private final IPixPaymentMethodService service;
-    private final Repository<Order> repository;
+    private final CommandRepository<Order> command;
     private final INotificationSender<EmailNotification> notificationSender;
-    public OrderToPaymentMediator(Repository<Order> repository,
+    public OrderToPaymentMediator(CommandRepository<Order> command,
                                   IPixPaymentMethodService service,
                                   INotificationSender<EmailNotification> notificationSender) {
         this.service = service;
-        this.repository = repository;
+        this.command = command;
         this.notificationSender = notificationSender;
     }
     @BadCode
@@ -29,7 +29,7 @@ public class OrderToPaymentMediator {
         var updateHandler = OrderUpdaterHandleFactory.factory();
         var unsafe = OrderBuilder.builder().status(OrderStatusEnum.WAITING_PAYMENT).build();
         updateHandler.handle(order, unsafe);
-        return repository.update(order)
+        return command.update(order)
                 .flatMap(updated -> service.generateQrCodeToOrder(updated, payer));
 
     }

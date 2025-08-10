@@ -10,15 +10,15 @@ import zjg.marketplace.application.service.promisse.IUpdateService;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.factory.chain.updater.ProductUpdaterHandleFactory;
 import zjg.marketplace.core.factory.chain.validators.ProductValidatorHandlerFactory;
-import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 
 @Service
 public class  UpdateProductService implements IUpdateService<Product, ProductInput> {
     private final IFindService<Product> findService;
-    private final Repository<Product> repository;
+    private final CommandRepository<Product> command;
 
-    public UpdateProductService(Repository<Product> repository, IFindService<Product> facade) {
-        this.repository = repository;
+    public UpdateProductService(CommandRepository<Product> command, IFindService<Product> facade) {
+        this.command = command;
         this.findService = facade;
     }
 
@@ -32,7 +32,7 @@ public class  UpdateProductService implements IUpdateService<Product, ProductInp
                     var source = ProductMapper.unsafeMap(productInput);
                     updateHandler.handle(target, source);
                     validateHandler.handle(target);
-                    return repository.update(target);
+                    return command.update(target);
                 });
     }
 }

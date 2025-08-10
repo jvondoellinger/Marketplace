@@ -5,20 +5,20 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindByEmail;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.exceptions.security.user.EmailNotExistsException;
-import zjg.marketplace.core.interfaces.services.repository.SearchByEmailRepository;
+import zjg.marketplace.core.interfaces.services.repository.query.QueryByEmailRepository;
 
 @Service
 public class FindUserByEmailService implements IFindByEmail<User> {
-    private final SearchByEmailRepository<User> repository;
+private final QueryByEmailRepository<User> query;
 
-    public FindUserByEmailService(SearchByEmailRepository<User> repository) {
-        this.repository = repository;
+    public FindUserByEmailService(QueryByEmailRepository<User> query) {
+        this.query = query;
     }
 
     @Override
     // @Cacheable(value = "user", key = "userCredentials.email") Não faz sentido, pois o REDIS expira em 5min e o token vai expirar em 1h
     public Mono<User> find(String email) throws EmailNotExistsException {
-        return repository.find(email)
+        return query.find(email)
                 .switchIfEmpty(Mono.error(new EmailNotExistsException()));
     }
 }

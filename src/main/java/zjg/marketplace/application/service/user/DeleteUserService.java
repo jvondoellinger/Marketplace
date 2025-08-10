@@ -6,23 +6,24 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IDeleteService;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.interfaces.services.repository.Repository;
+import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 
 @Service
 public class DeleteUserService implements IDeleteService<User> {
-    private final Repository<User> repository;
+    private final CommandRepository<User> command;
 
-    public DeleteUserService(Repository<User> repository) {
-        this.repository = repository;
+    public DeleteUserService(CommandRepository<User> command) {
+        this.command = command;
     }
 
     @Override
     @CacheEvict(value = "user", key = "id")
     public Mono<Void> delete(User user) {
-        return repository.delete(user.getId());
+        return command.delete(user.getId());
     }
 
     @Override
     public Mono<Void> deleteById(String id) {
-        return repository.delete(id);
+        return command.delete(id);
     }
 }

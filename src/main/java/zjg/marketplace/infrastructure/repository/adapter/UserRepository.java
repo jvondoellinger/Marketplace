@@ -1,4 +1,4 @@
-package zjg.marketplace.infrastructure.repository.impl;
+package zjg.marketplace.infrastructure.repository.adapter;
 
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -6,9 +6,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.interfaces.services.repository.Repository;
-import zjg.marketplace.infrastructure.repository.spring.UserReactiveMongoRepository;
+import zjg.marketplace.infrastructure.repository.interfaces.UserReactiveMongoRepository;
 
-@org.springframework.stereotype.Repository
 public class UserRepository implements Repository<User> {
     public final UserReactiveMongoRepository repositoryLib;
     private final ReactiveMongoTemplate template;

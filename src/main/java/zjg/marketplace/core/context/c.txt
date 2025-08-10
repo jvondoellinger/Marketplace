@@ -1,4 +1,6 @@
-// Deve seguir com as funções de usuario, tipo:
+// * Deve seguir com as funções de usuario, tipo:
+
+// ! MUDAR A INFRA PARA USAR O USERID/PRODUCTID COMO TAMBEM UM PATH (ajuste)
 
 UserContext
     .getInstance()
