@@ -4,9 +4,11 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.core.anotation.BadCode;
 import zjg.marketplace.core.entity.notification.EmailNotification;
 import zjg.marketplace.core.entity.order.Order;
+import zjg.marketplace.core.entity.order.OrderBuilder;
 import zjg.marketplace.core.entity.payment.PixPayment;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.enums.OrderStatusEnum;
+import zjg.marketplace.core.factory.chain.updater.OrderUpdaterHandleFactory;
 import zjg.marketplace.core.interfaces.services.notification.INotificationSender;
 import zjg.marketplace.core.interfaces.services.payment.pix.IPixPaymentMethodService;
 import zjg.marketplace.core.interfaces.services.repository.Repository;
@@ -24,7 +26,9 @@ public class OrderToPaymentMediator {
     }
     @BadCode
     public Mono<PixPayment> orderToPayment(Order order, User payer) {
-        order.updateStatus(OrderStatusEnum.WAITING_PAYMENT);
+        var updateHandler = OrderUpdaterHandleFactory.factory();
+        var unsafe = OrderBuilder.builder().status(OrderStatusEnum.WAITING_PAYMENT).build();
+        updateHandler.handle(order, unsafe);
         return repository.update(order)
                 .flatMap(updated -> service.generateQrCodeToOrder(updated, payer));
 

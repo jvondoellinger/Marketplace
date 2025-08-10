@@ -16,6 +16,6 @@ public class OrderSearchByUserId implements SearchByUserIdRepository<Order> {
 
     @Override
     public Flux<Order> findByUserId(String userId) {
-        return repositoryLib.findByUserId(userId);
+        return repositoryLib.findByBuyerId(userId);
     }
 }

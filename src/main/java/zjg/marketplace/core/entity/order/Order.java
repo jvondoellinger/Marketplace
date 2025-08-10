@@ -5,6 +5,7 @@ import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.enums.OrderStatusEnum;
 import zjg.marketplace.core.interfaces.compositions.builder.Reconstructable;
 import zjg.marketplace.core.interfaces.compositions.clone.IClonable;
+import zjg.marketplace.core.rules.OrderRules;
 import zjg.marketplace.core.strategy.interfaces.common.IAmountGetterStrategy;
 import zjg.marketplace.core.strategy.interfaces.common.IUserIdGetterStrategy;
 
@@ -16,7 +17,7 @@ public class Order extends BaseEntity implements Reconstructable<OrderBuilder>,
         IClonable<Order>,
         IUserIdGetterStrategy,
         IAmountGetterStrategy {
-    // Constructor ------------------------------------------------------
+    // * Constructor ------------------------------------------------------
     protected Order() {
         init();
     }
@@ -37,14 +38,13 @@ public class Order extends BaseEntity implements Reconstructable<OrderBuilder>,
         addBatchItems(products);
     }
 
-    // Properties ------------------------------------------------------
-    /// Buyer ID
+    // * Properties ------------------------------------------------------
     private String buyerId; // Buyer
     private List<String> productsId;
     private OrderStatusEnum status;
     private BigDecimal amount;
 
-    // Getter ------------------------------------------------------
+    // * Getter ------------------------------------------------------
     public List<String> getProductsId() {
         return productsId;
     }
@@ -58,7 +58,7 @@ public class Order extends BaseEntity implements Reconstructable<OrderBuilder>,
         return amount;
     }
 
-    // Setter ------------------------------------------------------
+    // * Setter ------------------------------------------------------
     protected void setStatus(OrderStatusEnum status) {
         this.status = status;
     }
@@ -72,7 +72,7 @@ public class Order extends BaseEntity implements Reconstructable<OrderBuilder>,
         this.productsId = productsId;
     }
 
-    // Overrides ------------------------------------------------------
+    // * Overrides ------------------------------------------------------
     @Override
     public OrderBuilder toBuilder() {
         return new OrderBuilder(this);
@@ -86,9 +86,19 @@ public class Order extends BaseEntity implements Reconstructable<OrderBuilder>,
     @Override
     public String getUserId() {
         return getBuyerId();
+    } // ! Error here (serialization)
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "userId='" + buyerId + '\'' +
+                ", productsId=" + productsId +
+                ", status=" + status +
+                ", amount=" + amount +
+                '}';
     }
 
-    // Custom ------------------------------------------------------
+    // * Custom ------------------------------------------------------
     public void addBatchItems(List<Product> products) {
         for (var p : products) addItem(p);
     }
@@ -103,38 +113,18 @@ public class Order extends BaseEntity implements Reconstructable<OrderBuilder>,
     public void closeOrder() {
         status = OrderStatusEnum.CLOSED;
     }
-    public final BigDecimal calculateAmount(List<Product> products) {
-        return products.stream()
-                .map(Product::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
     public void cancelOrder() {
         this.status = OrderStatusEnum.CANCELED;
     }
-    public void updateStatus(OrderStatusEnum status) {
-        switch (this.status) {
-            case CANCELED -> throw new IllegalArgumentException("It is not possible to update the status of a canceled order!");
-            case REFUNDED -> throw new IllegalArgumentException("It is not possible to update the status of a refunded order!");
-        }
-        this.status = status;
-    }
 
-    // Init ------------------------------------------------------------
+    // * Init ------------------------------------------------------------
     private void init() {
         this.amount = BigDecimal.ZERO;
         this.productsId = new ArrayList<>();
         this.status = OrderStatusEnum.PENDING;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "userId='" + buyerId + '\'' +
-                ", productsId=" + productsId +
-                ", status=" + status +
-                ", amount=" + amount +
-                '}';
-    }
+
 
 
 }

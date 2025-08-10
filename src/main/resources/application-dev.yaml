@@ -24,6 +24,9 @@ spring:
   mongodb:
    uri: mongodb://localhost:27017/User_dev
    auto-index-creation: true
+  jackson:
+   deserialization:
+    FAIL_ON_UNKNOWN_PROPERTIES: false
 
 # ============= CUSTOM =============== #
 # AWS -------------------------

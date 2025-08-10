@@ -7,5 +7,5 @@ import zjg.marketplace.core.entity.order.Order;
 
 @Repository
 public interface OrderReactiveMongoRepository extends ReactiveMongoRepository<Order, String> {
-    Flux<Order> findByUserId(String userId);
+    Flux<Order> findByBuyerId(String buyerId);
 }

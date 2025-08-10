@@ -21,8 +21,8 @@ public class FindUserAndProductsHelper {
         this.userFindService = userFindService;
         this.productFindService = productFindService;
     }
-
-    @Cacheable(value = "userAndProduct", key = "#userId + '-' + #limit")
+    // ! Ta dando bug
+    @Cacheable(value = "userAndProduct", key = "#userId + '-' + #productsId")
     public Mono<Pair<User, List<Product>>> findUserAndProducts(String userId, List<String> productsId) {
         if(productsId.isEmpty()) throw new IllegalArgumentException("The product id list cannot be empty!");
         var userMono = userFindService.findById(userId);

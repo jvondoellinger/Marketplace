@@ -13,7 +13,7 @@ import zjg.marketplace.core.factory.chain.validators.ProductValidatorHandlerFact
 import zjg.marketplace.core.interfaces.services.repository.Repository;
 
 @Service
-public class UpdateProductService implements IUpdateService<Product, ProductInput> {
+public class  UpdateProductService implements IUpdateService<Product, ProductInput> {
     private final IFindService<Product> findService;
     private final Repository<Product> repository;
 

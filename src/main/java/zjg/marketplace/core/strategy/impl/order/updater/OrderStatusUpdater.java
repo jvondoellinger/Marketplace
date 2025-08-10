@@ -14,6 +14,6 @@ public class OrderStatusUpdater implements UpdateStrategy<Order> {
         OrderRules.throwIfCannotUpdate(target);
         var status = source.getStatus();
         if(Objects.isNull(status)) return;
-        target.updateStatus(status);
+        target.toBuilder().status(status);
     }
 }

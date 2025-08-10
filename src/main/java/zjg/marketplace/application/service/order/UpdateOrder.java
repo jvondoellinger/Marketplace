@@ -4,6 +4,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
+import zjg.marketplace.application.mapper.OrderMapper;
 import zjg.marketplace.application.service.helper.FindUserAndProductsHelper;
 import zjg.marketplace.application.service.promisse.IFindService;
 import zjg.marketplace.application.service.promisse.IUpdateService;
@@ -17,11 +18,9 @@ import zjg.marketplace.core.interfaces.services.repository.Repository;
 public class UpdateOrder implements IUpdateService<Order, OrderUpdateInput> {
     private final IFindService<Order> findService;
     private final Repository<Order> repository;
-    private final FindUserAndProductsHelper findUserAndProductsHelper;
-    public UpdateOrder(IFindService<Order> findService, Repository<Order> repository, FindUserAndProductsHelper findUserAndProductsHelper) {
+    public UpdateOrder(IFindService<Order> findService, Repository<Order> repository) {
         this.findService = findService;
         this.repository = repository;
-        this.findUserAndProductsHelper = findUserAndProductsHelper;
     }
 
     @Override
@@ -31,13 +30,10 @@ public class UpdateOrder implements IUpdateService<Order, OrderUpdateInput> {
         var validateHandler = OrderValidatorHandleFactory.factory();
         return findService.findById(id)
                 .flatMap(order -> {
-                    return findUserAndProductsHelper.findUserAndProducts(order.getBuyerId(), order.getProductsId())
-                            .flatMap(pair -> {
-                                var mapped = OrderFactory.factory(pair.getFirst().getId(), pair.getSecond());
-                                updateHandler.handle(order, mapped);
-                                validateHandler.handle(order);
-                                return repository.update(order);
-                            });
+                    var mapped = OrderMapper.unsafeMap(orderUpdateInput);
+                    updateHandler.handle(order, mapped);
+                    validateHandler.handle(order);
+                    return repository.update(order);
                 });
     }
 }

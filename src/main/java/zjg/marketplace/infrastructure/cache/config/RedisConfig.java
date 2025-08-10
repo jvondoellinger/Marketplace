@@ -1,5 +1,6 @@
 package zjg.marketplace.infrastructure.cache.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -15,10 +16,11 @@ import java.time.Duration;
 @Configuration
 public class RedisConfig {
     private static final Integer EXPIRE_MINUTES = 5;
+
     @Bean
-    public ReactiveRedisTemplate<String, Object> generateReactiveTemplate(ReactiveRedisConnectionFactory factory) {
+    public ReactiveRedisTemplate<String, Object> generateReactiveTemplate(ReactiveRedisConnectionFactory factory, ObjectMapper mapper) {
         var redisSeria = new StringRedisSerializer();
-        var jacksonSerializer = new GenericJackson2JsonRedisSerializer();
+        var jacksonSerializer = new GenericJackson2JsonRedisSerializer(mapper);
         var context = RedisSerializationContext
                 .<String, Object>newSerializationContext(redisSeria)
                 .value(jacksonSerializer)
@@ -27,9 +29,9 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisCacheConfiguration redisCacheConfiguration() {
+    public RedisCacheConfiguration redisCacheConfiguration(ObjectMapper mapper) {
         return RedisCacheConfiguration.defaultCacheConfig()
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer(mapper)))
                 .entryTtl(Duration.ofMinutes(EXPIRE_MINUTES));
     }
 }

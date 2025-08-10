@@ -4,8 +4,7 @@ import zjg.marketplace.core.rules.ImagesSupportedRules;
 import zjg.marketplace.core.utils.PathUtils;
 
 public class ImagePath {
-    // * Constructor
-    /// * Always prefer use ImagePathFactory
+    // * Constructor ------------------------------------
     public ImagePath(String completePath) {
         this.completePath = completePath;
     }

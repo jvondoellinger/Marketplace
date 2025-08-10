@@ -47,9 +47,9 @@ public class OrderController {
     }
 
     //@PreAuthorize("hasRole('USER')")
-    @GetMapping("/user/{userId}")
-    public Flux<Order> findOrdersByUserId(@PathVariable String userId) {
-        return findByUserIdService.findByUserId(userId);
+    @GetMapping("/user/{buyerId}")
+    public Flux<Order> findOrdersByUserId(@PathVariable String buyerId) {
+        return findByUserIdService.findByUserId(buyerId);
     }
 
     // * POST --------------------------------------------------------------
@@ -78,7 +78,7 @@ public class OrderController {
 
     //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{orderId}")
-    public Mono<Void> delete(@RequestBody String orderId) {
+    public Mono<Void> delete(@PathVariable String orderId) {
         return deleteService.deleteById(orderId);
     }
 
