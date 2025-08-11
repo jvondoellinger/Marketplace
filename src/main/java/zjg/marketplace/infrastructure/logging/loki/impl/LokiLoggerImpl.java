@@ -4,13 +4,13 @@ import org.springframework.stereotype.Service;
 import zjg.marketplace.core.valueObjects.log.Log;
 import zjg.marketplace.core.enums.LogLevel;
 import zjg.marketplace.core.factory.log.LogFactory;
-import zjg.marketplace.core.interfaces.services.logging.ILogger;
+import zjg.marketplace.core.interfaces.services.logging.Logger;
 import zjg.marketplace.infrastructure.logging.loki.models.StreamModelFactory;
 import zjg.marketplace.infrastructure.request.IRequisitionService;
 import zjg.marketplace.infrastructure.worker.SimpleLogWorker;
 
 @Service
-public class LokiLoggerImpl implements ILogger {
+public class LokiLoggerImpl implements Logger {
     private final StreamModelFactory factory;
     private final IRequisitionService service;
     private final SimpleLogWorker worker;

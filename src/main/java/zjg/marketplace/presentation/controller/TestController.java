@@ -2,15 +2,14 @@ package zjg.marketplace.presentation.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import zjg.marketplace.core.interfaces.services.logging.ILogger;
+import zjg.marketplace.core.interfaces.services.logging.Logger;
 
 //@RestController
 @RequestMapping("/test")
 public class TestController {
-    private final ILogger logger;
+    private final Logger logger;
 
-    public TestController(ILogger logger) {
+    public TestController(Logger logger) {
         this.logger = logger;
     }
 

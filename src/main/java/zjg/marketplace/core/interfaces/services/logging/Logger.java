@@ -1,6 +1,6 @@
 package zjg.marketplace.core.interfaces.services.logging;
 
-public interface ILogger {
+public interface Logger {
     void info(String message);
     <Origin> void info(Class<Origin> origin, String message);
     <Origin, E extends Throwable> void info(Class<Origin> origin, String message, E exception);

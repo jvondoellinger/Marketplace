@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
-import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -13,7 +12,7 @@ import zjg.marketplace.application.helper.AuthorizationTokenHelper;
 import zjg.marketplace.application.utils.AuthorizationTokenUtils;
 import zjg.marketplace.core.exceptions.validations.token.ExpiredTokenException;
 import zjg.marketplace.core.exceptions.validations.token.InvalidTokenException;
-import zjg.marketplace.core.interfaces.services.logging.ILogger;
+import zjg.marketplace.core.interfaces.services.logging.Logger;
 import zjg.marketplace.core.interfaces.services.security.TokenAuthenticator;
 
 import java.util.List;
@@ -21,9 +20,9 @@ import java.util.List;
 //@Service
 public class JwtJweAuthWebFilter implements WebFilter {
     private final TokenAuthenticator authenticator;
-    private final ILogger logger;
+    private final Logger logger;
     private final AuthorizationTokenHelper helper;
-    public JwtJweAuthWebFilter(TokenAuthenticator authenticator, ILogger logger, AuthorizationTokenHelper helper) {
+    public JwtJweAuthWebFilter(TokenAuthenticator authenticator, Logger logger, AuthorizationTokenHelper helper) {
         this.authenticator = authenticator;
         this.logger = logger;
         this.helper = helper;
