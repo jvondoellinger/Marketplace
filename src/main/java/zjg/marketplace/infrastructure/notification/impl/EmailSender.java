@@ -21,7 +21,6 @@ public class EmailSender implements INotificationSender<EmailNotification> {
 
     @Override
     public Mono<Void> send(EmailNotification notification) {
-        System.out.println("Sended");
         return Mono.fromRunnable(() -> {
             var prop = getProperties();
             var session = getSession(prop);

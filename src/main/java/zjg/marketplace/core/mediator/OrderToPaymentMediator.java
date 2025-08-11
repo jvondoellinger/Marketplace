@@ -26,20 +26,17 @@ public class OrderToPaymentMediator {
     }
     @BadCode
     public Mono<PixPayment> orderToPayment(Order order, User payer) {
-        System.out.println("???");
         var updateHandler = OrderUpdaterHandleFactory.factory();
-        var unsafe = OrderBuilder.builder().status(OrderStatusEnum.WAITING_PAYMENT).build();
-        updateHandler.handle(order, unsafe);
+        var partial = OrderBuilder.builder().status(OrderStatusEnum.WAITING_PAYMENT).build();
+        updateHandler.handle(order, partial);
         return command.update(order)
-                .flatMap(updated -> {
-                    var s = service.generateQrCodeToOrder(updated, payer);
-                    var n = new EmailNotification();
-                    n.setTarget(payer.getEmail());
-                    n.setTitle("ORDER CLOSED - WAITING PAYMENT");
-                    n.setSubject("test");
-                    n.setContent("test");
-                    System.out.println("Aqui?");
-                    return notificationSender.send(n).then(s);
+                .flatMap(updated -> service.generateQrCodeToOrder(updated, payer))
+                .flatMap(x -> {
+                    var notification = new EmailNotification();
+                    notification.setTarget(payer.getEmail());
+                    notification.setSubject("ORDER CLOSED - PAY TO YOURS PRODUCTS BE SENDED");
+                    notification.setContent("PIX CODE: %s".formatted(x.getCode()));
+                    return notificationSender.send(notification).thenReturn(x);
                 });
 
     }

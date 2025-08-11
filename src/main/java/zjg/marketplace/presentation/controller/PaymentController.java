@@ -27,11 +27,9 @@ public class PaymentController {
     @GetMapping("/pix/{orderId}")
     public Mono<PixPayment> generatePayment(@PathVariable String orderId) {
         return orderFindService.findById(orderId)
-                .flatMap(o -> {
-                    System.out.println(o.getBuyerId());
-                    return userFindService.findById(o.getBuyerId())
-                            .zipWith(Mono.just(o));
-                })
+                .flatMap(o ->
+                     userFindService.findById(o.getBuyerId()).zipWith(Mono.just(o))
+                )
                 .switchIfEmpty(Mono.error(new RuntimeException("Não encontrado")))
                 .flatMap(t -> {
                     return mediator.orderToPayment(t.getT2(), t.getT1());
