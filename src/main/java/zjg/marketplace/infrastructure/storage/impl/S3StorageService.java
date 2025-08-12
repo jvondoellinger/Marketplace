@@ -31,7 +31,7 @@ public class S3StorageService implements StorageService {
         this.config = config;
         this.logger = logger;
     }
-\
+    
     @Override
     public Mono<BasicImageFile> upload(BasicImageFile file) {
         if(Objects.isNull(file)) {
