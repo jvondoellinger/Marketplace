@@ -1,12 +1,12 @@
 package zjg.marketplace.core.strategy.impl.common.validators;
 
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 import zjg.marketplace.core.strategy.interfaces.common.IAmountGetterStrategy;
 import zjg.marketplace.core.utils.BigDecimalUtils;
 
 import java.util.Objects;
 
-public class AmountValidator<T extends IAmountGetterStrategy> implements IValidator<T> {
+public class AmountValidator<T extends IAmountGetterStrategy> implements Validator<T> {
     final static String DEFAULT_MESSAGE = "You provided a invalid username! Please, send another username.";
     final static String SMALLER_AMOUNT = "The amount you provided is too small. Please send a larger one.";
 

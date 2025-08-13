@@ -4,11 +4,9 @@ import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.exceptions.validations.product.description.BlankDescriptionException;
 import zjg.marketplace.core.exceptions.validations.product.description.DescriptionTooLongException;
 import zjg.marketplace.core.exceptions.validations.product.description.DescriptionTooShortException;
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 
-import java.util.Objects;
-
-public class DescriptionValidator implements IValidator<Product> {
+public class DescriptionValidator implements Validator<Product> {
     final static String DEFAULT_MESSAGE = "You provided a invalid description! Please, send another description.";
     final static String SHORT_DESCRIPTION = "You provided a short description! Please, send a longer description.";
     final static String LONGER_DESCRIPTION = "You provided a short description! Please, send a longer description.";

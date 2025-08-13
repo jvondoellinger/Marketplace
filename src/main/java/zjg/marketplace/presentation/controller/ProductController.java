@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductController {
     private final ICreateService<Product, ProductInput> createService;
     private final IDeleteService<Product> deleteService;
-    private final IFindService<Product> findService;
+    private final FindService<Product> findService;
     private final IUpdateService<Product, ProductInput> updateService;
 
     public ProductController(ServiceResolverFacade facade) {

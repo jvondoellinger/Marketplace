@@ -1,12 +1,12 @@
 package zjg.marketplace.core.chain.impl.updater;
 
-import zjg.marketplace.core.chain.interfaces.IDualHandler;
-import zjg.marketplace.core.chain.interfaces.INextHandler;
+import zjg.marketplace.core.chain.interfaces.DualHandler;
+import zjg.marketplace.core.chain.interfaces.NextHandler;
 import zjg.marketplace.core.strategy.interfaces.UpdateStrategy;
 
 import java.util.Objects;
 
-public class EntityUpdaterHandler<T> implements IDualHandler<T>, INextHandler<UpdateStrategy<T>> {
+public class EntityUpdaterHandler<T> implements DualHandler<T>, NextHandler<UpdateStrategy<T>> {
     protected EntityUpdaterHandler<T> next;
     protected UpdateStrategy<T> strategy;
 

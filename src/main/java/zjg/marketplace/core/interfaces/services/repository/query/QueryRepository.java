@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface QueryRepository<TEntity> {
     Mono<TEntity> findById(String id);
-    Flux<TEntity> findWithPagination(Long offset, Integer limit);
+    Flux<TEntity> findWithPagination(long offset, int limit);
 }

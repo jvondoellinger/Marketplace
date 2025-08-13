@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.mapper.ProductMapper;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.IUpdateService;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.factory.chain.updater.ProductUpdaterHandleFactory;
@@ -14,10 +14,10 @@ import zjg.marketplace.core.interfaces.services.repository.command.CommandReposi
 
 @Service
 public class  UpdateProductService implements IUpdateService<Product, ProductInput> {
-    private final IFindService<Product> findService;
+    private final FindService<Product> findService;
     private final CommandRepository<Product> command;
 
-    public UpdateProductService(CommandRepository<Product> command, IFindService<Product> facade) {
+    public UpdateProductService(CommandRepository<Product> command, FindService<Product> facade) {
         this.command = command;
         this.findService = facade;
     }

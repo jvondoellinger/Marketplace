@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.adapter.ProductImageUploadMediatorAdapter;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.interfaces.services.storage.StorageService;
 import zjg.marketplace.presentation.adapter.path.PathMediaTypeAdapter;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/images")
 public class ImagesController {
-    private final IFindService<Product> findService;
+    private final FindService<Product> findService;
     private final ProductImageUploadMediatorAdapter mediator;
     private final StorageService storageService;
     public ImagesController(ServiceResolverFacade facade,

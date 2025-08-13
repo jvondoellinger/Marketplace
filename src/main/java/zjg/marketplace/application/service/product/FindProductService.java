@@ -4,12 +4,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
 
 @Service
-public class FindProductService implements IFindService<Product> {
+public class FindProductService implements FindService<Product> {
     private final QueryRepository<Product> query;
 
     public FindProductService(QueryRepository<Product> query) {
@@ -18,7 +18,7 @@ public class FindProductService implements IFindService<Product> {
 
     @Override
     @Cacheable(value = "product", key = "#offset + '-' + #limit")
-    public Flux<Product> get(Long offset, Integer limit) {
+    public Flux<Product> get(long offset, int limit) {
         return query.findWithPagination(offset, limit);
     }
 

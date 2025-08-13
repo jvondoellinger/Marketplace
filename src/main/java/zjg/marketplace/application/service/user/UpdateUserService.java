@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.mapper.UserMapper;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.IUpdateService;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.factory.chain.updater.UserUpdaterHandleFactory;
@@ -16,9 +16,9 @@ import zjg.marketplace.core.interfaces.services.security.TextEncryptor;
 @Service
 public class UpdateUserService implements IUpdateService<User, UserInput> {
     private final CommandRepository<User> command;
-    private final IFindService<User> findService;
+    private final FindService<User> findService;
     private final TextEncryptor encryptor;
-    public UpdateUserService(CommandRepository<User> command, IFindService<User> findService, TextEncryptor encryptor) {
+    public UpdateUserService(CommandRepository<User> command, FindService<User> findService, TextEncryptor encryptor) {
         this.command = command;
         this.findService = findService;
         this.encryptor = encryptor;

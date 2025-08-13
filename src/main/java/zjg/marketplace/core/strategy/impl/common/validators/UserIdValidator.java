@@ -1,10 +1,10 @@
 package zjg.marketplace.core.strategy.impl.common.validators;
 
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 import zjg.marketplace.core.strategy.interfaces.common.IUserIdGetterStrategy;
 import java.util.Objects;
 
-public class UserIdValidator<T extends IUserIdGetterStrategy> implements IValidator<T> {
+public class UserIdValidator<T extends IUserIdGetterStrategy> implements Validator<T> {
     @Override
     public void validate(IUserIdGetterStrategy userIdGetter) {
         var id = userIdGetter.getUserId();

@@ -5,11 +5,11 @@ import zjg.marketplace.core.exceptions.validations.cpf.CpfAllDigitsEqualExceptio
 import zjg.marketplace.core.exceptions.validations.cpf.CpfLengthInvalidException;
 import zjg.marketplace.core.exceptions.validations.cpf.InvalidCpfException;
 import zjg.marketplace.core.exceptions.validations.cpf.NullCpfException;
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 
 import java.util.Objects;
 
-public class CpfValidator implements IValidator<User> {
+public class CpfValidator implements Validator<User> {
     private static final String INVALID_LENGTH_MESSAGE = "The provided CPF contains a invalid length";
     private static final String ALL_DIGITS_EQUALS_MESSAGE = "The provided CPF contains all the same digits.";
     private static final String INVALID_CPF_MESSAGE = "The provided a invalid CPF. Please, send a valid CPF!";

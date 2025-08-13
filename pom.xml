@@ -34,12 +34,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-core</artifactId>
@@ -115,6 +109,23 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>6.5.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 	</dependencies>
 
@@ -124,16 +135,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>21</source>
-                    <target>21</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
-                </configuration>
-            </plugin>
-        </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>21</source>
+					<target>21</target>
+					<compilerArgs>--enable-preview</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<!-- Configuração do Surefire -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M7</version>
+				<configuration>
+					<argLine>--enable-preview</argLine> <!-- Passa o preview para a JVM do teste -->
+					<useModulePath>false</useModulePath> <!-- Evita problema de modularidade -->
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 </project>

@@ -5,19 +5,18 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.entity.user.User;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
 @Service
 public class FindUserAndProductsHelper {
-    private final IFindService<User> userFindService;
-    private final IFindService<Product> productFindService;
+    private final FindService<User> userFindService;
+    private final FindService<Product> productFindService;
 
-    public FindUserAndProductsHelper(IFindService<User> userFindService, IFindService<Product> productFindService) {
+    public FindUserAndProductsHelper(FindService<User> userFindService, FindService<Product> productFindService) {
         this.userFindService = userFindService;
         this.productFindService = productFindService;
     }

@@ -29,7 +29,7 @@ public class ServiceResolverFacade {
     public <Entity> IFindByUserId<Entity> resolveFindByUserId(Class<Entity> entityClass) {
         return findByUserIdResolver.resolve(entityClass);
     }
-    public <Entity> IFindService<Entity> resolveFind(Class<Entity> entityClass) {
+    public <Entity> FindService<Entity> resolveFind(Class<Entity> entityClass) {
         return findResolver.resolve(entityClass);
     }
     public <Entity> IDeleteService<Entity> resolveDelete(Class<Entity> entityClass) {

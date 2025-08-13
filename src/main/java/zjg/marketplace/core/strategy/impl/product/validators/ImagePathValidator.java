@@ -1,15 +1,11 @@
 package zjg.marketplace.core.strategy.impl.product.validators;
 
 import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.exceptions.validations.product.path.BlankPathException;
-import zjg.marketplace.core.exceptions.validations.product.path.InvalidExtensionException;
-import zjg.marketplace.core.exceptions.validations.product.path.NullExtensionException;
-import zjg.marketplace.core.exceptions.validations.product.path.NullPathException;
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 
 import java.util.Objects;
 
-public class ImagePathValidator implements IValidator<Product> {
+public class ImagePathValidator implements Validator<Product> {
     private final static String DEFAULT_MESSAGE = "You provided an invalid path name! Please, send another path name.";
     private final static String NEED_EXTENSION = "You provided an invalid path name. Please send another one that includes the extension.";
 

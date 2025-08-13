@@ -1,5 +1,5 @@
 package zjg.marketplace.core.chain.interfaces;
 
-public interface INextHandler<TService> {
+public interface NextHandler<TService> {
     void setNext(TService service);
 }

@@ -10,9 +10,9 @@ public class EmailConfig {
     @Value("${EMAIL_PASSWORD}")
     private String password;
     @Value("${SMTP_HOST}")
-    private String smtp_host;
+    private String smtpHost;
     @Value("${SMTP_PORT}")
-    private int smtp_port;
+    private int smtpPort;
 
     public String getEmail() {
         return email;
@@ -21,10 +21,10 @@ public class EmailConfig {
         return password;
     }
     public String getSmtpHost() {
-        return smtp_host;
+        return smtpHost;
     }
     public int getSmtpPort() {
-        return smtp_port;
+        return smtpPort;
     }
 
     public void setEmail(String email) {
@@ -34,11 +34,11 @@ public class EmailConfig {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setSmtp_host(String smtp_host) {
-        this.smtp_host = smtp_host;
+    public void setSmtpHost(String smtpHost) {
+        this.smtpHost = smtpHost;
     }
-    public void setSmtp_port(int smtp_port) {
-        this.smtp_port = smtp_port;
+    public void setSmtpPort(int smtpPort) {
+        this.smtpPort = smtpPort;
     }
 
 }

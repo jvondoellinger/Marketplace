@@ -4,12 +4,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
 
 @Service
-public class FindUserService implements IFindService<User> {
+public class FindUserService implements FindService<User> {
     private final QueryRepository<User> query;
 
     public FindUserService(QueryRepository<User> query) {
@@ -18,7 +18,7 @@ public class FindUserService implements IFindService<User> {
 
     @Override
     @Cacheable(value = "user", key = "#offset + '-' + #limit")
-    public Flux<User> get(Long offset, Integer limit) {
+    public Flux<User> get(long offset, int limit) {
         return query.findWithPagination(offset, limit);
     }
 

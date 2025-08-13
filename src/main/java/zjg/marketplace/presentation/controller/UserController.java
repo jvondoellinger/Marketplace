@@ -1,6 +1,5 @@
 package zjg.marketplace.presentation.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -10,14 +9,14 @@ import zjg.marketplace.application.helper.AuthorizationTokenHelper;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
 import zjg.marketplace.application.service.promisse.ICreateService;
 import zjg.marketplace.application.service.promisse.IDeleteService;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.IUpdateService;
 import zjg.marketplace.core.entity.user.User;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-    private final IFindService<User> findService;
+    private final FindService<User> findService;
     private final IDeleteService<User> deleteService;
     private final ICreateService<User, UserInput> createService;
     private final IUpdateService<User, UserInput> updateService;

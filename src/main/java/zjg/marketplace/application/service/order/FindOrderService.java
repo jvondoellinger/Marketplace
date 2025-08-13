@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindByUserId;
-import zjg.marketplace.application.service.promisse.IFindService;
+import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.order.Order;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryByUserIdRepository;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
 
 @Service
-public class FindOrderService implements IFindService<Order>, IFindByUserId<Order> {
+public class FindOrderService implements FindService<Order>, IFindByUserId<Order> {
     private final QueryByUserIdRepository<Order> queryUserIdRepository;
     private final QueryRepository<Order> queryOrder;
 
@@ -22,7 +22,7 @@ public class FindOrderService implements IFindService<Order>, IFindByUserId<Orde
 
     @Override
     @Cacheable(value = "order", key = "#offset + '-' + #limit")
-    public Flux<Order> get(Long offset, Integer limit) {
+    public Flux<Order> get(long offset, int limit) {
         return queryOrder.findWithPagination(offset, limit);
     }
 

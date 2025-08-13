@@ -10,14 +10,18 @@ import zjg.marketplace.infrastructure.repository.utils.RepositoryMessageUtils;
 
 @Repository
 public class CommandUserRepository implements CommandRepository<User> {
+    // * Properties ------------------------------------------------------------------------
     private final UserReactiveMongoRepository jpaRepository;
     private final Logger logger;
     private static final Class<CommandUserRepository> self = CommandUserRepository.class;
+
+    // * Constructors ------------------------------------------------------------------------
     public CommandUserRepository(UserReactiveMongoRepository jpaRepository, Logger logger) {
         this.jpaRepository = jpaRepository;
         this.logger = logger;
     }
 
+    // * Overrides ------------------------------------------------------------------------
     @Override
     public Mono<User> insert(User entity) {
         logger.info(self, RepositoryMessageUtils.infoInsert(entity.getId()));

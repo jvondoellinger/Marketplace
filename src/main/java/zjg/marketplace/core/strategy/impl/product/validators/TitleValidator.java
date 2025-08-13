@@ -4,9 +4,9 @@ import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.exceptions.validations.product.title.BlankTitleException;
 import zjg.marketplace.core.exceptions.validations.product.title.TitleTooLongException;
 import zjg.marketplace.core.exceptions.validations.product.title.TitleTooShortException;
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 
-public class TitleValidator implements IValidator<Product> {
+public class TitleValidator implements Validator<Product> {
     final static String BLANK_TITLE = "You provided a blank username! Please, send another username.";
     final static String SHORT_TITLE = "You provided a short username! Please, send a longer username.";
     final static String LONGER_TITLE = "You provided a short username! Please, send a longer username.";

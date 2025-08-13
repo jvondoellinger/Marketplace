@@ -35,7 +35,7 @@ public class QueryUserRepository implements QueryRepository<User> {
     }
 
     @Override
-    public Flux<User> findWithPagination(Long offset, Integer limit) {
+    public Flux<User> findWithPagination(long offset, int limit) {
         logger.info(self, RepositoryMessageUtils.infoQueryByOffsetAndLimit(offset, limit));
         var query = new Query().skip(offset).limit(limit);
         return template.find(query, User.class)

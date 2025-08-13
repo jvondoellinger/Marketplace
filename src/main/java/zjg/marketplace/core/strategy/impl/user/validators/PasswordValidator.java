@@ -3,10 +3,10 @@ package zjg.marketplace.core.strategy.impl.user.validators;
 import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.exceptions.validations.password.ShortPasswordException;
 import zjg.marketplace.core.exceptions.validations.password.WeakPasswordException;
-import zjg.marketplace.core.strategy.interfaces.IValidator;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 import zjg.marketplace.core.utils.StringUtils;
 
-public class PasswordValidator implements IValidator<User> {
+public class PasswordValidator implements Validator<User> {
     private final static String DEFAULT_MESSAGE = "You provided a invalid password! Please, send another password.";
     private final static String SHORT_PASSWORD = "You provided a short password! Please, send a longer password.";
     private final static String INSECURE_PASSWORD = "You provided a insecure password! Please, send a longer password.";

@@ -35,7 +35,7 @@ public class QueryProductRepositoryImpl implements QueryRepository<Product> {
     }
 
     @Override
-    public Flux<Product> findWithPagination(Long offset, Integer limit) {
+    public Flux<Product> findWithPagination(long offset, int limit) {
         logger.info(self, RepositoryMessageUtils.infoQueryByOffsetAndLimit(offset, limit));
         var query = new Query().skip(offset).limit(limit);
         return template.find(query, Product.class)

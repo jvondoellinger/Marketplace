@@ -1,5 +1,5 @@
 package zjg.marketplace.core.strategy.interfaces;
 
-public interface IValidator<TEntity> {
+public interface Validator<TEntity> {
     void validate(TEntity entity);
 }

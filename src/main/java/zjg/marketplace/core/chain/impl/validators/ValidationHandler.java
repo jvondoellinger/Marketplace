@@ -1,17 +1,16 @@
 package zjg.marketplace.core.chain.impl.validators;
 
 import zjg.marketplace.core.chain.interfaces.Handler;
-import zjg.marketplace.core.chain.interfaces.INextHandler;
-import zjg.marketplace.core.strategy.interfaces.IValidator;
-
+import zjg.marketplace.core.chain.interfaces.NextHandler;
+import zjg.marketplace.core.strategy.interfaces.Validator;
 import java.util.Objects;
 
-public class ValidationHandler<T> implements Handler<T>, INextHandler<IValidator<T>> {
+public class ValidationHandler<T> implements Handler<T>, NextHandler<Validator<T>> {
     protected ValidationHandler<T> next;
-    protected IValidator<T> validator;
+    protected Validator<T> validator;
     public ValidationHandler() {}
 
-    private ValidationHandler(IValidator<T> validator) {
+    private ValidationHandler(Validator<T> validator) {
         this.validator = validator;
     }
 
@@ -23,7 +22,7 @@ public class ValidationHandler<T> implements Handler<T>, INextHandler<IValidator
     }
     // tentar abstrair isso com o INextHandler
     @Override
-    public void setNext(IValidator<T> validator) {
+    public void setNext(Validator<T> validator) {
         if (next == null) {
             this.next = new ValidationHandler<>(validator);
         } else {
