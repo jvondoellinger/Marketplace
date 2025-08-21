@@ -1,11 +1,9 @@
-package zjg.marketplace.core.factory.user;
+package zjg.marketplace.core.user.entity;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.entity.user.UserBuilder;
-import zjg.marketplace.core.factory.chain.validators.UserValidatorHandlerFactory;
-import zjg.marketplace.core.valueObjects.cpf.CPF;
-import zjg.marketplace.core.valueObjects.phone.PhoneNumber;
-import zjg.marketplace.core.interfaces.services.security.TextEncryptor;
+import zjg.marketplace.core.security.services.TextEncryptor;
+import zjg.marketplace.core.user.chain.UserValidatorHandlerFactory;
+import zjg.marketplace.core.user.valueObj.cpf.CPF;
+import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 
 import java.util.Date;
 

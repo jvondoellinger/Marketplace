@@ -1,10 +1,10 @@
-package zjg.marketplace.core.interfaces.services.security;
+package zjg.marketplace.core.security.services;
 
 import reactor.core.publisher.Mono;
-import zjg.marketplace.core.exceptions.security.user.EmailNotExistsException;
-import zjg.marketplace.core.exceptions.security.user.IncorrectPasswordProvidedException;
+import zjg.marketplace.core.user.repository.exceptions.EmailNotExistsException;
+import zjg.marketplace.core.user.auth.exceptions.IncorrectPasswordProvidedException;
 import zjg.marketplace.core.user.entity.UserCredentials;
-import zjg.marketplace.core.valueObjects.security.Token;
+import zjg.marketplace.core.security.models.Token;
 
 public interface UserAuthenticator {
     Mono<Token.EncryptedToken> login(UserCredentials credentials) throws IncorrectPasswordProvidedException, EmailNotExistsException;

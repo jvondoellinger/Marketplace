@@ -1,4 +1,4 @@
-package zjg.marketplace.core.user.exceptions;
+package zjg.marketplace.core.user.strategies.updater.exceptions;
 
 public class SamePhoneNumberException extends UserUpdaterException {
     public SamePhoneNumberException() {

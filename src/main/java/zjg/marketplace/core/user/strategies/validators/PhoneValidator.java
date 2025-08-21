@@ -1,10 +1,10 @@
-package zjg.marketplace.core.strategy.impl.user.validators;
+package zjg.marketplace.core.user.strategies.validators;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.phone.InvalidAreaCodeException;
-import zjg.marketplace.core.exceptions.validations.phone.InvalidCountryCodeException;
-import zjg.marketplace.core.exceptions.validations.phone.InvalidPhoneNumberException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.phone.InvalidAreaCodeException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.phone.InvalidCountryCodeException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.phone.InvalidPhoneNumberException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
+import zjg.marketplace.core.user.entity.User;
 
 public class PhoneValidator implements Validator<User> {
     final String INVALID_DDD_FORMAT = "Invalid Area Code! Please, send a area code in format: DDD (always in number, no spaces)";

@@ -5,8 +5,8 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.mapper.ProductMapper;
 import zjg.marketplace.application.service.promisse.ICreateService;
-import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
+import zjg.marketplace.core.product.entity.Product;
 
 @Service
 public class CreateProductService implements ICreateService<Product, ProductInput> {

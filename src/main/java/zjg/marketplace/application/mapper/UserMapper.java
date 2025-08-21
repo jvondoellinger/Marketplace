@@ -1,10 +1,10 @@
 package zjg.marketplace.application.mapper;
 
 import zjg.marketplace.application.dto.user.UserInput;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.entity.user.UserBuilder;
-import zjg.marketplace.core.factory.user.UserFactory;
-import zjg.marketplace.core.interfaces.services.security.TextEncryptor;
+import zjg.marketplace.core.user.entity.User;
+import zjg.marketplace.core.user.entity.UserBuilder;
+import zjg.marketplace.core.user.entity.UserFactory;
+import zjg.marketplace.core.security.services.TextEncryptor;
 
 public class UserMapper {
     public static User map(UserInput input, TextEncryptor encryptor) {

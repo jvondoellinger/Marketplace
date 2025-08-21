@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.product.validators;
+package zjg.marketplace.core.product.strategies.validators;
 
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.products.strategies.validators.exceptions.description.BlankDescriptionException;
-import zjg.marketplace.core.products.strategies.validators.exceptions.description.DescriptionTooLongException;
-import zjg.marketplace.core.products.strategies.validators.exceptions.description.DescriptionTooShortException;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.strategies.validators.exceptions.description.BlankDescriptionException;
+import zjg.marketplace.core.product.strategies.validators.exceptions.description.DescriptionTooLongException;
+import zjg.marketplace.core.product.strategies.validators.exceptions.description.DescriptionTooShortException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
 
 public class DescriptionValidator implements Validator<Product> {
@@ -12,7 +12,7 @@ public class DescriptionValidator implements Validator<Product> {
     final static String LONGER_DESCRIPTION = "You provided a short description! Please, send a longer description.";
 
     @Override
-    public void validate(Product product) {
+    public void validate(zjg.marketplace.core.product.entity.Product product) {
         var s = product.getDescription();
         var n = s.length();
         if(s.isBlank()) throw new BlankDescriptionException(DEFAULT_MESSAGE);

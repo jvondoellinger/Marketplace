@@ -1,34 +1,42 @@
-package zjg.marketplace.core.mediator;
+package zjg.marketplace.core.order.facade;
 
 import reactor.core.publisher.Mono;
-import zjg.marketplace.core.anotation.BadCode;
-import zjg.marketplace.core.entity.notification.EmailNotification;
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.entity.order.OrderBuilder;
-import zjg.marketplace.core.entity.payment.PixPayment;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.enums.OrderStatusEnum;
-import zjg.marketplace.core.factory.chain.updater.OrderUpdaterHandleFactory;
-import zjg.marketplace.core.interfaces.services.notification.INotificationSender;
-import zjg.marketplace.core.interfaces.services.payment.pix.IPixPaymentMethodService;
+import zjg.marketplace.core.notification.models.EmailNotification;
+import zjg.marketplace.core.notification.services.INotificationSender;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
+import zjg.marketplace.core.logging.enums.OrderStatusEnum;
+import zjg.marketplace.core.order.chain.OrderUpdaterHandleFactory;
+import zjg.marketplace.core.order.entity.Order;
+import zjg.marketplace.core.order.entity.OrderBuilder;
+import zjg.marketplace.core.payment.entity.PixPayment;
+import zjg.marketplace.core.payment.services.IPixPaymentProcessor;
+import zjg.marketplace.core.user.entity.User;
 
-public class OrderToPaymentMediator {
-    private final IPixPaymentMethodService service;
+public class OrderPaymentProcessor {
+    private final IPixPaymentProcessor service;
     private final CommandRepository<Order> command;
     private final INotificationSender<EmailNotification> notificationSender;
-    public OrderToPaymentMediator(CommandRepository<Order> command,
-                                  IPixPaymentMethodService service,
-                                  INotificationSender<EmailNotification> notificationSender) {
+    public OrderPaymentProcessor(CommandRepository<Order> command,
+                                 IPixPaymentProcessor service,
+                                 INotificationSender<EmailNotification> notificationSender) {
         this.service = service;
         this.command = command;
         this.notificationSender = notificationSender;
     }
-    @BadCode
+
     public Mono<PixPayment> orderToPayment(Order order, User payer) {
+        // * Partial order
+        var partial = OrderBuilder.builder()
+                .status(OrderStatusEnum.WAITING_PAYMENT)
+                .build();
+
+        // * Update handler
         var updateHandler = OrderUpdaterHandleFactory.factory();
-        var partial = OrderBuilder.builder().status(OrderStatusEnum.WAITING_PAYMENT).build();
+
+        // * Update
         updateHandler.handle(order, partial);
+
+        // * Transaction
         return command.update(order)
                 .flatMap(updated -> service.generateQrCodeToOrder(updated, payer))
                 .flatMap(x -> {

@@ -1,8 +1,8 @@
 package zjg.marketplace.application.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import zjg.marketplace.core.valueObjects.cpf.CPF;
-import zjg.marketplace.core.valueObjects.phone.PhoneNumber;
+import zjg.marketplace.core.user.valueObj.cpf.CPF;
+import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 import java.util.Date;
 
 public class UserInput {

@@ -1,11 +1,10 @@
-package zjg.marketplace.core.entity.order;
+package zjg.marketplace.core.order.entity;
 
 import zjg.marketplace.core.entity.base.BaseEntity;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.enums.OrderStatusEnum;
 import zjg.marketplace.core.interfaces.compositions.builder.Reconstructable;
 import zjg.marketplace.core.interfaces.compositions.clone.IClonable;
-import zjg.marketplace.core.rules.OrderRules;
+import zjg.marketplace.core.logging.enums.OrderStatusEnum;
+import zjg.marketplace.core.product.entity.Product;
 import zjg.marketplace.core.strategy.interfaces.common.IAmountGetterStrategy;
 import zjg.marketplace.core.strategy.interfaces.common.IUserIdGetterStrategy;
 

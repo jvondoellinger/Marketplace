@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.user.updater;
+package zjg.marketplace.core.user.strategies.updater;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.updater.user.SamePasswordException;
 import zjg.marketplace.core.strategy.interfaces.UpdateStrategy;
-import zjg.marketplace.core.utils.UpdaterStrategyUtils;
+import zjg.marketplace.core.user.entity.User;
+import zjg.marketplace.core.user.strategies.updater.exceptions.SamePasswordException;
+import zjg.marketplace.core.strategy.utils.UpdaterStrategyUtils;
 
 import java.util.Objects;
 

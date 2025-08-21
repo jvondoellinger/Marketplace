@@ -1,10 +1,8 @@
-package zjg.marketplace.core.products.entity;
+package zjg.marketplace.core.product.entity;
 
 import zjg.marketplace.core.anotation.BadCode;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.entity.product.ProductBuilder;
 import zjg.marketplace.core.image.valueObj.path.ImagePathList;
-import zjg.marketplace.core.products.chain.ProductValidatorHandlerFactory;
+import zjg.marketplace.core.product.chain.ProductValidatorHandlerFactory;
 
 import java.math.BigDecimal;
 
@@ -12,9 +10,9 @@ import java.math.BigDecimal;
 
 @BadCode
 public class ProductFactory {
-    public static Product factory(String title, String description, BigDecimal amount, ImagePathList paths) {
+    public static zjg.marketplace.core.product.entity.Product factory(String title, String description, BigDecimal amount, ImagePathList paths) {
         var validator = ProductValidatorHandlerFactory.factory();
-        var product = ProductBuilder.builder()
+        var product = zjg.marketplace.core.product.entity.ProductBuilder.builder()
                 .title(title)
                 .description(description)
                 .amount(amount)
@@ -24,9 +22,9 @@ public class ProductFactory {
         return product;
     }
 
-    public static Product factory(String title, String description, BigDecimal amount) {
+    public static zjg.marketplace.core.product.entity.Product factory(String title, String description, BigDecimal amount) {
         var validator = ProductValidatorHandlerFactory.factory();
-        var product = ProductBuilder.builder()
+        var product = zjg.marketplace.core.product.entity.ProductBuilder.builder()
                 .title(title)
                 .description(description)
                 .amount(amount)

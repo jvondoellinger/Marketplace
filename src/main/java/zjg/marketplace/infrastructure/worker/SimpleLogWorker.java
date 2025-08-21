@@ -1,7 +1,7 @@
 package zjg.marketplace.infrastructure.worker;
 
 import org.springframework.stereotype.Service;
-import zjg.marketplace.core.valueObjects.log.Log;
+import zjg.marketplace.core.logging.model.Log;
 import zjg.marketplace.infrastructure.logging.loki.config.LokiConfig;
 import zjg.marketplace.infrastructure.logging.loki.models.StreamModelFactory;
 import zjg.marketplace.infrastructure.request.IRequisitionService;

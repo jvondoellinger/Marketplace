@@ -1,4 +1,4 @@
-package zjg.marketplace.core.valueObjects.security;
+package zjg.marketplace.core.security.enums;
 
 public enum RoleAccess {
     GUEST,

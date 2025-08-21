@@ -1,10 +1,9 @@
-package zjg.marketplace.core.factory.mediator;
+package zjg.marketplace.core.order.facade;
 
 import zjg.marketplace.core.notification.models.EmailNotification;
 import zjg.marketplace.core.notification.services.INotificationSender;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 import zjg.marketplace.core.order.entity.Order;
-import zjg.marketplace.core.order.facade.OrderPaymentProcessor;
 import zjg.marketplace.core.payment.services.IPixPaymentProcessor;
 
 public class OrderToPaymentFacadeFactory {

@@ -1,8 +1,8 @@
-package zjg.marketplace.core.entity.user;
+package zjg.marketplace.core.user.entity;
 
 import zjg.marketplace.core.entity.base.BaseBuilder;
-import zjg.marketplace.core.valueObjects.cpf.CPF;
-import zjg.marketplace.core.valueObjects.phone.PhoneNumber;
+import zjg.marketplace.core.user.valueObj.cpf.CPF;
+import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 
 import java.util.Date;
 

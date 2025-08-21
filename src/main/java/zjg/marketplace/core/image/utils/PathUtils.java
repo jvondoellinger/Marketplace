@@ -1,4 +1,4 @@
-package zjg.marketplace.core.utils;
+package zjg.marketplace.core.image.utils;
 
 import zjg.marketplace.core.anotation.BadCode;
 

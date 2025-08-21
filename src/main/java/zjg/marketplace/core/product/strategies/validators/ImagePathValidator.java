@@ -1,6 +1,6 @@
-package zjg.marketplace.core.strategy.impl.product.validators;
+package zjg.marketplace.core.product.strategies.validators;
 
-import zjg.marketplace.core.entity.product.Product;
+import zjg.marketplace.core.product.entity.Product;
 import zjg.marketplace.core.strategy.interfaces.Validator;
 
 import java.util.Objects;

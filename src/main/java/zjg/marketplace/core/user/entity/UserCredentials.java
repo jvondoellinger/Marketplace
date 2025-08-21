@@ -1,4 +1,4 @@
-package zjg.marketplace.core.entity.user;
+package zjg.marketplace.core.user.entity;
 
 public class UserCredentials {
     private String email;

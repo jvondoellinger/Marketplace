@@ -2,7 +2,7 @@ package zjg.marketplace.infrastructure.logging.loki.models;
 
 import org.springframework.stereotype.Service;
 import zjg.marketplace.application.config.app.AppInfo;
-import zjg.marketplace.core.valueObjects.log.Log;
+import zjg.marketplace.core.logging.model.Log;
 
 @Service
 public class StreamModelFactory {

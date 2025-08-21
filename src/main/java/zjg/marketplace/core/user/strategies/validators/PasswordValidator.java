@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.user.validators;
+package zjg.marketplace.core.user.strategies.validators;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.password.ShortPasswordException;
-import zjg.marketplace.core.exceptions.validations.password.WeakPasswordException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.password.ShortPasswordException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.password.WeakPasswordException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
+import zjg.marketplace.core.user.entity.User;
 import zjg.marketplace.core.utils.StringUtils;
 
 public class PasswordValidator implements Validator<User> {

@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.order;
+package zjg.marketplace.core.order.strategies.valdiators.exceptions;
 
 public class EmptyProductsIdException extends OrderException {
     public EmptyProductsIdException() {

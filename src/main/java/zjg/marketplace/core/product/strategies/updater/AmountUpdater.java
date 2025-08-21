@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.product.updater;
+package zjg.marketplace.core.product.strategies.updater;
 
-import zjg.marketplace.core.entity.product.Product;
+import zjg.marketplace.core.product.entity.Product;
 import zjg.marketplace.core.strategy.interfaces.UpdateStrategy;
 import zjg.marketplace.core.utils.BigDecimalUtils;
-import zjg.marketplace.core.utils.UpdaterStrategyUtils;
+import zjg.marketplace.core.strategy.utils.UpdaterStrategyUtils;
 
 import java.util.Objects;
 

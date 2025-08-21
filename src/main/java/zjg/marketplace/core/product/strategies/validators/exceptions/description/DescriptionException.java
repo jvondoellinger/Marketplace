@@ -1,4 +1,4 @@
-package zjg.marketplace.core.products.strategies.validators.exceptions.description;
+package zjg.marketplace.core.product.strategies.validators.exceptions.description;
 
 public abstract class DescriptionException extends RuntimeException {
     public DescriptionException() {

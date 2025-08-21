@@ -1,7 +1,7 @@
-package zjg.marketplace.core.valueObjects.log;
+package zjg.marketplace.core.logging.model;
 
 import zjg.marketplace.core.anotation.BadCode;
-import zjg.marketplace.core.enums.LogLevel;
+import zjg.marketplace.core.logging.enums.LogLevel;
 
 @BadCode
 // Mudar a classe de package, pois não se trata de uma entidade!

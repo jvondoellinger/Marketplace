@@ -2,7 +2,7 @@ package zjg.marketplace.presentation.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import zjg.marketplace.core.interfaces.services.logging.Logger;
+import zjg.marketplace.core.logging.services.Logger;
 
 //@RestController
 @RequestMapping("/test")

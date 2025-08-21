@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.email;
+package zjg.marketplace.core.user.strategies.validators.exceptions.email;
 
 public class EmailFormatException extends EmailException {
     public EmailFormatException() {

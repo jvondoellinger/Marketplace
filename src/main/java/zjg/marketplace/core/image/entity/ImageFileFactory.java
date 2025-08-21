@@ -1,7 +1,6 @@
-package zjg.marketplace.core.factory.file;
+package zjg.marketplace.core.image.entity;
 
-import zjg.marketplace.core.entity.file.BasicImageFile;
-import zjg.marketplace.core.factory.path.ImagePathFactory;
+import zjg.marketplace.core.image.valueObj.path.ImagePathFactory;
 
 public class ImageFileFactory {
     public static BasicImageFile factory(byte[] binary, String completePath) {

@@ -1,7 +1,6 @@
-package zjg.marketplace.core.factory.path;
+package zjg.marketplace.core.image.valueObj.path;
 
 import zjg.marketplace.core.image.rules.ImagesSupportedRules;
-import zjg.marketplace.core.image.valueObj.path.ImagePath;
 
 public class ImagePathFactory {
     public static ImagePath factory(String completePath) {

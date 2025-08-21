@@ -8,11 +8,11 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import org.springframework.stereotype.Service;
 import zjg.marketplace.application.config.app.AppInfo;
 import zjg.marketplace.application.security.authenticator.config.ApiKeyConfig;
-import zjg.marketplace.core.exceptions.security.token.ErrorOnGenerateTokenException;
-import zjg.marketplace.core.exceptions.validations.token.InvalidTokenException;
-import zjg.marketplace.core.interfaces.services.security.TokenAuthenticator;
-import zjg.marketplace.core.valueObjects.security.RoleAccess;
-import zjg.marketplace.core.valueObjects.security.Token;
+import zjg.marketplace.core.security.exceptions.ErrorOnGenerateTokenException;
+import zjg.marketplace.core.security.exceptions.InvalidTokenException;
+import zjg.marketplace.core.security.services.TokenAuthenticator;
+import zjg.marketplace.core.security.enums.RoleAccess;
+import zjg.marketplace.core.security.models.Token;
 
 import java.text.ParseException;
 import java.time.Duration;

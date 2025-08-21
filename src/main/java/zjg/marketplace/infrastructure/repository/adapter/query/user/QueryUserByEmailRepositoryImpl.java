@@ -2,10 +2,10 @@ package zjg.marketplace.infrastructure.repository.adapter.query.user;
 
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.user.UserNotFoundException;
-import zjg.marketplace.core.interfaces.services.logging.Logger;
+import zjg.marketplace.core.user.repository.exceptions.UserNotFoundException;
+import zjg.marketplace.core.logging.services.Logger;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryByEmailRepository;
+import zjg.marketplace.core.user.entity.User;
 import zjg.marketplace.infrastructure.repository.interfaces.UserReactiveMongoRepository;
 import zjg.marketplace.infrastructure.repository.utils.RepositoryMessageUtils;
 

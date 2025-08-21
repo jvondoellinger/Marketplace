@@ -1,10 +1,10 @@
-package zjg.marketplace.core.interfaces.services.security;
+package zjg.marketplace.core.security.services;
 
-import zjg.marketplace.core.exceptions.security.token.ErrorOnGenerateTokenException;
-import zjg.marketplace.core.exceptions.validations.token.ExpiredTokenException;
-import zjg.marketplace.core.exceptions.validations.token.InvalidTokenException;
-import zjg.marketplace.core.valueObjects.security.RoleAccess;
-import zjg.marketplace.core.valueObjects.security.Token;
+import zjg.marketplace.core.security.exceptions.ErrorOnGenerateTokenException;
+import zjg.marketplace.core.security.exceptions.ExpiredTokenException;
+import zjg.marketplace.core.security.exceptions.InvalidTokenException;
+import zjg.marketplace.core.security.enums.RoleAccess;
+import zjg.marketplace.core.security.models.Token;
 
 public interface TokenAuthenticator {
     Token.EncryptedToken encrypt(String identifier, RoleAccess role) throws ErrorOnGenerateTokenException;

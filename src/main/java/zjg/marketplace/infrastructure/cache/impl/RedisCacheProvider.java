@@ -5,7 +5,7 @@ import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.core.anotation.BadCode;
-import zjg.marketplace.core.interfaces.services.cache.ICacheProvider;
+import zjg.marketplace.core.caching.ICacheProvider;
 
 @Service
 public class RedisCacheProvider implements ICacheProvider {

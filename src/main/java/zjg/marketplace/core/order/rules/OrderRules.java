@@ -1,6 +1,6 @@
-package zjg.marketplace.core.rules;
+package zjg.marketplace.core.order.rules;
 
-import zjg.marketplace.core.entity.order.Order;
+import zjg.marketplace.core.order.entity.Order;
 
 public class OrderRules {
     private OrderRules() {}

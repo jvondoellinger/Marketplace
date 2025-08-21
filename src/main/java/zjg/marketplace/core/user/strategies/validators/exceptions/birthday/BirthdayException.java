@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.birthday;
+package zjg.marketplace.core.user.strategies.validators.exceptions.birthday;
 
 public abstract class BirthdayException extends RuntimeException {
     public BirthdayException() {

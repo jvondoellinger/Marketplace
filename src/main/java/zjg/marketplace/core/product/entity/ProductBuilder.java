@@ -1,4 +1,4 @@
-package zjg.marketplace.core.entity.product;
+package zjg.marketplace.core.product.entity;
 
 import zjg.marketplace.core.entity.base.BaseBuilder;
 import zjg.marketplace.core.image.valueObj.path.ImagePathList;

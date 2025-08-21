@@ -4,19 +4,20 @@ import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.mapper.ImageMapper;
-import zjg.marketplace.core.entity.product.Product;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
-import zjg.marketplace.core.interfaces.services.storage.StorageService;
-import zjg.marketplace.core.mediator.ProductImageUploadMediator;
+import zjg.marketplace.core.image.service.StorageService;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.facade.ProductImageUploadFacade;
+
 import java.util.List;
 
 @Service
-public class ProductImageUploadMediatorAdapter extends ProductImageUploadMediator {
+public class ProductImageUploadFacadeAdapter extends ProductImageUploadFacade {
     private final ImageMapper mapper;
 
-    public ProductImageUploadMediatorAdapter(CommandRepository<Product> command,
-                                             StorageService storageService,
-                                             ImageMapper mapper) {
+    public ProductImageUploadFacadeAdapter(CommandRepository<Product> command,
+                                           StorageService storageService,
+                                           ImageMapper mapper) {
         super(command, storageService);
         this.mapper = mapper;
     }

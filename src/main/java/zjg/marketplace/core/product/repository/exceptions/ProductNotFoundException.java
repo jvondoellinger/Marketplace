@@ -1,6 +1,6 @@
-package zjg.marketplace.core.products.repository.exceptions;
+package zjg.marketplace.core.product.repository.exceptions;
 
-import zjg.marketplace.core.products.strategies.validators.exceptions.ProductValidationException;
+import zjg.marketplace.core.product.strategies.validators.exceptions.ProductValidationException;
 
 public class ProductNotFoundException extends ProductValidationException {
     public ProductNotFoundException() {

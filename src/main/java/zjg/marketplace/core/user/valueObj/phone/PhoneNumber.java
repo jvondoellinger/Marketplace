@@ -1,4 +1,4 @@
-package zjg.marketplace.core.valueObjects.phone;
+package zjg.marketplace.core.user.valueObj.phone;
 
 public class PhoneNumber {
     private String countryCode;

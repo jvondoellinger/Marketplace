@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.username;
+package zjg.marketplace.core.user.strategies.validators.exceptions.username;
 
 public abstract class UsernameException extends RuntimeException {
     public UsernameException() {

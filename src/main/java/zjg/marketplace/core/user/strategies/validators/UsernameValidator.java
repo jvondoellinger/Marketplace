@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.user.validators;
+package zjg.marketplace.core.user.strategies.validators;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.username.BlankUsernameException;
-import zjg.marketplace.core.exceptions.validations.username.UsernameTooShortException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.username.BlankUsernameException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.username.UsernameTooShortException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
+import zjg.marketplace.core.user.entity.User;
 
 public class UsernameValidator implements Validator<User> {
     final static String DEFAULT_MESSAGE = "You provided a invalid username! Please, send another username.";

@@ -1,10 +1,10 @@
-package zjg.marketplace.core.strategy.impl.product.updater;
+package zjg.marketplace.core.product.strategies.updater;
 
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.products.strategies.updater.exceptions.SameTitleException;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.strategies.updater.exceptions.SameTitleException;
 import zjg.marketplace.core.strategy.interfaces.UpdateStrategy;
 import zjg.marketplace.core.utils.StringUtils;
-import zjg.marketplace.core.utils.UpdaterStrategyUtils;
+import zjg.marketplace.core.strategy.utils.UpdaterStrategyUtils;
 
 public class TitleUpdater implements UpdateStrategy<Product> {
     private static final String SAME_TITLE_MESSAGE = "Cannot be sended the same description";

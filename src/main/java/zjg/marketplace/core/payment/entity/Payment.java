@@ -1,4 +1,4 @@
-package zjg.marketplace.core.entity.payment;
+package zjg.marketplace.core.payment.entity;
 
 import org.springframework.data.annotation.Transient;
 import zjg.marketplace.core.entity.base.BaseEntity;

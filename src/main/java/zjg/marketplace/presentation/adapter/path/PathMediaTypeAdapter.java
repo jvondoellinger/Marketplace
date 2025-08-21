@@ -1,7 +1,7 @@
 package zjg.marketplace.presentation.adapter.path;
 
 import org.springframework.http.MediaType;
-import zjg.marketplace.core.valueObjects.path.ImagePath;
+import zjg.marketplace.core.image.valueObj.path.ImagePath;
 
 public class PathMediaTypeAdapter extends ImagePath {
     public PathMediaTypeAdapter(String completePath) {

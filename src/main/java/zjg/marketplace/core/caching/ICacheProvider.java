@@ -1,4 +1,4 @@
-package zjg.marketplace.core.interfaces.services.cache;
+package zjg.marketplace.core.caching;
 
 import reactor.core.publisher.Mono;
 

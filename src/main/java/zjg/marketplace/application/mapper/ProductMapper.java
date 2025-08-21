@@ -1,9 +1,9 @@
 package zjg.marketplace.application.mapper;
 
 import zjg.marketplace.application.dto.product.ProductInput;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.entity.product.ProductBuilder;
-import zjg.marketplace.core.factory.product.ProductFactory;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.entity.ProductBuilder;
+import zjg.marketplace.core.product.entity.ProductFactory;
 
 public class ProductMapper {
     public static Product map(ProductInput input) {

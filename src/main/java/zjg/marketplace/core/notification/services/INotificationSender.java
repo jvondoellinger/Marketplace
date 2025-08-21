@@ -1,7 +1,7 @@
-package zjg.marketplace.core.interfaces.services.notification;
+package zjg.marketplace.core.notification.services;
 
 import reactor.core.publisher.Mono;
-import zjg.marketplace.core.entity.notification.Notification;
+import zjg.marketplace.core.notification.models.Notification;
 
 public interface INotificationSender<TNotification extends Notification> {
     Mono<Void> send(TNotification notification);

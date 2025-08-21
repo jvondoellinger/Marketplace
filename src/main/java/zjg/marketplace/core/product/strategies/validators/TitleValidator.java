@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.product.validators;
+package zjg.marketplace.core.product.strategies.validators;
 
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.products.strategies.validators.exceptions.title.BlankTitleException;
-import zjg.marketplace.core.products.strategies.validators.exceptions.title.TitleTooLongException;
-import zjg.marketplace.core.products.strategies.validators.exceptions.title.TitleTooShortException;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.strategies.validators.exceptions.title.BlankTitleException;
+import zjg.marketplace.core.product.strategies.validators.exceptions.title.TitleTooLongException;
+import zjg.marketplace.core.product.strategies.validators.exceptions.title.TitleTooShortException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
 
 public class TitleValidator implements Validator<Product> {

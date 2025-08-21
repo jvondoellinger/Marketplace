@@ -1,4 +1,4 @@
-package zjg.marketplace.core.products.strategies.validators.exceptions.title;
+package zjg.marketplace.core.product.strategies.validators.exceptions.title;
 
 public class TitleTooShortException extends TitleException {
     public TitleTooShortException() {

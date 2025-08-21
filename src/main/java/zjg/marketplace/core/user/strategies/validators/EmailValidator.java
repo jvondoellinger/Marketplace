@@ -1,8 +1,8 @@
-package zjg.marketplace.core.strategy.impl.user.validators;
+package zjg.marketplace.core.user.strategies.validators;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.email.EmailFormatException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.email.EmailFormatException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
+import zjg.marketplace.core.user.entity.User;
 
 // Se mudar a tipagem de String para User, fica tranquilo para criar uma cadeia de validações!\
 public class EmailValidator implements Validator<User> {

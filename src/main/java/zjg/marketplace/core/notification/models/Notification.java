@@ -1,4 +1,4 @@
-package zjg.marketplace.core.entity.notification;
+package zjg.marketplace.core.notification.models;
 
 public abstract class Notification {
     public String content;

@@ -1,12 +1,12 @@
-package zjg.marketplace.core.products.chain;
+package zjg.marketplace.core.product.chain;
 
 import zjg.marketplace.core.chain.impl.updater.EntityUpdaterHandler;
 import zjg.marketplace.core.chain.interfaces.DualHandler;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.strategy.impl.product.updater.AmountUpdater;
-import zjg.marketplace.core.strategy.impl.product.updater.DescriptionUpdater;
-import zjg.marketplace.core.strategy.impl.product.updater.PathsUpdater;
-import zjg.marketplace.core.strategy.impl.product.updater.TitleUpdater;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.strategies.updater.AmountUpdater;
+import zjg.marketplace.core.product.strategies.updater.DescriptionUpdater;
+import zjg.marketplace.core.product.strategies.updater.PathsUpdater;
+import zjg.marketplace.core.product.strategies.updater.TitleUpdater;
 
 public class ProductUpdaterHandleFactory {
 

@@ -1,9 +1,9 @@
-package zjg.marketplace.core.interfaces.services.storage;
+package zjg.marketplace.core.image.service;
 
 
 import reactor.core.publisher.Mono;
-import zjg.marketplace.core.entity.file.BasicImageFile;
-import zjg.marketplace.core.valueObjects.path.ImagePath;
+import zjg.marketplace.core.image.entity.BasicImageFile;
+import zjg.marketplace.core.image.valueObj.path.ImagePath;
 
 public interface StorageService {
     Mono<BasicImageFile> upload(BasicImageFile file);

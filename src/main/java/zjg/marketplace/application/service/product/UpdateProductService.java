@@ -7,10 +7,10 @@ import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.mapper.ProductMapper;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.IUpdateService;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.factory.chain.updater.ProductUpdaterHandleFactory;
-import zjg.marketplace.core.factory.chain.validators.ProductValidatorHandlerFactory;
+import zjg.marketplace.core.product.chain.ProductUpdaterHandleFactory;
+import zjg.marketplace.core.product.chain.ProductValidatorHandlerFactory;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
+import zjg.marketplace.core.product.entity.Product;
 
 @Service
 public class  UpdateProductService implements IUpdateService<Product, ProductInput> {

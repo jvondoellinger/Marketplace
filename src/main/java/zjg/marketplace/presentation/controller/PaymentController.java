@@ -4,19 +4,19 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.entity.payment.PixPayment;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.mediator.OrderToPaymentMediator;
+import zjg.marketplace.core.order.entity.Order;
+import zjg.marketplace.core.payment.entity.PixPayment;
+import zjg.marketplace.core.order.facade.OrderPaymentProcessor;
+import zjg.marketplace.core.user.entity.User;
 
 @RestController
 @RequestMapping("/api/payment")
 public class PaymentController {
-    private final OrderToPaymentMediator mediator;
+    private final OrderPaymentProcessor mediator;
     private final FindService<Order> orderFindService;
     private final FindService<User> userFindService;
 
-    public PaymentController(OrderToPaymentMediator mediator, ServiceResolverFacade facade) {
+    public PaymentController(OrderPaymentProcessor mediator, ServiceResolverFacade facade) {
         this.mediator = mediator;
         this.orderFindService = facade.resolveFind(Order.class);
         this.userFindService = facade.resolveFind(User.class);

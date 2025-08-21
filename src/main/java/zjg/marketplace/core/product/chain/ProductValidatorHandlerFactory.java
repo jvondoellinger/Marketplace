@@ -1,12 +1,12 @@
-package zjg.marketplace.core.products.chain;
+package zjg.marketplace.core.product.chain;
 
 import zjg.marketplace.core.chain.impl.validators.ValidationHandler;
 import zjg.marketplace.core.chain.interfaces.Handler;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.strategy.impl.common.validators.AmountValidator;
-import zjg.marketplace.core.strategy.impl.product.validators.DescriptionValidator;
-import zjg.marketplace.core.strategy.impl.product.validators.ImagePathValidator;
-import zjg.marketplace.core.strategy.impl.product.validators.TitleValidator;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.strategies.validators.DescriptionValidator;
+import zjg.marketplace.core.product.strategies.validators.ImagePathValidator;
+import zjg.marketplace.core.product.strategies.validators.TitleValidator;
+import zjg.marketplace.core.strategy.common.AmountValidator;
 
 public class ProductValidatorHandlerFactory {
     public ProductValidatorHandlerFactory() {}

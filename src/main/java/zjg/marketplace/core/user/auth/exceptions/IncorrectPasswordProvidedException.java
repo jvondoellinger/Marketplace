@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.security.user;
+package zjg.marketplace.core.user.auth.exceptions;
 
 public class IncorrectPasswordProvidedException extends FailedToAuthenticateUserException {
     public IncorrectPasswordProvidedException() {

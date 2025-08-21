@@ -1,9 +1,9 @@
-package zjg.marketplace.core.strategy.impl.order.updater;
+package zjg.marketplace.core.order.strategies.updater;
 
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.rules.OrderRules;
+import zjg.marketplace.core.order.entity.Order;
+import zjg.marketplace.core.order.rules.OrderRules;
 import zjg.marketplace.core.strategy.interfaces.UpdateStrategy;
-import zjg.marketplace.core.utils.UpdaterStrategyUtils;
+import zjg.marketplace.core.strategy.utils.UpdaterStrategyUtils;
 
 import java.util.Objects;
 

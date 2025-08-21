@@ -11,7 +11,7 @@ import zjg.marketplace.application.service.promisse.ICreateService;
 import zjg.marketplace.application.service.promisse.IDeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.IUpdateService;
-import zjg.marketplace.core.entity.user.User;
+import zjg.marketplace.core.user.entity.User;
 
 @RestController
 @RequestMapping("/api/user")

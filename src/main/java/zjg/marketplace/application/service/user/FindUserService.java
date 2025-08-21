@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.core.entity.user.User;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
+import zjg.marketplace.core.user.entity.User;
 
 @Service
 public class FindUserService implements FindService<User> {

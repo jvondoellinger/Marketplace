@@ -1,4 +1,4 @@
-package zjg.marketplace.core.products.strategies.updater.exceptions;
+package zjg.marketplace.core.product.strategies.updater.exceptions;
 
 public abstract class ProductUpdaterException extends RuntimeException {
     public ProductUpdaterException() {

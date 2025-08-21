@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.password;
+package zjg.marketplace.core.user.strategies.validators.exceptions.password;
 
 public abstract class PasswordException extends RuntimeException {
     public PasswordException() {

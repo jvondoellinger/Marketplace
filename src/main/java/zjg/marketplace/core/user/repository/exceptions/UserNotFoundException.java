@@ -1,6 +1,6 @@
-package zjg.marketplace.core.exceptions.validations.user;
+package zjg.marketplace.core.user.repository.exceptions;
 
-public class UserNotFoundException extends UserValidationException {
+public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException() {
     }
 

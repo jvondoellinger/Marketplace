@@ -4,9 +4,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IDeleteService;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.interfaces.services.repository.Repository;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
+import zjg.marketplace.core.user.entity.User;
 
 @Service
 public class DeleteUserService implements IDeleteService<User> {

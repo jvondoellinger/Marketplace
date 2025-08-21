@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.adapter.ProductImageUploadMediatorAdapter;
+import zjg.marketplace.application.adapter.ProductImageUploadFacadeAdapter;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.interfaces.services.storage.StorageService;
+import zjg.marketplace.core.image.service.StorageService;
+import zjg.marketplace.core.product.entity.Product;
 import zjg.marketplace.presentation.adapter.path.PathMediaTypeAdapter;
 
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
 @RequestMapping("/api/images")
 public class ImagesController {
     private final FindService<Product> findService;
-    private final ProductImageUploadMediatorAdapter mediator;
+    private final ProductImageUploadFacadeAdapter mediator;
     private final StorageService storageService;
     public ImagesController(ServiceResolverFacade facade,
-                            ProductImageUploadMediatorAdapter mediator,
+                            ProductImageUploadFacadeAdapter mediator,
                             StorageService storageService) {
         this.findService = facade.resolveFind(Product.class);
         this.mediator = mediator;

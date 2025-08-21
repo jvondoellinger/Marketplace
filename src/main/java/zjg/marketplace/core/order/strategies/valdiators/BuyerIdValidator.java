@@ -1,8 +1,8 @@
-package zjg.marketplace.core.strategy.impl.order.valdiators;
+package zjg.marketplace.core.order.strategies.valdiators;
 
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.exceptions.validations.order.BlankBuyerIdException;
-import zjg.marketplace.core.exceptions.validations.order.NullBuyerIdException;
+import zjg.marketplace.core.order.strategies.valdiators.exceptions.BlankBuyerIdException;
+import zjg.marketplace.core.order.strategies.valdiators.exceptions.NullBuyerIdException;
+import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.strategy.interfaces.Validator;
 
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package zjg.marketplace.core.valueObjects.cpf;
+package zjg.marketplace.core.user.valueObj.cpf;
 
 public class CPF {
     private String cpf;

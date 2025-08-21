@@ -1,10 +1,10 @@
 package zjg.marketplace.infrastructure.logging.loki.impl;
 
 import org.springframework.stereotype.Service;
-import zjg.marketplace.core.valueObjects.log.Log;
-import zjg.marketplace.core.enums.LogLevel;
-import zjg.marketplace.core.factory.log.LogFactory;
-import zjg.marketplace.core.interfaces.services.logging.Logger;
+import zjg.marketplace.core.logging.model.Log;
+import zjg.marketplace.core.logging.enums.LogLevel;
+import zjg.marketplace.core.logging.model.LogFactory;
+import zjg.marketplace.core.logging.services.Logger;
 import zjg.marketplace.infrastructure.logging.loki.models.StreamModelFactory;
 import zjg.marketplace.infrastructure.request.IRequisitionService;
 import zjg.marketplace.infrastructure.worker.SimpleLogWorker;

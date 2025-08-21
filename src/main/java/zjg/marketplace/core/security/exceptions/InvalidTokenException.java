@@ -1,6 +1,6 @@
-package zjg.marketplace.core.exceptions.validations.token;
+package zjg.marketplace.core.security.exceptions;
 
-public class InvalidTokenException extends TokenValidationException {
+public class InvalidTokenException extends TokenException {
     public InvalidTokenException() {
         super();
     }

@@ -1,6 +1,6 @@
-package zjg.marketplace.core.interfaces.services.security;
+package zjg.marketplace.core.security.services;
 
-import zjg.marketplace.core.exceptions.security.user.IncorrectPasswordProvidedException;
+import zjg.marketplace.core.user.auth.exceptions.IncorrectPasswordProvidedException;
 
 public interface TextEncryptor {
     String encrypt(String text);

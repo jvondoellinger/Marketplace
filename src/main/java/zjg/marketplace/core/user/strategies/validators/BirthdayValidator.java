@@ -1,8 +1,8 @@
-package zjg.marketplace.core.strategy.impl.user.validators;
+package zjg.marketplace.core.user.strategies.validators;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.birthday.UnderageException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.birthday.UnderageException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
+import zjg.marketplace.core.user.entity.User;
 
 import java.time.LocalDate;
 import java.time.Period;

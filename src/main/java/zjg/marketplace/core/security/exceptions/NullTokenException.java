@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.security.token;
+package zjg.marketplace.core.security.exceptions;
 
 public class NullTokenException extends TokenException {
     public NullTokenException() {

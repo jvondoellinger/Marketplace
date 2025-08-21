@@ -1,11 +1,11 @@
-package zjg.marketplace.core.strategy.impl.user.validators;
+package zjg.marketplace.core.user.strategies.validators;
 
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.validations.cpf.CpfAllDigitsEqualException;
-import zjg.marketplace.core.exceptions.validations.cpf.CpfLengthInvalidException;
-import zjg.marketplace.core.exceptions.validations.cpf.InvalidCpfException;
-import zjg.marketplace.core.exceptions.validations.cpf.NullCpfException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.cpf.CpfAllDigitsEqualException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.cpf.CpfLengthInvalidException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.cpf.InvalidCpfException;
+import zjg.marketplace.core.user.strategies.validators.exceptions.cpf.NullCpfException;
 import zjg.marketplace.core.strategy.interfaces.Validator;
+import zjg.marketplace.core.user.entity.User;
 
 import java.util.Objects;
 

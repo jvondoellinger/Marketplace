@@ -1,10 +1,10 @@
 package zjg.marketplace.application.mapper;
 
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.entity.order.OrderBuilder;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.factory.order.OrderFactory;
+import zjg.marketplace.core.order.entity.Order;
+import zjg.marketplace.core.order.entity.OrderBuilder;
+import zjg.marketplace.core.order.entity.OrderFactory;
+import zjg.marketplace.core.product.entity.Product;
 
 import java.util.List;
 

@@ -6,7 +6,8 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
 import zjg.marketplace.application.service.promisse.*;
 import zjg.marketplace.application.dto.product.ProductInput;
-import zjg.marketplace.core.entity.product.Product;
+import zjg.marketplace.core.product.entity.Product;
+
 import java.util.List;
 
 @RestController

@@ -1,6 +1,6 @@
-package zjg.marketplace.core.exceptions.validations.token;
+package zjg.marketplace.core.security.exceptions;
 
-public class ExpiredTokenException extends TokenValidationException {
+public class ExpiredTokenException extends TokenException {
     public ExpiredTokenException() {
     }
 

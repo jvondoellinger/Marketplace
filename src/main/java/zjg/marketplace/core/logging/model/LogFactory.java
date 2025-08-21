@@ -1,7 +1,6 @@
-package zjg.marketplace.core.factory.log;
+package zjg.marketplace.core.logging.model;
 
 import zjg.marketplace.core.logging.enums.LogLevel;
-import zjg.marketplace.core.logging.model.Log;
 
 public class LogFactory {
     private LogFactory() {}

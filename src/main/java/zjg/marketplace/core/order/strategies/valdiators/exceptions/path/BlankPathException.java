@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.product.path;
+package zjg.marketplace.core.order.strategies.valdiators.exceptions.path;
 
 public class BlankPathException extends PathException {
     public BlankPathException() {

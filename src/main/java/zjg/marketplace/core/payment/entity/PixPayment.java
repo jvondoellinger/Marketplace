@@ -1,4 +1,4 @@
-package zjg.marketplace.core.entity.payment;
+package zjg.marketplace.core.payment.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import zjg.marketplace.core.order.entity.Order;

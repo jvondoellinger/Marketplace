@@ -1,4 +1,4 @@
-package zjg.marketplace.core.strategy.impl.common.validators;
+package zjg.marketplace.core.strategy.common;
 
 import zjg.marketplace.core.strategy.interfaces.Validator;
 import zjg.marketplace.core.strategy.interfaces.common.IUserIdGetterStrategy;

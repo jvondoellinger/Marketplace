@@ -1,9 +1,9 @@
-package zjg.marketplace.core.factory.chain.validators;
+package zjg.marketplace.core.user.chain;
 
 import zjg.marketplace.core.chain.impl.validators.ValidationHandler;
 import zjg.marketplace.core.chain.interfaces.Handler;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.strategy.impl.user.validators.*;
+import zjg.marketplace.core.user.entity.User;
+import zjg.marketplace.core.user.strategies.validators.*;
 
 
 public class UserValidatorHandlerFactory {

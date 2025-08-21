@@ -1,12 +1,12 @@
-package zjg.marketplace.core.factory.chain.updater;
+package zjg.marketplace.core.user.chain;
 
 import zjg.marketplace.core.chain.impl.updater.EntityUpdaterHandler;
 import zjg.marketplace.core.chain.interfaces.DualHandler;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.strategy.impl.user.updater.EmailUpdater;
-import zjg.marketplace.core.strategy.impl.user.updater.PasswordUpdater;
-import zjg.marketplace.core.strategy.impl.user.updater.PhoneUpdater;
-import zjg.marketplace.core.strategy.impl.user.updater.UsernameUpdater;
+import zjg.marketplace.core.user.entity.User;
+import zjg.marketplace.core.user.strategies.updater.EmailUpdater;
+import zjg.marketplace.core.user.strategies.updater.PasswordUpdater;
+import zjg.marketplace.core.user.strategies.updater.PhoneUpdater;
+import zjg.marketplace.core.user.strategies.updater.UsernameUpdater;
 
 public class UserUpdaterHandleFactory {
     private UserUpdaterHandleFactory() {}
@@ -15,8 +15,8 @@ public class UserUpdaterHandleFactory {
         var chain = new EntityUpdaterHandler<User>();
         chain.setNext(new UsernameUpdater());
         chain.setNext(new EmailUpdater());
-        chain.setNext(new PasswordUpdater());
         chain.setNext(new PhoneUpdater());
+        chain.setNext(new PasswordUpdater());
         return chain;
     }
 }

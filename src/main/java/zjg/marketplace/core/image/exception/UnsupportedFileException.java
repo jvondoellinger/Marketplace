@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.file;
+package zjg.marketplace.core.image.exception;
 
 public class UnsupportedFileException extends RuntimeException {
     public UnsupportedFileException() {

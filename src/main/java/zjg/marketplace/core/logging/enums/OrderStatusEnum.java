@@ -1,4 +1,4 @@
-package zjg.marketplace.core.enums;
+package zjg.marketplace.core.logging.enums;
 
 public enum OrderStatusEnum {
     CANCELED,

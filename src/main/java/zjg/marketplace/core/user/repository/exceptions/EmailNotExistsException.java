@@ -1,6 +1,6 @@
-package zjg.marketplace.core.exceptions.security.user;
+package zjg.marketplace.core.user.repository.exceptions;
 
-public class EmailNotExistsException extends FailedToAuthenticateUserException {
+public class EmailNotExistsException extends RuntimeException {
     public EmailNotExistsException() {
     }
 

@@ -1,12 +1,12 @@
-package zjg.marketplace.core.entity.user;
+package zjg.marketplace.core.user.entity;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import zjg.marketplace.core.entity.base.BaseEntity;
-import zjg.marketplace.core.valueObjects.cpf.CPF;
-import zjg.marketplace.core.valueObjects.phone.PhoneNumber;
 import zjg.marketplace.core.interfaces.compositions.builder.Reconstructable;
 import zjg.marketplace.core.interfaces.compositions.clone.IClonable;
+import zjg.marketplace.core.user.valueObj.cpf.CPF;
+import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 
 import java.util.Date;
 import java.util.Objects;

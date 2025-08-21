@@ -1,4 +1,4 @@
-package zjg.marketplace.core.products.strategies.validators.exceptions.description;
+package zjg.marketplace.core.product.strategies.validators.exceptions.description;
 
 public class BlankDescriptionException extends DescriptionException {
     public BlankDescriptionException() {

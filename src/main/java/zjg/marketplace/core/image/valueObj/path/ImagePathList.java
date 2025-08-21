@@ -3,10 +3,10 @@ package zjg.marketplace.core.image.valueObj.path;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ImagePathComposite {
+public class ImagePathList {
     private final List<ImagePath> paths;
 
-    public ImagePathComposite(List<ImagePath> paths) {
+    public ImagePathList(List<ImagePath> paths) {
         this.paths = new CopyOnWriteArrayList<>(paths);
     }
 

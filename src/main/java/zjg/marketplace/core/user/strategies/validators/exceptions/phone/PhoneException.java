@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.phone;
+package zjg.marketplace.core.user.strategies.validators.exceptions.phone;
 
 public abstract class PhoneException extends RuntimeException {
     public PhoneException() {

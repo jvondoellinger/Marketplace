@@ -1,6 +1,6 @@
-package zjg.marketplace.core.entity.file;
+package zjg.marketplace.core.image.entity;
 
-import zjg.marketplace.core.valueObjects.path.ImagePath;
+import zjg.marketplace.core.image.valueObj.path.ImagePath;
 
 public class BasicImageFile {
     // * Constructors ----------------------------------

@@ -1,7 +1,6 @@
-package zjg.marketplace.core.valueObjects.path;
+package zjg.marketplace.core.image.valueObj.path;
 
-import zjg.marketplace.core.rules.ImagesSupportedRules;
-import zjg.marketplace.core.utils.PathUtils;
+import zjg.marketplace.core.image.utils.PathUtils;
 
 public class ImagePath {
     // * Constructor ------------------------------------

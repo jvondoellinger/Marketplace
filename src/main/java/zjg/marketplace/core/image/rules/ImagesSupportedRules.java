@@ -1,7 +1,7 @@
-package zjg.marketplace.core.rules;
+package zjg.marketplace.core.image.rules;
 
-import zjg.marketplace.core.exceptions.file.UnsupportedFileException;
-import zjg.marketplace.core.utils.PathUtils;
+import zjg.marketplace.core.image.exception.UnsupportedFileException;
+import zjg.marketplace.core.image.utils.PathUtils;
 
 import java.util.List;
 

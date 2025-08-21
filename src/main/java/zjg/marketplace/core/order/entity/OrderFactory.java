@@ -1,10 +1,9 @@
-package zjg.marketplace.core.factory.order;
+package zjg.marketplace.core.order.entity;
 
 import zjg.marketplace.core.anotation.BadCode;
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.factory.chain.validators.OrderValidatorHandleFactory;
+import zjg.marketplace.core.order.chain.OrderValidatorHandleFactory;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.user.entity.User;
 
 import java.util.List;
 @BadCode

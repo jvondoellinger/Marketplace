@@ -7,8 +7,8 @@ import com.mercadopago.client.payment.PaymentPayerRequest;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.payment.Payment;
-import zjg.marketplace.core.entity.order.Order;
-import zjg.marketplace.core.entity.user.User;
+import zjg.marketplace.core.order.entity.Order;
+import zjg.marketplace.core.user.entity.User;
 
 import java.rmi.UnexpectedException;
 

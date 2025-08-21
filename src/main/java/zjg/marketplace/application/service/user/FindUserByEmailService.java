@@ -3,9 +3,9 @@ package zjg.marketplace.application.service.user;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindByEmail;
-import zjg.marketplace.core.entity.user.User;
-import zjg.marketplace.core.exceptions.security.user.EmailNotExistsException;
+import zjg.marketplace.core.user.repository.exceptions.EmailNotExistsException;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryByEmailRepository;
+import zjg.marketplace.core.user.entity.User;
 
 @Service
 public class FindUserByEmailService implements IFindByEmail<User> {

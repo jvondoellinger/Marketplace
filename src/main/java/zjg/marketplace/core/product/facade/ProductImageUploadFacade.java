@@ -1,15 +1,15 @@
-package zjg.marketplace.core.facade;
+package zjg.marketplace.core.product.facade;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.entity.product.ProductBuilder;
 import zjg.marketplace.core.image.entity.BasicImageFile;
 import zjg.marketplace.core.image.service.StorageService;
 import zjg.marketplace.core.image.valueObj.path.ImagePath;
 import zjg.marketplace.core.image.valueObj.path.ImagePathListFactory;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
-import zjg.marketplace.core.products.chain.ProductUpdaterHandleFactory;
+import zjg.marketplace.core.product.chain.ProductUpdaterHandleFactory;
+import zjg.marketplace.core.product.entity.Product;
+import zjg.marketplace.core.product.entity.ProductBuilder;
 
 import java.util.List;
 

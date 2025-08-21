@@ -1,7 +1,5 @@
-package zjg.marketplace.core.entity.order;
-
-import zjg.marketplace.core.entity.product.Product;
-import zjg.marketplace.core.enums.OrderStatusEnum;
+package zjg.marketplace.core.order.entity;
+import zjg.marketplace.core.logging.enums.OrderStatusEnum;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,7 +24,7 @@ public class OrderBuilder {
         order.setProductsId(products);
         return this;
     }
-    public OrderBuilder products(List<Product> products) {
+    public OrderBuilder products(List<zjg.marketplace.core.product.entity.Product> products) {
         order.addBatchItems(products);
         return this;
     }

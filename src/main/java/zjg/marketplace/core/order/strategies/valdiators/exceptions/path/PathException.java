@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.product.path;
+package zjg.marketplace.core.order.strategies.valdiators.exceptions.path;
 
 public abstract class PathException extends RuntimeException {
     public PathException() {

@@ -7,7 +7,7 @@ import zjg.marketplace.application.dto.order.OrderInput;
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
 import zjg.marketplace.application.service.promisse.*;
-import zjg.marketplace.core.entity.order.Order;
+import zjg.marketplace.core.order.entity.Order;
 
 @RestController
 @RequestMapping("/api/order")

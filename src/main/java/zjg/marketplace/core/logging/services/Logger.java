@@ -1,4 +1,4 @@
-package zjg.marketplace.core.interfaces.services.logging;
+package zjg.marketplace.core.logging.services;
 
 public interface Logger {
     void info(String message);

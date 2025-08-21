@@ -1,9 +1,8 @@
 package zjg.marketplace.application.utils;
 
-import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
-import zjg.marketplace.core.exceptions.security.token.BlankTokenException;
-import zjg.marketplace.core.exceptions.security.token.NullTokenException;
+import zjg.marketplace.core.security.exceptions.BlankTokenException;
+import zjg.marketplace.core.security.exceptions.NullTokenException;
 
 public class AuthorizationTokenUtils {
     private AuthorizationTokenUtils() {}

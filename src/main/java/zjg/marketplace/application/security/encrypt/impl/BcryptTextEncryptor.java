@@ -2,8 +2,8 @@ package zjg.marketplace.application.security.encrypt.impl;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import zjg.marketplace.core.exceptions.security.user.IncorrectPasswordProvidedException;
-import zjg.marketplace.core.interfaces.services.security.TextEncryptor;
+import zjg.marketplace.core.user.auth.exceptions.IncorrectPasswordProvidedException;
+import zjg.marketplace.core.security.services.TextEncryptor;
 
 import java.util.Objects;
 

@@ -6,7 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.service.promisse.IFindByUserId;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.core.entity.order.Order;
+import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryByUserIdRepository;
 import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
 

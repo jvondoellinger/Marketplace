@@ -1,4 +1,4 @@
-package zjg.marketplace.core.exceptions.validations.cpf;
+package zjg.marketplace.core.user.strategies.validators.exceptions.cpf;
 
 public class NullCpfException extends CpfException {
     public NullCpfException() {

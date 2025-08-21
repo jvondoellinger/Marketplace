@@ -1,4 +1,6 @@
-package zjg.marketplace.core.exceptions.validations.order;
+package zjg.marketplace.core.order.repository.exceptions;
+
+import zjg.marketplace.core.order.strategies.valdiators.exceptions.OrderException;
 
 public class OrderNotFoundException extends OrderException {
     public OrderNotFoundException() {

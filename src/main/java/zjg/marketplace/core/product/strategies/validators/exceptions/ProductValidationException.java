@@ -1,4 +1,4 @@
-package zjg.marketplace.core.products.strategies.validators.exceptions;
+package zjg.marketplace.core.product.strategies.validators.exceptions;
 
 public abstract class ProductValidationException extends RuntimeException {
     public ProductValidationException() {
