@@ -17,8 +17,8 @@ public class FindProductService implements FindService<Product> {
     }
 
     @Override
-    @Cacheable(value = "product", key = "#offset + '-' + #limit", condition = "#cached")
-    public Flux<Product> get(long offset, int limit, boolean cached) {
+    @Cacheable(value = "product", key = "#offset + '-' + #limit")
+    public Flux<Product> get(long offset, int limit) {
         return query.findWithPagination(offset, limit);
     }
 

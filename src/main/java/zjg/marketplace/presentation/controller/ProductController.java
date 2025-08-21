@@ -27,7 +27,7 @@ public class ProductController {
 
     @GetMapping
     public Mono<List<Product>> get(@RequestParam(defaultValue = "0") Long offset, @RequestParam(defaultValue = "10") Integer max) {
-        return findService.get(offset, max, true).collectList();
+        return findService.get(offset, max).collectList();
     }
 
     @GetMapping("/{id}")

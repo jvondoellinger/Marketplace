@@ -1,4 +1,4 @@
-package zjg.marketplace.application.services;
+package zjg.marketplace.application.services.product;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.time.Duration;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class ProductQueryServiceTest {
+public class ProductQueryServiceTest {
 
     @Autowired
     public ServiceResolverFacade facade;
@@ -23,20 +23,19 @@ class ProductQueryServiceTest {
 
     @Test
     @Order(1)
-    public void queryOffsetNoCache() { // Não salve em cache
-        findService.get(0, 1000, false).collectList().block(Duration.ofSeconds(10));
+    public void queryOffsetNoCache() {
+        findService.get(0, 1000).collectList().block(Duration.ofSeconds(10));
     }
 
     @Test
     @Order(2)
-    public void queryOffsetCaching() { //
-        findService.get(0, 1000, true).collectList().block(Duration.ofSeconds(10));
+    public void queryOffsetCaching() {
+        findService.get(0, 1000).collectList().block(Duration.ofSeconds(10));
     }
     @Test
     @Order(3)
     public void queryOffsetCached() {
-        findService.get(0, 1000, true).collectList().block(Duration.ofSeconds(10));
-
+        findService.get(0, 1000).collectList().block(Duration.ofSeconds(10));
     }
 
 

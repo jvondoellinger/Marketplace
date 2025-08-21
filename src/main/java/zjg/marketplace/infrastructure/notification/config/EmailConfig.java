@@ -28,7 +28,6 @@ public class EmailConfig {
     }
 
     public void setEmail(String email) {
-        System.out.println(email);
         this.email = email;
     }
     public void setPassword(String password) {

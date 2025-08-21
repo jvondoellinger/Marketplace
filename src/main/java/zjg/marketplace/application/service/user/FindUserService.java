@@ -17,8 +17,8 @@ public class FindUserService implements FindService<User> {
     }
 
     @Override
-    @Cacheable(value = "user", key = "#offset + '-' + #limit", condition = "#cached")
-    public Flux<User> get(long offset, int limit, boolean cached) {
+    @Cacheable(value = "user", key = "#offset + '-' + #limit")
+    public Flux<User> get(long offset, int limit) {
         return query.findWithPagination(offset, limit);
     }
 

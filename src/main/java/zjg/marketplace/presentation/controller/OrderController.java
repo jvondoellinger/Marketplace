@@ -33,7 +33,7 @@ public class OrderController {
     //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public Flux<Order> getAll(@RequestParam(defaultValue = "0") Long offset, @RequestParam(defaultValue = "10") Integer limit) {
-        return findService.get(offset, limit, true);
+        return findService.get(offset, limit);
     }
     //@PreAuthorize("hasRole('USER')")
     @GetMapping("/{orderId}")

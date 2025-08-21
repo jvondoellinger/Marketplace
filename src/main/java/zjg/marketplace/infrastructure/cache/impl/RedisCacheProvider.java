@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.core.anotation.BadCode;
 import zjg.marketplace.core.caching.ICacheProvider;
 
-@Service
+
 public class RedisCacheProvider implements ICacheProvider {
     private final ReactiveRedisTemplate<String, Object> template;
     private final ObjectMapper mapper;

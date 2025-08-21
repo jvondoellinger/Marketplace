@@ -1,6 +1,7 @@
 
 package zjg.marketplace.infrastructure.cache;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
@@ -17,9 +18,10 @@ class RedisCacheCleanupTest {
     @Autowired
     private ReactiveRedisTemplate<String, Object> template;
 
+    @Test
     public void cleanup() {
         template.getConnectionFactory()
-                .getReactiveClusterConnection()
+                .getReactiveConnection()
                 .serverCommands()
                 .flushDb()
                 .doOnNext(x -> System.out.println("Successfully cleared cache!"))

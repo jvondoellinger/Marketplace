@@ -23,7 +23,7 @@ public class CreateOrder implements CreateService<Order, OrderInput> {
         return findUserAndProductsHelper
                 .findUserAndProducts(orderInput.getUserId(), orderInput.getProductId())
                 .flatMap(pair -> {
-                    var order = OrderFactory.factory(pair.getFirst().getId(), pair.getSecond());
+                    var order = OrderFactory.factory(pair.getKey().getId(), pair.getValue());
                     return command.insert(order);
                 });
     }

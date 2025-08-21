@@ -35,7 +35,6 @@ public class RequestService implements IRequisitionService {
                     .bodyValue(json)
                     .retrieve()
                     .bodyToMono(String.class);
-            System.out.println(json);
             return response
                     .then()
                     .timeout(Duration.ofSeconds(15));

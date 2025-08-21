@@ -12,6 +12,12 @@ springdoc:
 spring:
   application:
     name: marketplace
+  cache:
+    type: redis
+    redis:
+      time-to-live: 300000 # 5 minutes (in ms)
+  redis:
+    url: ${REDIS_URI}
   data:
     mongodb:
       uri: ${DATABASE_URI}
@@ -24,7 +30,7 @@ aws:
   accessKey: ${AWS_ACCESS_KEY_ID}
   secretKey: ${AWS_SECRET_KEY}
   s3:
-    bucket: test
+    bucket: ${AWS_S3_IMAGE_BUCKET}
   redis:
     host: localhost
     port: 6379

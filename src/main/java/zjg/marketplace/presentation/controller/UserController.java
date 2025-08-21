@@ -35,7 +35,7 @@ public class UserController {
     public Flux<User> get(
             @RequestParam(defaultValue = "0") Long offset,
             @RequestParam(defaultValue = "10") Integer max) {
-        return findService.get(offset, max, true);
+        return findService.get(offset, max);
     }
 
     @GetMapping("/id")
