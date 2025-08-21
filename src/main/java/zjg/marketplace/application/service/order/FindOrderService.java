@@ -21,8 +21,8 @@ public class FindOrderService implements FindService<Order>, IFindByUserId<Order
     }
 
     @Override
-    @Cacheable(value = "order", key = "#offset + '-' + #limit")
-    public Flux<Order> get(long offset, int limit) {
+    @Cacheable(value = "order", key = "#offset + '-' + #limit", condition = "##cached")
+    public Flux<Order> get(long offset, int limit, boolean cached) {
         return queryOrder.findWithPagination(offset, limit);
     }
 

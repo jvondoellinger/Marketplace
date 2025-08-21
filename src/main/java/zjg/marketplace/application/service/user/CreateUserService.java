@@ -4,13 +4,13 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.mapper.UserMapper;
-import zjg.marketplace.application.service.promisse.ICreateService;
+import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 import zjg.marketplace.core.security.services.TextEncryptor;
 import zjg.marketplace.core.user.entity.User;
 
 @Service
-public class CreateUserService implements ICreateService<User, UserInput> {
+public class CreateUserService implements CreateService<User, UserInput> {
     private final CommandRepository<User> command;
     private final TextEncryptor encryptor;
 

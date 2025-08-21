@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.user.UserInput;
-import zjg.marketplace.application.service.promisse.ICreateService;
+import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.core.security.services.UserAuthenticator;
 import zjg.marketplace.core.user.entity.User;
 import zjg.marketplace.core.user.entity.UserCredentials;
@@ -15,9 +15,9 @@ import zjg.marketplace.core.security.models.Token;
 @RestController
 @RequestMapping("/api/public/user")
 public class UserPublicController {
-    private final ICreateService<User, UserInput> createService;
+    private final CreateService<User, UserInput> createService;
     private final UserAuthenticator authenticator;
-    public UserPublicController(ICreateService<User, UserInput> createService, UserAuthenticator authenticator) {
+    public UserPublicController(CreateService<User, UserInput> createService, UserAuthenticator authenticator) {
         this.createService = createService;
         this.authenticator = authenticator;
     }

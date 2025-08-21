@@ -16,9 +16,9 @@ public class OrderController {
     // Strategy para validar se o token é valido
     // Armazenar esses tokens no REDIS e utiliza-lo como controle de acesso (permitindo somente 1 (ip ou agent - celular, pc, etc) de login por usuario; bloqueando a conta temporariamente (até o usuario permitir o acesso deste novo dispositivo)
 
-    private final ICreateService<Order, OrderInput> createService;
-    private final IUpdateService<Order, OrderUpdateInput> updateService;
-    private final IDeleteService<Order> deleteService;
+    private final CreateService<Order, OrderInput> createService;
+    private final UpdateService<Order, OrderUpdateInput> updateService;
+    private final DeleteService<Order> deleteService;
     private final FindService<Order> findService;
     private final IFindByUserId<Order> findByUserIdService;
     public OrderController(ServiceResolverFacade facade ) {
@@ -33,7 +33,7 @@ public class OrderController {
     //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public Flux<Order> getAll(@RequestParam(defaultValue = "0") Long offset, @RequestParam(defaultValue = "10") Integer limit) {
-        return findService.get(offset, limit);
+        return findService.get(offset, limit, true);
     }
     //@PreAuthorize("hasRole('USER')")
     @GetMapping("/{orderId}")

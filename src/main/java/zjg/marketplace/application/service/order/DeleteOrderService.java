@@ -3,12 +3,12 @@ package zjg.marketplace.application.service.order;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.service.promisse.IDeleteService;
+import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 
 @Service
-public class DeleteOrderService implements IDeleteService<Order> {
+public class DeleteOrderService implements DeleteService<Order> {
     private final CommandRepository<Order> command;
 
     public DeleteOrderService(CommandRepository<Order> command) {

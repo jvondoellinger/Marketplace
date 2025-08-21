@@ -6,14 +6,14 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.mapper.ProductMapper;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.application.service.promisse.IUpdateService;
+import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.product.chain.ProductUpdaterHandleFactory;
 import zjg.marketplace.core.product.chain.ProductValidatorHandlerFactory;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 import zjg.marketplace.core.product.entity.Product;
 
 @Service
-public class  UpdateProductService implements IUpdateService<Product, ProductInput> {
+public class  UpdateProductService implements UpdateService<Product, ProductInput> {
     private final FindService<Product> findService;
     private final CommandRepository<Product> command;
 

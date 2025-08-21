@@ -3,12 +3,12 @@ package zjg.marketplace.application.service.product;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.service.promisse.IDeleteService;
+import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
 import zjg.marketplace.core.product.entity.Product;
 
 @Service
-public class DeleteProductService implements IDeleteService<Product> {
+public class DeleteProductService implements DeleteService<Product> {
     private final CommandRepository<Product> command;
 
     public DeleteProductService(CommandRepository<Product> command) {

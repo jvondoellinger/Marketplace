@@ -18,7 +18,6 @@ public class CleanCacheOnStartTests {
     private ReactiveRedisTemplate<String, Object> template;
 
     public void cleanup() {
-        if(template == null) System.out.println("adwad");
         template.getConnectionFactory()
                 .getReactiveClusterConnection()
                 .serverCommands()

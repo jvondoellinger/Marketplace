@@ -7,19 +7,19 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.helper.AuthorizationTokenHelper;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
-import zjg.marketplace.application.service.promisse.ICreateService;
-import zjg.marketplace.application.service.promisse.IDeleteService;
+import zjg.marketplace.application.service.promisse.CreateService;
+import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.application.service.promisse.IUpdateService;
+import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.user.entity.User;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
     private final FindService<User> findService;
-    private final IDeleteService<User> deleteService;
-    private final ICreateService<User, UserInput> createService;
-    private final IUpdateService<User, UserInput> updateService;
+    private final DeleteService<User> deleteService;
+    private final CreateService<User, UserInput> createService;
+    private final UpdateService<User, UserInput> updateService;
     private final AuthorizationTokenHelper helper;
 
     public UserController(ServiceResolverFacade resolverFacade, AuthorizationTokenHelper helper) {
@@ -35,7 +35,7 @@ public class UserController {
     public Flux<User> get(
             @RequestParam(defaultValue = "0") Long offset,
             @RequestParam(defaultValue = "10") Integer max) {
-        return findService.get(offset, max);
+        return findService.get(offset, max, true);
     }
 
     @GetMapping("/id")

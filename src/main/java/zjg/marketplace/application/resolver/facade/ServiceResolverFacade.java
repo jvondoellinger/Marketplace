@@ -32,13 +32,13 @@ public class ServiceResolverFacade {
     public <Entity> FindService<Entity> resolveFind(Class<Entity> entityClass) {
         return findResolver.resolve(entityClass);
     }
-    public <Entity> IDeleteService<Entity> resolveDelete(Class<Entity> entityClass) {
+    public <Entity> DeleteService<Entity> resolveDelete(Class<Entity> entityClass) {
         return deleteResolver.resolve(entityClass);
     }
-    public <Entity, Input> ICreateService<Entity, Input> resolveCreate(Class<Entity> entityClass, Class<Input> inputClass){
+    public <Entity, Input> CreateService<Entity, Input> resolveCreate(Class<Entity> entityClass, Class<Input> inputClass){
         return createResolver.resolve(entityClass, inputClass);
     }
-    public <Entity, Input> IUpdateService<Entity, Input> resolveUpdate(Class<Entity> entityClass, Class<Input> inputClass){
+    public <Entity, Input> UpdateService<Entity, Input> resolveUpdate(Class<Entity> entityClass, Class<Input> inputClass){
         return updateResolver.resolve(entityClass, inputClass);
     }
     public <Entity> IUploadService<Entity> resolveUpload(Class<Entity> entityClass){

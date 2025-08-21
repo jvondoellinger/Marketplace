@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.mapper.UserMapper;
 import zjg.marketplace.application.service.promisse.FindService;
-import zjg.marketplace.application.service.promisse.IUpdateService;
+import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.user.chain.UserUpdaterHandleFactory;
 import zjg.marketplace.core.user.chain.UserValidatorHandlerFactory;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
@@ -14,7 +14,7 @@ import zjg.marketplace.core.security.services.TextEncryptor;
 import zjg.marketplace.core.user.entity.User;
 
 @Service
-public class UpdateUserService implements IUpdateService<User, UserInput> {
+public class UpdateUserService implements UpdateService<User, UserInput> {
     private final CommandRepository<User> command;
     private final FindService<User> findService;
     private final TextEncryptor encryptor;

@@ -13,10 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
-    private final ICreateService<Product, ProductInput> createService;
-    private final IDeleteService<Product> deleteService;
+    private final CreateService<Product, ProductInput> createService;
+    private final DeleteService<Product> deleteService;
     private final FindService<Product> findService;
-    private final IUpdateService<Product, ProductInput> updateService;
+    private final UpdateService<Product, ProductInput> updateService;
 
     public ProductController(ServiceResolverFacade facade) {
         this.createService = facade.resolveCreate(Product.class, ProductInput.class);
@@ -27,7 +27,7 @@ public class ProductController {
 
     @GetMapping
     public Mono<List<Product>> get(@RequestParam(defaultValue = "0") Long offset, @RequestParam(defaultValue = "10") Integer max) {
-        return findService.get(offset, max).collectList();
+        return findService.get(offset, max, true).collectList();
     }
 
     @GetMapping("/{id}")

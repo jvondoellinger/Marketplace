@@ -5,28 +5,27 @@ import org.springframework.core.ResolvableType;
 import org.springframework.stereotype.Service;
 import zjg.marketplace.application.resolver.services.abstractions.ResolverAbstract2;
 import zjg.marketplace.application.resolver.services.interfaces.ResolveByEntity;
-import zjg.marketplace.application.resolver.services.abstractions.ResolverAbstract;
-import zjg.marketplace.application.service.promisse.IDeleteService;
+import zjg.marketplace.application.service.promisse.DeleteService;
 
 import java.util.List;
 
 @Service
-public class DeleteResolver extends ResolverAbstract2 implements ResolveByEntity<IDeleteService<?>> {
+public class DeleteResolver extends ResolverAbstract2 implements ResolveByEntity<DeleteService<?>> {
     @Autowired
-    public DeleteResolver(List<IDeleteService<?>> services) {
-        super(services, IDeleteService.class);
+    public DeleteResolver(List<DeleteService<?>> services) {
+        super(services, DeleteService.class);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public <Entity> IDeleteService<Entity> resolve(Class<Entity> entityClass) {
-        return (IDeleteService<Entity>) super.internalResolve(entityClass);
+    public <Entity> DeleteService<Entity> resolve(Class<Entity> entityClass) {
+        return (DeleteService<Entity>) super.internalResolve(entityClass);
     }
 
     @Deprecated
-    protected Class<?> extractGenericType(IDeleteService<?> service) {
+    protected Class<?> extractGenericType(DeleteService<?> service) {
         return ResolvableType.forClass(service.getClass())
-                .as(IDeleteService.class)
+                .as(DeleteService.class)
                 .getGeneric(0)
                 .resolve();
     }
