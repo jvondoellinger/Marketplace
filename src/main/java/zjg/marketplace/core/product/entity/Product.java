@@ -30,7 +30,6 @@ public class Product extends BaseEntity implements Reconstructable<ProductBuilde
     public String getTitle() {
         return title;
     }
-
     public ImagePathList getPaths() {
         return paths;
     }
@@ -45,7 +44,6 @@ public class Product extends BaseEntity implements Reconstructable<ProductBuilde
     protected void setTitle(String title) {
         this.title = title;
     }
-
     protected void setPaths(ImagePathList paths) {
         this.paths = paths;
     }

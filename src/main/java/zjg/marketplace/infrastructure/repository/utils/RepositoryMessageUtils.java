@@ -3,6 +3,7 @@ package zjg.marketplace.infrastructure.repository.utils;
 public class RepositoryMessageUtils {
     private RepositoryMessageUtils() {}
 
+    // ! Insert -------------------------------------------------------
     public static String infoInsert(String id) {
         return "Inserting the entity with id=[%s] into the database!".formatted(id);
     }
@@ -13,6 +14,7 @@ public class RepositoryMessageUtils {
         return "Success during entity insertion into the database! Id=[%s]".formatted(id);
     }
 
+    // ! Update -------------------------------------------------------
     public static String infoUpdate(String id) {
         return "Updating order with id=[%s]!".formatted(id);
     }
@@ -25,6 +27,7 @@ public class RepositoryMessageUtils {
         return "Success during entity update into the database! Id=[%s]".formatted(id);
     }
 
+    // ! Delete -------------------------------------------------------
     public static String infoDelete(String id) {
         return "Deleting entity with id=[%s] into the database!".formatted(id);
     }
@@ -37,19 +40,20 @@ public class RepositoryMessageUtils {
         return "Success during entity removal into the database! Id=[%s]".formatted(id);
     }
 
+    // ! Query -------------------------------------------------------
     public static String infoQuery(String identifier) {
-        return "Querying the entity by=[%s] when search parameter into the database!";
+        return "Querying the entity by=[%s] when search parameter into the database!".formatted(identifier);
     }
 
     public static String errorQuery(String identifier) {
-        return "Error on querying an entity where contains the [%s] when search parameter into the database!";
+        return "Error on querying an entity where contains the [%s] when search parameter into the database!".formatted(identifier);
     }
     public static String errorQuery(String identifier, String message) {
         return errorQuery(identifier).concat("Error message=[%s]".formatted(message));
     }
 
     public static String successQuery(String id) {
-        return "Successfully inserting the entity into the database";
+        return "Successfully queried the entity into the database";
     }
     public static String infoQueryByOffsetAndLimit(Long offset, Integer limit) {
         return "Querying by order pagination: Offset=[%s] Limit=[%s]".formatted(offset, limit);
@@ -59,5 +63,15 @@ public class RepositoryMessageUtils {
     }
     public static String successQueryByOffsetAndLimit(Long offset, Integer limit) {
         return "Pagination successfully queried!";
+    }
+
+    public static String infoQueryByUserId(String userId) {
+        return "uerying the entity by userId=[%s] when search parameter into the database!".formatted(userId);
+    }
+    public static String errorQueryByUserId(String userId) {
+        return "Error on querying an entity where contains the userId=[%s] when search parameter into the database!".formatted(userId);
+    }
+    public static String successQueryByUserId(String userId) {
+        return "Successfully queried the entity where userId=[%s] into the database!".formatted(userId);
     }
 }

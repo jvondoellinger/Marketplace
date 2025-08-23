@@ -8,6 +8,9 @@ public class ImagePath {
         this.completePath = completePath;
     }
 
+    public ImagePath() {
+    }
+
     private String completePath;
 
     // * Getter ----------------------------------------
@@ -21,7 +24,7 @@ public class ImagePath {
     }
 
     // * Custom Getter ---------------------------------
-    public String getExtension() {
+    public String extractExtension() {
         return PathUtils.getExtension(completePath);
     }
 }

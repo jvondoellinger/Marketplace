@@ -23,6 +23,12 @@ public class FindProductService implements FindService<Product> {
     }
 
     @Override
+    @Cacheable(value = "product_exist", key = "#id")
+    public Mono<Boolean> exists(String id) {
+        return query.exists(id);
+    }
+
+    @Override
     @Cacheable(value = "product", key = "#id")
     public Mono<Product> findById(String id) {
         return query.findById(id);

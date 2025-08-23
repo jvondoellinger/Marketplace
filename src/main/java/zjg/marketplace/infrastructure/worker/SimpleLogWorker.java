@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import zjg.marketplace.core.logging.model.Log;
 import zjg.marketplace.infrastructure.logging.loki.config.LokiConfig;
 import zjg.marketplace.infrastructure.logging.loki.models.StreamModelFactory;
-import zjg.marketplace.infrastructure.request.IRequisitionService;
+import zjg.marketplace.infrastructure.request.RequisitionService;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -15,11 +15,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SimpleLogWorker {
     private final BlockingQueue<Log> queue = new LinkedBlockingQueue<>();
     private final AtomicBoolean running = new AtomicBoolean(true);
-    private final IRequisitionService service;
+    private final RequisitionService service;
     private final StreamModelFactory factory;
     private final LokiConfig config;
 
-    public SimpleLogWorker(IRequisitionService service, StreamModelFactory factory, LokiConfig config) {
+    public SimpleLogWorker(RequisitionService service, StreamModelFactory factory, LokiConfig config) {
         this.service = service;
         this.factory = factory;
         this.config = config;

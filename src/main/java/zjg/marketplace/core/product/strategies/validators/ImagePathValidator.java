@@ -13,7 +13,7 @@ public class ImagePathValidator implements Validator<Product> {
     public void validate(Product product) {
         var paths = product.getPaths();
         if (Objects.isNull(paths)) return;
-        if (Objects.isNull(paths.getAll())) return;
-        if (paths.getAll().isEmpty()) return;
+        if (Objects.isNull(paths.getPaths())) return;
+        if (paths.getPaths().isEmpty()) return;
     }
 }

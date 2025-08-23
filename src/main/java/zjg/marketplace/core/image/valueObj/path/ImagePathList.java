@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ImagePathList {
-    private final List<ImagePath> paths;
+    private List<ImagePath> paths;
+
+    public ImagePathList() {
+    }
 
     public ImagePathList(List<ImagePath> paths) {
         this.paths = new CopyOnWriteArrayList<>(paths);
@@ -27,7 +30,11 @@ public class ImagePathList {
     }
 
     // * Getter ---------------------------------------
-    public synchronized List<ImagePath> getAll() {
+    public synchronized List<ImagePath> getPaths() {
         return paths;
+    }
+
+    public void setPaths(List<ImagePath> paths) {
+        this.paths = paths;
     }
 }
