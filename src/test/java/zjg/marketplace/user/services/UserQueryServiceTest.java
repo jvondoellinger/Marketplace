@@ -1,4 +1,4 @@
-package zjg.marketplace.application.services.user;
+package zjg.marketplace.user.services;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

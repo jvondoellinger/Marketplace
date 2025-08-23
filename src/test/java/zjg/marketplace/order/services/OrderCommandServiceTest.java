@@ -1,6 +1,5 @@
-package zjg.marketplace.application.services.order;
+package zjg.marketplace.order.services;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import reactor.test.StepVerifier;
-import zjg.marketplace.BlocKTimeOutConfig;
 import zjg.marketplace.application.dto.order.OrderInput;
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
@@ -21,8 +19,8 @@ import zjg.marketplace.core.logging.enums.OrderStatusEnum;
 import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.product.entity.Product;
 import zjg.marketplace.core.user.entity.User;
+import zjg.marketplace.order.factory.OrderInputFactoryTest;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,9 +74,7 @@ public class OrderCommandServiceTest {
     @Test
     @org.junit.jupiter.api.Order(3)
     public void insert500() {
-        var input = new OrderInput();
-        input.setProductInput(productIds);
-        input.setUserId(userId);
+        var input = OrderInputFactoryTest.factory(userId, productIds);
         for (var id : productIds) {
             StepVerifier.create(createService.create(input))
                     .recordWith(ArrayList::new)

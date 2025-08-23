@@ -1,4 +1,4 @@
-package zjg.marketplace.application.services.user;
+package zjg.marketplace.user.services;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
@@ -17,6 +16,7 @@ import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.user.entity.User;
 import zjg.marketplace.core.user.valueObj.cpf.CPF;
 import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
+import zjg.marketplace.user.factory.UserFactoryTest;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,27 +41,11 @@ public class UserCommandServiceTest {
       @Test
       @Order(1)
       public void insertAndRemove() {
-            var input = new UserInput();
-            var fakeDocument = new CPF();
-            var date = new Date();
-            var phoneNumber = new PhoneNumber();
-            fakeDocument.setCpf("63033923429");
-            date.setYear(date.getYear() - 20);
-            phoneNumber.setNumber("909099090");
-            phoneNumber.setAreaCode("21");
-            phoneNumber.setCountryCode("55");
-
-            input.setUsername("System");
-            input.setDocument(fakeDocument);
-            input.setEmail("system@fake.com");
-            input.setPassword("AnyPassword123@@");
-
-            input.setBirthDay(date);
-            input.setPhone(phoneNumber);
-
+            var input = UserFactoryTest.factoryInput();
             for (int i = 0; i < 10; i++) {
                   var mono = createService.create(input).flatMap(u -> deleteService.deleteById(u.getId()));
                   StepVerifier.create(mono).verifyComplete();
             }
       }
 }
+// Fazer uma classe genreciadora de eventos, juntamente com uma classe xEvent que recebe a propria entidade!
