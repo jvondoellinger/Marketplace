@@ -11,14 +11,14 @@ import zjg.marketplace.infrastructure.cache.config.RedisConfig;
 
 import java.time.Duration;
 
-@SpringBootTest
+//@SpringBootTest
 @Import(RedisConfig.class)
 @Order(1)
 class RedisCacheCleanupTest {
     @Autowired
     private ReactiveRedisTemplate<String, Object> template;
 
-    @Test
+
     public void cleanup() {
         template.getConnectionFactory()
                 .getReactiveConnection()

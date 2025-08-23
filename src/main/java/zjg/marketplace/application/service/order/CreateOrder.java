@@ -2,12 +2,12 @@ package zjg.marketplace.application.service.order;
 
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import zjg.marketplace.application.dto.order.OrderInput;
+import zjg.marketplace.application.mapper.OrderMapper;
 import zjg.marketplace.application.service.helper.FindUserAndProductsHelper;
 import zjg.marketplace.application.service.promisse.CreateService;
-import zjg.marketplace.core.order.entity.Order;
-import zjg.marketplace.core.order.entity.OrderFactory;
-import zjg.marketplace.application.dto.order.OrderInput;
 import zjg.marketplace.core.interfaces.services.repository.command.CommandRepository;
+import zjg.marketplace.core.order.entity.Order;
 
 @Service
 public class CreateOrder implements CreateService<Order, OrderInput> {
@@ -21,10 +21,10 @@ public class CreateOrder implements CreateService<Order, OrderInput> {
     @Override
     public Mono<Order> create(OrderInput orderInput) {
         return findUserAndProductsHelper
-                .findUserAndProducts(orderInput.getUserId(), orderInput.getProductId())
-                .flatMap(pair -> {
-                    var order = OrderFactory.factory(pair.getKey().getId(), pair.getValue());
-                    return command.insert(order);
+                .existsUserAndProduct(orderInput.getUserId(), orderInput.getProductId())
+                .flatMap(products -> {
+                   var mapped = OrderMapper.map(orderInput.getUserId(), products);
+                   return command.insert(mapped);
                 });
     }
 }

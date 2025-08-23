@@ -23,6 +23,12 @@ public class FindUserService implements FindService<User> {
     }
 
     @Override
+    @Cacheable(value = "user_exist", key = "#id")
+    public Mono<Boolean> exists(String id) {
+        return query.exists(id);
+    }
+
+    @Override
     @Cacheable(value = "user", key = "#id")
     public Mono<User> findById(String id) {
         return query.findById(id);

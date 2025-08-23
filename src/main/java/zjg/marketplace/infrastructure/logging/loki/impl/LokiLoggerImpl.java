@@ -6,15 +6,15 @@ import zjg.marketplace.core.logging.enums.LogLevel;
 import zjg.marketplace.core.logging.model.LogFactory;
 import zjg.marketplace.core.logging.services.Logger;
 import zjg.marketplace.infrastructure.logging.loki.models.StreamModelFactory;
-import zjg.marketplace.infrastructure.request.IRequisitionService;
+import zjg.marketplace.infrastructure.request.RequisitionService;
 import zjg.marketplace.infrastructure.worker.SimpleLogWorker;
 
 @Service
 public class LokiLoggerImpl implements Logger {
     private final StreamModelFactory factory;
-    private final IRequisitionService service;
+    private final RequisitionService service;
     private final SimpleLogWorker worker;
-    public LokiLoggerImpl(StreamModelFactory factory, IRequisitionService service, SimpleLogWorker worker) {
+    public LokiLoggerImpl(StreamModelFactory factory, RequisitionService service, SimpleLogWorker worker) {
         this.factory = factory;
         this.service = service;
         this.worker = worker;

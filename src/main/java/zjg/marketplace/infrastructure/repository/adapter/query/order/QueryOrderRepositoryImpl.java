@@ -5,15 +5,15 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import zjg.marketplace.core.logging.services.Logger;
 import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.order.repository.exceptions.OrderNotFoundException;
-import zjg.marketplace.core.logging.services.Logger;
-import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
+import zjg.marketplace.core.order.repository.query.OrderRepositoryQuery;
 import zjg.marketplace.infrastructure.repository.interfaces.OrderReactiveMongoRepository;
 import zjg.marketplace.infrastructure.repository.utils.RepositoryMessageUtils;
 
 @Repository
-public class QueryOrderRepositoryImpl implements QueryRepository<Order> {
+public class QueryOrderRepositoryImpl implements OrderRepositoryQuery {
     private final OrderReactiveMongoRepository jpaRepository;
     private final Logger logger;
     private final ReactiveMongoTemplate template;
@@ -25,6 +25,8 @@ public class QueryOrderRepositoryImpl implements QueryRepository<Order> {
         this.template = template;
     }
 
+    // Adicionar um padrão observer nos repositorios/serviços, daria um desacoplamento melhor
+
     @Override
     public Mono<Order> findById(String id) {
         logger.info(self, RepositoryMessageUtils.infoQuery(id));
@@ -35,11 +37,23 @@ public class QueryOrderRepositoryImpl implements QueryRepository<Order> {
     }
 
     @Override
+    public Mono<Boolean> exists(String id) {
+        return jpaRepository.existsById(id);
+    }
+
+    @Override
     public Flux<Order> findWithPagination(long offset, int limit) {
         logger.info(self, RepositoryMessageUtils.infoQueryByOffsetAndLimit(offset, limit));
         var query = new Query().skip(offset).limit(limit);
         return template.find(query, Order.class)
                 .doOnNext( x -> logger.info(self, RepositoryMessageUtils.successQueryByOffsetAndLimit(offset, limit)))
                 .doOnError( x -> logger.error(self, RepositoryMessageUtils.errorQueryByOffsetAndLimit(offset, limit)));
+    }
+
+    @Override
+    public Flux<Order> findByUserId(String userId) {
+        return jpaRepository.findByBuyerId(userId)
+                .doOnNext( x -> logger.info(self, RepositoryMessageUtils.successQueryByUserId(userId)))
+                .doOnError( x -> logger.error(self, RepositoryMessageUtils.errorQueryByUserId(userId)));
     }
 }

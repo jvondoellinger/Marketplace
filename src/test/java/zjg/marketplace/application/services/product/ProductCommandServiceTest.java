@@ -3,6 +3,8 @@ package zjg.marketplace.application.services.product;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import reactor.test.StepVerifier;
+import zjg.marketplace.BlocKTimeOutConfig;
 import zjg.marketplace.application.dto.product.ProductInput;
 import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
 import zjg.marketplace.application.service.promisse.CreateService;
@@ -13,6 +15,8 @@ import zjg.marketplace.core.product.entity.Product;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @SpringBootTest
@@ -39,8 +43,11 @@ public class ProductCommandServiceTest {
     public void insertItems() {
         for (int i = 1; i < 500; i++) {
             var input = makeInput(i);
-            var p = createService.create(input).block(Duration.ofSeconds(2));
-            ids.add(p.getId());
+            StepVerifier.create(createService.create(input))
+                    .recordWith(ArrayList::new)
+                    .consumeRecordedWith(x -> ids.add(x.stream().findFirst().orElseThrow().getId()))
+                    .thenConsumeWhile(user -> true)
+                    .verifyComplete();
         }
     }
 
@@ -49,7 +56,9 @@ public class ProductCommandServiceTest {
     public void putAll() {
         for (var id : ids) {
             var input = makeInput(-1);
-            updateService.update(input, id).block(Duration.ofSeconds(2));
+            StepVerifier.create(updateService.update(input, id))
+                    .thenConsumeWhile(user -> true)
+                    .verifyComplete();
         }
     }
 
@@ -57,18 +66,11 @@ public class ProductCommandServiceTest {
     @Order(3)
     public void removeAll() {
         for (var id : ids) {
-            deleteService.deleteById(id).block(Duration.ofSeconds(5));
+            StepVerifier.create(deleteService.deleteById(id))
+                    .thenConsumeWhile(user -> true)
+                    .verifyComplete();
         };
     }
-
-/*  @Test
-    @Order(4)
-    public void removeAll2() {
-        fService.get(2, 5500, false).flatMap(x -> {
-            return deleteService.deleteById(x.getId());
-        }).collectList().block(Duration.ofSeconds(15));
-    }*/
-
 
     private ProductInput makeInput(int index) {
         var input = new ProductInput();

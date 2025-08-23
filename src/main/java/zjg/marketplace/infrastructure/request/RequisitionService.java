@@ -1,9 +1,7 @@
 package zjg.marketplace.infrastructure.request;
 
-import com.mercadopago.net.HttpMethod;
 import reactor.core.publisher.Mono;
-import java.net.URISyntaxException;
 
-public interface IRequisitionService {
+public interface RequisitionService {
     Mono<Void> post(String url, Object obj);
 }

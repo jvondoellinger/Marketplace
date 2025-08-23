@@ -4,19 +4,16 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.service.promisse.IFindByUserId;
 import zjg.marketplace.application.service.promisse.FindService;
+import zjg.marketplace.application.service.promisse.IFindByUserId;
 import zjg.marketplace.core.order.entity.Order;
-import zjg.marketplace.core.interfaces.services.repository.query.QueryByUserIdRepository;
-import zjg.marketplace.core.interfaces.services.repository.query.QueryRepository;
+import zjg.marketplace.core.order.repository.query.OrderRepositoryQuery;
 
 @Service
 public class FindOrderService implements FindService<Order>, IFindByUserId<Order> {
-    private final QueryByUserIdRepository<Order> queryUserIdRepository;
-    private final QueryRepository<Order> queryOrder;
+    private final OrderRepositoryQuery queryOrder;
 
-    public FindOrderService(QueryByUserIdRepository<Order> queryUserIdRepository, QueryRepository<Order> queryOrder) {
-        this.queryUserIdRepository = queryUserIdRepository;
+    public FindOrderService(OrderRepositoryQuery queryOrder) {
         this.queryOrder = queryOrder;
     }
 
@@ -24,6 +21,12 @@ public class FindOrderService implements FindService<Order>, IFindByUserId<Order
     @Cacheable(value = "order", key = "#offset + '-' + #limit")
     public Flux<Order> get(long offset, int limit) {
         return queryOrder.findWithPagination(offset, limit);
+    }
+
+    @Override
+    @Cacheable(value = "order_exist", key = "#id")
+    public Mono<Boolean> exists(String id) {
+        return queryOrder.exists(id);
     }
 
     @Override
@@ -40,6 +43,6 @@ public class FindOrderService implements FindService<Order>, IFindByUserId<Order
     @Override
     @Cacheable(value = "order", key = "#userId")
     public Flux<Order> findByUserId(String userId) {
-        return queryUserIdRepository.findByUserId(userId);
+        return queryOrder.findByUserId(userId);
     }
 }

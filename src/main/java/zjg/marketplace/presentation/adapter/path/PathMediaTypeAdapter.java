@@ -9,6 +9,6 @@ public class PathMediaTypeAdapter extends ImagePath {
     }
 
     public MediaType getMediaType() {
-        return MediaType.valueOf("image/%s".formatted(getExtension()));
+        return MediaType.valueOf("image/%s".formatted(extractExtension()));
     }
 }

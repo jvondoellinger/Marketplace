@@ -5,6 +5,7 @@ import reactor.core.publisher.Mono;
 
 public interface FindService<T> {
     Flux<T> get(long offset, int limit);
+    Mono<Boolean> exists(String id);
     Mono<T> findById(String id);
     Mono<T> findByIdNoCache(String id);
 }
