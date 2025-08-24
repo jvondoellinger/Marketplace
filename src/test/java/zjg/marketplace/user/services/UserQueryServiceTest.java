@@ -16,6 +16,7 @@ import zjg.marketplace.core.user.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserQueryServiceTest {

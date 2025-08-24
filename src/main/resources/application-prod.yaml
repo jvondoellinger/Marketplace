@@ -15,13 +15,16 @@ spring:
   cache:
     type: redis
     redis:
-      time-to-live: 300000 # 5 minutes (in ms)
+      time-to-live: 600000 # 5 minutes (in ms)
   redis:
     url: ${REDIS_URI}
   data:
     mongodb:
       uri: ${DATABASE_URI}
       auto-index-creation: true
+  jackson:
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
 
 # CUSTOM ------------------------
 aws:
@@ -31,6 +34,6 @@ aws:
   secretKey: ${AWS_SECRET_KEY}
   s3:
     bucket: ${AWS_S3_IMAGE_BUCKET}
-  redis:
-    host: localhost
-    port: 6379
+logging:
+  loki:
+    url: ${LOKI_CONNECTION_URI}

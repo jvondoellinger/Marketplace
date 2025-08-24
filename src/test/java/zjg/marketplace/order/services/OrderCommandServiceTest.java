@@ -23,29 +23,31 @@ import zjg.marketplace.order.factory.OrderInputFactoryTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.StructuredTaskScope;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrderCommandServiceTest {
-    @Autowired
-    public OrderCommandServiceTest(ServiceResolverFacade facade) {
-        createService = facade.resolveCreate(Order.class, OrderInput.class);
-        updateService = facade.resolveUpdate(Order.class, OrderUpdateInput.class);
-        findService = facade.resolveFind(Order.class);
-        findProductService = facade.resolveFind(Product.class);
-        findUserService = facade.resolveFind(User.class);
-        deleteService = facade.resolveDelete(Order.class);
-    }
     private static final List<String> productIds = new ArrayList<>();
     private static final List<String> orderIds = new ArrayList<>();
     private static String userId;
 
-    private final FindService<Order> findService;
     private final FindService<Product> findProductService;
     private final FindService<User> findUserService;
     private final CreateService<Order, OrderInput> createService;
     private final UpdateService<Order, OrderUpdateInput> updateService;
     private final DeleteService<Order> deleteService;
+
+    @Autowired
+    public OrderCommandServiceTest(ServiceResolverFacade facade) {
+        this.createService = facade.resolveCreate(Order.class, OrderInput.class);
+        this.updateService = facade.resolveUpdate(Order.class, OrderUpdateInput.class);
+        this.findProductService = facade.resolveFind(Product.class);
+        this.deleteService = facade.resolveDelete(Order.class);
+
+        this.findUserService = facade.resolveFind(User.class);
+    }
+
 
     @Test
     @org.junit.jupiter.api.Order(1)
@@ -62,14 +64,13 @@ public class OrderCommandServiceTest {
     @Test
     @org.junit.jupiter.api.Order(2)
     public void get1User() {
-        StepVerifier.create(findUserService.get(0, 1))
+        StepVerifier.create(findUserService.get(0,1))
                 .recordWith(ArrayList::new)
-                .consumeRecordedWith(x -> {
-                    var list = x.stream().map(BaseEntity::getId).toList();
-                    userId = list.getFirst();
+                .consumeRecordedWith(collection -> {
+                    userId = collection.stream().map(BaseEntity::getId).findAny().orElseThrow();
                 })
-                .thenConsumeWhile(user -> true)
-                .verifyComplete();;
+                .thenConsumeWhile(x -> true)
+                .verifyComplete();
     }
     @Test
     @org.junit.jupiter.api.Order(3)

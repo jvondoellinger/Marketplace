@@ -8,7 +8,10 @@ import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 
 import java.util.Date;
 
+
 public class UserFactoryTest {
+
+
       public static UserInput factoryInput() {
             var input = new UserInput();
             var fakeDocument = new CPF();
@@ -17,7 +20,7 @@ public class UserFactoryTest {
             fakeDocument.setCpf("63033923429");
             date.setYear(date.getYear() - 20);
 
-            phoneNumber.setNumber("909099090");
+            phoneNumber.setNumber("000000000");
             phoneNumber.setAreaCode("21");
             phoneNumber.setCountryCode("55");
 

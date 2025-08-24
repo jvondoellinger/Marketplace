@@ -162,6 +162,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M7</version>
 				<configuration>
+
 					<argLine>--enable-preview</argLine> <!-- Passa o preview para a JVM do teste -->
 					<useModulePath>false</useModulePath> <!-- Evita problema de modularidade -->
 				</configuration>

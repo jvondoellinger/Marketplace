@@ -14,14 +14,12 @@ import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.user.entity.User;
-import zjg.marketplace.core.user.valueObj.cpf.CPF;
-import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 import zjg.marketplace.user.factory.UserFactoryTest;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+@Deprecated
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserCommandServiceTest {
@@ -47,5 +45,12 @@ public class UserCommandServiceTest {
                   StepVerifier.create(mono).verifyComplete();
             }
       }
+/*      @Test
+      @Order(2)
+      public void addifNotExists() {
+            StepVerifier.create(findService.get(0,1))
+                    .expectNext(null)
+                    .verifyComplete();
+      }*/
 }
 // Fazer uma classe genreciadora de eventos, juntamente com uma classe xEvent que recebe a propria entidade!
