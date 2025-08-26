@@ -16,12 +16,12 @@ spring:
     type: redis
     redis:
       time-to-live: 600000 # 5 minutes (in ms)
-  redis:
-    url: ${REDIS_URI}
   data:
     mongodb:
       uri: ${DATABASE_URI}
       auto-index-creation: true
+    redis:
+      url: ${REDIS_URL}
   jackson:
     deserialization:
       FAIL_ON_UNKNOWN_PROPERTIES: false

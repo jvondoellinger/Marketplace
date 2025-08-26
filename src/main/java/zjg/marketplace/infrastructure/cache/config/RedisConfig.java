@@ -3,10 +3,8 @@ package zjg.marketplace.infrastructure.cache.config;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
-import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
@@ -14,19 +12,20 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.stereotype.Component;
 import zjg.marketplace.core.product.entity.Product;
 
 import java.time.Duration;
 import java.util.Date;
 
-@Configuration
+@Component
 public class RedisConfig {
     private static final Integer EXPIRE_MINUTES = 5;
 
     @Bean(name = "redisObjectMapper")
     public ObjectMapper redisObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        PolymorphicTypeValidator ptv = BasicPolymorphicTypeValidator.builder()
+        var mapper = new ObjectMapper();
+        var ptv = BasicPolymorphicTypeValidator.builder()
                 .allowIfSubType("zjg.marketplace.core") 
                 .allowIfSubType(Date.class)
                 .allowIfBaseType(Object.class)
@@ -65,6 +64,8 @@ public class RedisConfig {
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer(redisObjectMapper)))
                 .entryTtl(Duration.ofMinutes(EXPIRE_MINUTES));
     }
+
+
 
 
 
