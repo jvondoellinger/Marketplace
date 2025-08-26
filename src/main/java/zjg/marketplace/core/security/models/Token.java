@@ -1,6 +1,6 @@
 package zjg.marketplace.core.security.models;
 
-import zjg.marketplace.core.security.enums.RoleAccess;
+import zjg.marketplace.core.security.access.RoleAccess;
 
 import java.util.Date;
 

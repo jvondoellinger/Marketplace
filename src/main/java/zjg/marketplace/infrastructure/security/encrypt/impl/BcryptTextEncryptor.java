@@ -1,4 +1,4 @@
-package zjg.marketplace.application.security.encrypt.impl;
+package zjg.marketplace.infrastructure.security.encrypt.impl;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

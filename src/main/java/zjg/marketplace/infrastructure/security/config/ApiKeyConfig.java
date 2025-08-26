@@ -1,4 +1,4 @@
-package zjg.marketplace.application.security.authenticator.config;
+package zjg.marketplace.infrastructure.security.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

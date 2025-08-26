@@ -1,4 +1,4 @@
-package zjg.marketplace.application.security.authenticator.impl;
+package zjg.marketplace.infrastructure.security.token;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.DirectDecrypter;
@@ -7,11 +7,12 @@ import com.nimbusds.jwt.EncryptedJWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import org.springframework.stereotype.Service;
 import zjg.marketplace.application.config.app.AppInfo;
-import zjg.marketplace.application.security.authenticator.config.ApiKeyConfig;
+import zjg.marketplace.core.security.access.GuestAccess;
+import zjg.marketplace.infrastructure.security.config.ApiKeyConfig;
 import zjg.marketplace.core.security.exceptions.ErrorOnGenerateTokenException;
 import zjg.marketplace.core.security.exceptions.InvalidTokenException;
 import zjg.marketplace.core.security.services.TokenAuthenticator;
-import zjg.marketplace.core.security.enums.RoleAccess;
+import zjg.marketplace.core.security.access.RoleAccess;
 import zjg.marketplace.core.security.models.Token;
 
 import java.text.ParseException;
@@ -38,7 +39,7 @@ public class TokenService implements TokenAuthenticator {
         var exp = Date.from(Instant.now().plus(Duration.ofHours(1)));
         var claimSet = new JWTClaimsSet.Builder()
                 .subject(identifier)
-                .claim("role", role.toString())
+                .claim("role", role.getRule())
                 .issuer(info.getAppName())
                 .expirationTime(exp)
                 .build();
@@ -67,7 +68,7 @@ public class TokenService implements TokenAuthenticator {
             var decryptedToken = Token.DecryptedTokenBuilder.builder()
                     .userId(claimSet.getSubject())
                     .expireAt(claimSet.getExpirationTime())
-                    .role(RoleAccess.valueOf(claimSet.getStringClaim("role")))
+                    .role(new GuestAccess())
                     .build();
             if(decryptedToken.getExpireAt().before(new Date())) throw new InvalidTokenException();
             return decryptedToken;

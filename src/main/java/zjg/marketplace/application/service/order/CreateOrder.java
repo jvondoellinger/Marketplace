@@ -21,7 +21,7 @@ public class CreateOrder implements CreateService<Order, OrderInput> {
     @Override
     public Mono<Order> create(OrderInput orderInput) {
         return findUserAndProductsHelper
-                .existsUserAndProduct(orderInput.getUserId(), orderInput.getProductId())
+                .existsUserAndProduct(orderInput.getUserId(), orderInput.setProductId())
                 .flatMap(products -> {
                    var mapped = OrderMapper.map(orderInput.getUserId(), products);
                    return command.insert(mapped);

@@ -11,6 +11,7 @@ public class AuthorizationTokenUtils {
         var bearer = "Bearer ";
         var length = bearer.length();
         var token = exchange.getRequest().getHeaders().getFirst("Authorization");
+        if (token == null) return null;
         return token.contains(bearer) ? token.substring(length) : token;
     }
     public static String getAuthorizationTokenOrThrow(ServerWebExchange exchange) throws NullTokenException {

@@ -11,12 +11,12 @@ public class OrderInput {
      public String getUserId() {
           return userId;
      }
-     public List<String> getProductId() {
+     public List<String> setProductId() {
           return productId;
      }
 
      // Setter ----------------------------------------------------------------
-     public void setProductInput(List<String> productId) {
+     public void setProductId(List<String> productId) {
           this.productId = productId;
      }
      public void setUserId(String userId) {
