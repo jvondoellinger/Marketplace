@@ -36,6 +36,7 @@ public class UserController {
         this.helper = helper;
     }
 
+    // * Get mapping ----------------------------------------
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public Flux<User> get(
@@ -51,6 +52,7 @@ public class UserController {
         return findService.findById(token.getUserId());
     }
 
+    // * Post mapping ---------------------------------------
     @PostMapping("/register")
     @PreAuthorize("hasRole('GUEST')")
     public Mono<User> create(@RequestBody UserInput dto) {
@@ -63,6 +65,7 @@ public class UserController {
         return authenticator.generate(credentials);
     }
 
+    // * Put mapping ----------------------------------------
     /// Needs ID and Fields (username, email and password to update!)
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
@@ -70,6 +73,7 @@ public class UserController {
         return updateService.update(partialUser, id);
     }
 
+    // * Delete mapping ------------------------------------
     @DeleteMapping
     @PreAuthorize("hasRole('USER')")
     public Mono<Void> delete(ServerWebExchange exchange) {

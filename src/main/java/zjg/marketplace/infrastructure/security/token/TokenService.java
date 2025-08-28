@@ -36,7 +36,7 @@ public class TokenService implements TokenAuthenticator {
 
     @Override
     public Token.EncryptedToken encrypt(String identifier, RoleAccess role) throws ErrorOnGenerateTokenException{
-        var exp = Date.from(Instant.now().plus(Duration.ofHours(1)));
+        var exp = Date.from(Instant.now().plus(Duration.ofSeconds(15)));
         var claimSet = new JWTClaimsSet.Builder()
                 .subject(identifier)
                 .claim("role", role.getRule())
@@ -48,10 +48,11 @@ public class TokenService implements TokenAuthenticator {
                 .build();
         var encryptedJwt = new EncryptedJWT(header, claimSet);
         String token = null;
-        try{
+        try {
             encryptedJwt.encrypt(directEncrypter);
             token = encryptedJwt.serialize();
-        } catch (JOSEException e) {
+        }
+        catch (JOSEException e) {
             throw new ErrorOnGenerateTokenException(e);
         }
         return Token.EncryptedTokenBuilder.builder()

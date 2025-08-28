@@ -1,6 +1,7 @@
 package zjg.marketplace.presentation.filter;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -17,7 +18,10 @@ import zjg.marketplace.core.security.exceptions.ExpiredTokenException;
 import zjg.marketplace.core.security.exceptions.InvalidTokenException;
 import zjg.marketplace.core.logging.services.Logger;
 import zjg.marketplace.core.security.services.TokenAuthenticator;
+import zjg.marketplace.core.utils.StringUtils;
+import zjg.marketplace.presentation.config.PublicPaths;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -31,21 +35,21 @@ public class JwtJweAuthWebFilter implements WebFilter {
         this.helper = helper;
     }
 
+    // * Passa daqui
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         var path = exchange.getRequest().getURI().getPath();
-        if (path.startsWith("/api/guest") || path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui") || path.startsWith("/webjars")) {
+        if (PublicPaths.paths.stream().anyMatch(path::matches)) {
             return chain.filter(exchange);
         }
         var ip = exchange.getRequest().getRemoteAddress().getAddress().getHostAddress();
         var token = AuthorizationTokenUtils.getAuthorizationToken(exchange);
-        if(token != null && token.startsWith("Bearer ")) {
+        if(!StringUtils.blankOrNull(token)) {
             try {
-                var cleanToken = token.substring("Bearer ".length());
-                var decryptedToken = authenticator.decrypt(cleanToken);
+                var decryptedToken = authenticator.decrypt(token);
                 var auth = new UsernamePasswordAuthenticationToken(decryptedToken.getUserId(),
                         null,
-                        List.of(new SimpleGrantedAuthority("ROLE_%s".formatted(decryptedToken.getRole()))));
+                        List.of(new SimpleGrantedAuthority("ROLE_%s".formatted(decryptedToken.getRole().getRule()))));
                 return chain.filter(exchange)
                         .contextWrite(ReactiveSecurityContextHolder.withAuthentication(auth));
             } catch (InvalidTokenException | ExpiredTokenException e) {
@@ -58,7 +62,12 @@ public class JwtJweAuthWebFilter implements WebFilter {
     }
 
     private Mono<Void> unauthorize(ServerWebExchange exchange) {
+        var message = "Token empty or invalid!".getBytes(StandardCharsets.UTF_8);
+
+        exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+        exchange.getResponse().bufferFactory().wrap(message);
         exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+
         return exchange.getResponse().setComplete();
     }
 }
