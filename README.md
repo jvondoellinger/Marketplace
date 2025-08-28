@@ -8,7 +8,11 @@ Projeto de marketplace desenvolvido com foco em escalabilidade e integração co
 - **MongoDB Atlas**
 - **Docker**
 - **AWS S3**
+- **Grafana Loki**
+- **Redis**
+- **JWT JWE**
 - **Spring Boot**
+- **WebFlux**
 
 ---
 
