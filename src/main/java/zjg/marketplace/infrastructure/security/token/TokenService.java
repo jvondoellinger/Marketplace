@@ -7,7 +7,7 @@ import com.nimbusds.jwt.EncryptedJWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import org.springframework.stereotype.Service;
 import zjg.marketplace.application.config.app.AppInfo;
-import zjg.marketplace.core.security.access.GuestAccess;
+import zjg.marketplace.core.security.access.RoleAccessDiscovery;
 import zjg.marketplace.infrastructure.security.config.ApiKeyConfig;
 import zjg.marketplace.core.security.exceptions.ErrorOnGenerateTokenException;
 import zjg.marketplace.core.security.exceptions.InvalidTokenException;
@@ -65,13 +65,17 @@ public class TokenService implements TokenAuthenticator {
         try{
             var encryptedJwe = EncryptedJWT.parse(token);
             encryptedJwe.decrypt(directDecrypter);
-            var claimSet = encryptedJwe.getJWTClaimsSet();;
+            var claimSet = encryptedJwe.getJWTClaimsSet();
+            var claim = claimSet.getClaim("role");
+            var role = RoleAccessDiscovery.discovery(claim.toString());
             var decryptedToken = Token.DecryptedTokenBuilder.builder()
                     .userId(claimSet.getSubject())
                     .expireAt(claimSet.getExpirationTime())
-                    .role(new GuestAccess())
+                    .role(role)
                     .build();
-            if(decryptedToken.getExpireAt().before(new Date())) throw new InvalidTokenException();
+            if(decryptedToken.getExpireAt().before(new Date())) {
+                throw new InvalidTokenException();
+            }
             return decryptedToken;
         } catch (JOSEException | ParseException e) {
             throw new InvalidTokenException(e);
@@ -83,7 +87,8 @@ public class TokenService implements TokenAuthenticator {
             var bytes = Base64.getDecoder().decode(config.getApiKey());
             directEncrypter = new DirectEncrypter(bytes);
             directDecrypter = new DirectDecrypter(bytes);
-        } catch (KeyLengthException e) {
+        }
+        catch (KeyLengthException e) {
             throw new RuntimeException(e);
         }
     }

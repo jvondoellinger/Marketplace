@@ -6,9 +6,11 @@ server:
 # SWAGGER / DOCUMENTATION ----------
 springdoc:
  swagger-ui:
-  enabled: true
+  enabled: false
+  path: /swagger
  api-docs:
-  enabled: true
+  enabled: false
+  path: /docs
 
 # SPRING ---------------------------
 spring:
