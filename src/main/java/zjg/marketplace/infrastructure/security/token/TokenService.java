@@ -36,7 +36,7 @@ public class TokenService implements TokenAuthenticator {
 
     @Override
     public Token.EncryptedToken encrypt(String identifier, RoleAccess role) throws ErrorOnGenerateTokenException{
-        var exp = Date.from(Instant.now().plus(Duration.ofSeconds(15)));
+        var exp = Date.from(Instant.now().plus(Duration.ofHours(15)));
         var claimSet = new JWTClaimsSet.Builder()
                 .subject(identifier)
                 .claim("role", role.getRule())
