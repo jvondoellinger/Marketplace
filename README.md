@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🛒 zjg_marketplace
 
 Projeto de marketplace desenvolvido com foco em escalabilidade e integração com serviços em nuvem.
@@ -17,7 +17,7 @@ Projeto de marketplace desenvolvido com foco em escalabilidade e integração co
 A aplicação está hospedada via **Render** e está disponível publicamente.
 
 🔗 **Swagger UI (Documentação dos Endpoints):**  
-[https://marketplace-beta-e0fd.onrender.com/webjars/swagger-ui/index.html](https://marketplace-beta-e0fd.onrender.com/webjars/swagger-ui/index.html)
+[https://zjg-marketplace-1-0-0-rc.onrender.com/webjars/swagger-ui/index.html)
 
 > ⚠️ **Atenção:** A aplicação pode ser temporariamente suspensa em períodos de inatividade devido às limitações do plano gratuito da Render.
 
@@ -25,8 +25,7 @@ A aplicação está hospedada via **Render** e está disponível publicamente.
 
 ## 🧪 Como Rodar Localmente com Docker
 
-Antes de iniciar, **certifique-se de que há um bucket S3 criado com o nome `test`**, pois ele será utilizado pela aplicação.  
-**Importante:** O arquivo `dev.yaml` será ajustado futuramente para dispensar o uso de variáveis de ambiente, facilitando ainda mais os testes locais.
+Antes de iniciar, **certifique-se de que as configurações no application-dev.yaml estão corretas!**.  Caso utilize a versão de produção, não esqueça de injetar as variaveis de ambiente (facil acesso via .envexample)
 
 ### Comando Docker:
 
@@ -42,6 +41,5 @@ sudo docker run -d \
   -p <PORT>:<PORT> \
   --name zjg_marketplace_dev \
   jvondoellinger/zjg_marketplace:beta-0.1
-=======
+  
 # Marketplace
->>>>>>> 0f51633 (update - v0.2)
