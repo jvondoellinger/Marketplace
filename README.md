@@ -26,7 +26,7 @@ A aplicação está hospedada via **Render** e está disponível publicamente.
 > ⚠️ **Atenção:** A aplicação pode ser temporariamente suspensa em períodos de inatividade devido às limitações do plano gratuito da Render.
 
 Diagrama de fluxo:
-[Diagrama editável](.github/images/diagram.drawio)
+![Diagrama de fluxo](.github/images/diagrama2.png)
 
 
 ---
