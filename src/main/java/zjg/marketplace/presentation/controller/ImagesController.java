@@ -8,7 +8,7 @@ import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.adapter.ProductImageUploadFacadeAdapter;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.image.service.StorageService;
 import zjg.marketplace.core.product.entity.Product;
@@ -22,7 +22,7 @@ public class ImagesController {
     private final FindService<Product> findService;
     private final ProductImageUploadFacadeAdapter mediator;
     private final StorageService storageService;
-    public ImagesController(ServiceResolverFacade facade,
+    public ImagesController(ServiceResolver facade,
                             ProductImageUploadFacadeAdapter mediator,
                             StorageService storageService) {
         this.findService = facade.resolveFind(Product.class);

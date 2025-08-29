@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 
 import zjg.marketplace.application.dto.user.UserInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.core.user.entity.User;
 import zjg.marketplace.core.user.valueObj.cpf.CPF;
@@ -19,7 +19,6 @@ import zjg.marketplace.core.user.valueObj.phone.PhoneNumber;
 import java.util.Date;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.in;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -29,7 +28,7 @@ public class UserCreateServiceIntegrationTest {
       private final StoreUserInputs storeUserInputs;
 
       @Autowired
-      public UserCreateServiceIntegrationTest(ServiceResolverFacade facade) {
+      public UserCreateServiceIntegrationTest(ServiceResolver facade) {
             this.createService = facade.resolveCreate(User.class, UserInput.class);
             this.storeUserInputs = new StoreUserInputs();
       }

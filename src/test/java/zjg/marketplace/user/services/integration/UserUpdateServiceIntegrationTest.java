@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 import zjg.marketplace.application.dto.user.UserInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.user.entity.User;
@@ -26,7 +26,7 @@ public class UserUpdateServiceIntegrationTest {
       private User randomUser;
 
       @Autowired
-      public UserUpdateServiceIntegrationTest(ServiceResolverFacade facade) {
+      public UserUpdateServiceIntegrationTest(ServiceResolver facade) {
             this.updateService = facade.resolveUpdate(User.class, UserInput.class);
             this.findService = facade.resolveFind(User.class);
       }

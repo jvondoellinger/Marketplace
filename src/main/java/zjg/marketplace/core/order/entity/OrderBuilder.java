@@ -1,5 +1,5 @@
 package zjg.marketplace.core.order.entity;
-import zjg.marketplace.core.logging.enums.OrderStatusEnum;
+import zjg.marketplace.core.order.states.OrderState;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,8 +28,8 @@ public class OrderBuilder {
         order.addBatchItems(products);
         return this;
     }
-    public OrderBuilder status(OrderStatusEnum status) {
-        order.setStatus(status);
+    public OrderBuilder unsafeState(OrderState state) {
+        order.setState(state);
         return this;
     }
     public OrderBuilder amount(BigDecimal amount) {

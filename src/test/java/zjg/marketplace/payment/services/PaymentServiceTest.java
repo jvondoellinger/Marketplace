@@ -6,13 +6,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.order.entity.Order;
-import zjg.marketplace.core.payment.entity.PixPayment;
 import zjg.marketplace.core.payment.services.IPixPaymentProcessor;
 import zjg.marketplace.core.user.entity.User;
-import zjg.marketplace.core.user.entity.UserBuilder;
 import zjg.marketplace.user.factory.UserFactoryTest;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class PaymentServiceTest {
       private final FindService<User> findUserService;
       private final FindService<Order> findOrderService;
       @Autowired
-      public PaymentServiceTest(IPixPaymentProcessor processor, ServiceResolverFacade facade) {
+      public PaymentServiceTest(IPixPaymentProcessor processor, ServiceResolver facade) {
             this.processor = processor;
             this.findOrderService = facade.resolveFind(Order.class);
             this.findUserService = facade.resolveFind(User.class);

@@ -5,7 +5,7 @@ import zjg.marketplace.application.resolver.services.impl.*;
 import zjg.marketplace.application.service.promisse.*;
 
 @Component
-public class ServiceResolverFacade {
+public class ServiceResolver {
     private final CreateResolver createResolver;
     private final DeleteResolver deleteResolver;
     private final FindResolver findResolver;
@@ -13,12 +13,12 @@ public class ServiceResolverFacade {
     private final UpdateResolver updateResolver;
     private final UploadResolver uploadResolver;
 
-    public ServiceResolverFacade(CreateResolver createResolver,
-                                 DeleteResolver deleteResolver,
-                                 FindResolver findResolver,
-                                 FindByUserIdResolver findByUserIdResolver,
-                                 UpdateResolver updateResolver,
-                                 UploadResolver uploadResolver) {
+    public ServiceResolver(CreateResolver createResolver,
+                           DeleteResolver deleteResolver,
+                           FindResolver findResolver,
+                           FindByUserIdResolver findByUserIdResolver,
+                           UpdateResolver updateResolver,
+                           UploadResolver uploadResolver) {
         this.createResolver = createResolver;
         this.deleteResolver = deleteResolver;
         this.findResolver = findResolver;

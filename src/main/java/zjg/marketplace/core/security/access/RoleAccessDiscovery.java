@@ -1,7 +1,10 @@
 package zjg.marketplace.core.security.access;
 
+import zjg.marketplace.core.anotation.BadCode;
+
 import java.util.List;
 
+@BadCode
 public class RoleAccessDiscovery {
       private static final List<RoleAccess> list = List.of(
               new GuestAccess(),

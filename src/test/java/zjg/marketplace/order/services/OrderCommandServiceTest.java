@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 import zjg.marketplace.application.dto.order.OrderInput;
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.application.service.promisse.UpdateService;
 import zjg.marketplace.core.entity.base.BaseEntity;
-import zjg.marketplace.core.logging.enums.OrderStatusEnum;
+import zjg.marketplace.core.order.states.OrderStatusEnum;
 import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.product.entity.Product;
 import zjg.marketplace.core.user.entity.User;
@@ -23,7 +23,6 @@ import zjg.marketplace.order.factory.OrderInputFactoryTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.StructuredTaskScope;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -39,7 +38,7 @@ public class OrderCommandServiceTest {
     private final DeleteService<Order> deleteService;
 
     @Autowired
-    public OrderCommandServiceTest(ServiceResolverFacade facade) {
+    public OrderCommandServiceTest(ServiceResolver facade) {
         this.createService = facade.resolveCreate(Order.class, OrderInput.class);
         this.updateService = facade.resolveUpdate(Order.class, OrderUpdateInput.class);
         this.findProductService = facade.resolveFind(Product.class);

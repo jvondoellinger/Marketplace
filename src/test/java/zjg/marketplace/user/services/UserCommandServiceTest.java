@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 import zjg.marketplace.application.dto.user.UserInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
@@ -29,7 +29,7 @@ public class UserCommandServiceTest {
       private final UpdateService<User, UserInput> updateService;
       private static List<String> userIds = new ArrayList<>();
       @Autowired
-      public UserCommandServiceTest(ServiceResolverFacade facade) {
+      public UserCommandServiceTest(ServiceResolver facade) {
             findService = facade.resolveFind(User.class);
             deleteService = facade.resolveDelete(User.class);
             createService = facade.resolveCreate(User.class, UserInput.class);

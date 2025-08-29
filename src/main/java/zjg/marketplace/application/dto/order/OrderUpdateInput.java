@@ -1,6 +1,6 @@
 package zjg.marketplace.application.dto.order;
 
-import zjg.marketplace.core.logging.enums.OrderStatusEnum;
+import zjg.marketplace.core.order.states.OrderStatusEnum;
 
 public class OrderUpdateInput {
     // Constructor -------------------

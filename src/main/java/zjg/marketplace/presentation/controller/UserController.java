@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.user.UserInput;
 import zjg.marketplace.application.helper.AuthorizationTokenHelper;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
@@ -27,7 +27,7 @@ public class UserController {
     private final UserTokenGenerator authenticator;
     private final AuthorizationTokenHelper helper;
 
-    public UserController(ServiceResolverFacade resolverFacade, UserTokenGenerator authenticator, AuthorizationTokenHelper helper) {
+    public UserController(ServiceResolver resolverFacade, UserTokenGenerator authenticator, AuthorizationTokenHelper helper) {
         this.findService = resolverFacade.resolveFind(User.class);
         this.deleteService = resolverFacade.resolveDelete(User.class);
         this.createService = resolverFacade.resolveCreate(User.class, UserInput.class);

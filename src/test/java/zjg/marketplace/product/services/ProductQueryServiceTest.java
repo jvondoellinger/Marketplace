@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.base.BaseEntity;
 import zjg.marketplace.core.product.entity.Product;
@@ -18,7 +18,7 @@ public class ProductQueryServiceTest {
     private static List<String> productId = new ArrayList<>();
 
     @Autowired
-    public ProductQueryServiceTest(ServiceResolverFacade facade) {
+    public ProductQueryServiceTest(ServiceResolver facade) {
         findService = facade.resolveFind(Product.class);
     }
 

@@ -11,8 +11,8 @@ import zjg.marketplace.core.order.entity.Order;
 
 @Service
 public class CreateOrder implements CreateService<Order, OrderInput> {
-    private final CommandRepository<Order> command;
-    private final FindUserAndProductsHelper findUserAndProductsHelper;
+      private final CommandRepository<Order> command;
+      private final FindUserAndProductsHelper findUserAndProductsHelper;
     public  CreateOrder(CommandRepository<Order> command, FindUserAndProductsHelper findUserAndProductsHelper) {
         this.command = command;
         this.findUserAndProductsHelper = findUserAndProductsHelper;

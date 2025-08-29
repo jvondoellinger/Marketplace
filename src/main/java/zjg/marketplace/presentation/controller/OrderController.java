@@ -5,7 +5,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.order.OrderInput;
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.order.dto.OrderInputDto;
+import zjg.marketplace.application.order.dto.OrderOutputDto;
+import zjg.marketplace.application.order.useCases.CreateOrderUseCase;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.*;
 import zjg.marketplace.core.order.entity.Order;
 
@@ -15,14 +18,15 @@ public class OrderController {
     // Criar uma strategy para adicionar segurança!
     // Strategy para validar se o token é valido
     // Armazenar esses tokens no REDIS e utiliza-lo como controle de acesso (permitindo somente 1 (ip ou agent - celular, pc, etc) de login por usuario; bloqueando a conta temporariamente (até o usuario permitir o acesso deste novo dispositivo)
-
+    private final CreateOrderUseCase createOrderUseCase;
     private final CreateService<Order, OrderInput> createService;
     private final UpdateService<Order, OrderUpdateInput> updateService;
     private final DeleteService<Order> deleteService;
     private final FindService<Order> findService;
     private final IFindByUserId<Order> findByUserIdService;
-    public OrderController(ServiceResolverFacade facade ) {
-        this.createService = facade.resolveCreate(Order.class, OrderInput.class);
+    public OrderController(CreateOrderUseCase createOrderUseCase, ServiceResolver facade ) {
+          this.createOrderUseCase = createOrderUseCase;
+          this.createService = facade.resolveCreate(Order.class, OrderInput.class);
         this.updateService = facade.resolveUpdate(Order.class, OrderUpdateInput.class);
         this.deleteService = facade.resolveDelete(Order.class);
         this.findService = facade.resolveFind(Order.class);
@@ -51,8 +55,8 @@ public class OrderController {
 
     //@PreAuthorize("hasRole('USER')")
     @PostMapping
-    public Mono<Order> createOrder(@RequestBody OrderInput input) {
-        return createService.create(input);
+    public Mono<OrderOutputDto> createOrder(@RequestBody OrderInputDto input) {
+        return createOrderUseCase.execute(input);
     }
 
     // * PUT --------------------------------------------------------------

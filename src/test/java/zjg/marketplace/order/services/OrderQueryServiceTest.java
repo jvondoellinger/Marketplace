@@ -7,7 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.base.BaseEntity;
 import zjg.marketplace.core.order.entity.Order;
@@ -19,7 +19,7 @@ import java.util.List;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrderQueryServiceTest {
     @Autowired
-    private ServiceResolverFacade facade;
+    private ServiceResolver facade;
 
     private FindService<Order> findService;
     private static final List<String> ids = new ArrayList<>();

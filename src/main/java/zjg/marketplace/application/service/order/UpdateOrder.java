@@ -3,6 +3,7 @@ package zjg.marketplace.application.service.order;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import zjg.marketplace.application.dto.order.OrderInput;
 import zjg.marketplace.application.dto.order.OrderUpdateInput;
 import zjg.marketplace.application.mapper.OrderMapper;
 import zjg.marketplace.application.service.promisse.FindService;
@@ -24,14 +25,6 @@ public class UpdateOrder implements UpdateService<Order, OrderUpdateInput> {
     @Override
     @CacheEvict(value = "order", key = "#id")
     public Mono<Order> update(OrderUpdateInput orderUpdateInput, String id) {
-        var updateHandler = OrderUpdaterHandleFactory.factory();
-        var validateHandler = OrderValidatorHandleFactory.factory();
-        return findService.findById(id)
-                .flatMap(order -> {
-                    var mapped = OrderMapper.unsafeMap(orderUpdateInput);
-                    updateHandler.handle(order, mapped);
-                    validateHandler.handle(order);
-                    return command.update(order);
-                });
+        return Mono.empty();
     }
 }

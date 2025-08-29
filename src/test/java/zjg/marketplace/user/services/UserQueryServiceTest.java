@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 import zjg.marketplace.BlocKTimeOutConfig;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.entity.base.BaseEntity;
 import zjg.marketplace.core.user.entity.User;
@@ -23,7 +23,7 @@ public class UserQueryServiceTest {
       private final FindService<User> findService;
       private static List<String> userIds = new ArrayList<>();
       @Autowired
-      public UserQueryServiceTest(ServiceResolverFacade facade) {
+      public UserQueryServiceTest(ServiceResolver facade) {
             findService = facade.resolveFind(User.class);
       }
 

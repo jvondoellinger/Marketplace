@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 import zjg.marketplace.application.dto.product.ProductInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class ProductCommandServiceTest {
 
     @Autowired
-    public ServiceResolverFacade facade;
+    public ServiceResolver facade;
     private FindService<Product> fService;
     private CreateService<Product, ProductInput> createService;
     private UpdateService<Product, ProductInput> updateService;

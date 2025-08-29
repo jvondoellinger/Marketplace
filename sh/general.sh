@@ -1,4 +1,4 @@
-sudo systemctl start redis mongod
+sudo systemctl start redis-server mongod
 
 ./create_network.sh
 ./start-localstack.sh

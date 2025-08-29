@@ -2,7 +2,7 @@ package zjg.marketplace.presentation.controller;
 
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.FindService;
 import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.payment.entity.PixPayment;
@@ -16,7 +16,7 @@ public class PaymentController {
     private final FindService<Order> orderFindService;
     private final FindService<User> userFindService;
 
-    public PaymentController(OrderPaymentProcessor mediator, ServiceResolverFacade facade) {
+    public PaymentController(OrderPaymentProcessor mediator, ServiceResolver facade) {
         this.mediator = mediator;
         this.orderFindService = facade.resolveFind(Order.class);
         this.userFindService = facade.resolveFind(User.class);

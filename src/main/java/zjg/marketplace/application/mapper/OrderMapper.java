@@ -1,6 +1,6 @@
 package zjg.marketplace.application.mapper;
 
-import zjg.marketplace.application.dto.order.OrderUpdateInput;
+import zjg.marketplace.application.order.dto.OrderOutputDto;
 import zjg.marketplace.core.order.entity.Order;
 import zjg.marketplace.core.order.entity.OrderBuilder;
 import zjg.marketplace.core.order.entity.OrderFactory;
@@ -21,9 +21,11 @@ public class OrderMapper {
                 .products(products)
                 .build();
     }
-    public static Order unsafeMap(OrderUpdateInput input) {
-        return OrderBuilder.builder()
-                .status(input.getStatus())
-                .build();
+
+    public static OrderOutputDto entityToOutput(Order entity) {
+        var productIds = entity.getProductsId();
+        var state = entity.getState().showState();
+        return new OrderOutputDto(productIds, state, entity.getAmount());
     }
+
 }

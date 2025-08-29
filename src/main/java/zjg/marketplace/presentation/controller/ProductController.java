@@ -5,7 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.product.ProductInput;
-import zjg.marketplace.application.resolver.facade.ServiceResolverFacade;
+import zjg.marketplace.application.resolver.facade.ServiceResolver;
 import zjg.marketplace.application.service.promisse.CreateService;
 import zjg.marketplace.application.service.promisse.DeleteService;
 import zjg.marketplace.application.service.promisse.FindService;
@@ -22,7 +22,7 @@ public class ProductController {
     private final FindService<Product> findService;
     private final UpdateService<Product, ProductInput> updateService;
 
-    public ProductController(ServiceResolverFacade facade) {
+    public ProductController(ServiceResolver facade) {
         this.createService = facade.resolveCreate(Product.class, ProductInput.class);
         this.updateService = facade.resolveUpdate(Product.class, ProductInput.class);
         this.findService = facade.resolveFind(Product.class);
