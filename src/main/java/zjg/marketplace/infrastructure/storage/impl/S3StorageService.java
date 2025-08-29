@@ -35,6 +35,8 @@ public class S3StorageService implements StorageService {
         if(Objects.isNull(file)) {
             return Mono.error(new RuntimeException("File cannot be null"));
         }
+        System.out.println("Bucket -> : "+config.getBucket());
+
         var completePath = file.getPath().getCompletePath();
         var putRequest = PutObjectRequest.builder()
                 .bucket(config.getBucket())

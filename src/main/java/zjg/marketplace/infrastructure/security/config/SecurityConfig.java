@@ -30,11 +30,7 @@ public class SecurityConfig {
                   .addFilterAt(filter, SecurityWebFiltersOrder.AUTHENTICATION)
                   .authorizeExchange(exchanges -> exchanges
                               .pathMatchers(
-                                      "/api/guest/**",
-                                      "/swagger",
-                                      "/swagger/**",
-                                      "/docs",
-                                      "/docs/**"
+                                      "/api/guest/**"
                               )
                               .permitAll()
                               .anyExchange()
