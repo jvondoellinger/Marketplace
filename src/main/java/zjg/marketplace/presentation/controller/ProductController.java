@@ -1,6 +1,7 @@
 package zjg.marketplace.presentation.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import zjg.marketplace.application.dto.product.ProductInput;
@@ -28,28 +29,33 @@ public class ProductController {
         this.deleteService = facade.resolveDelete(Product.class);
     }
 
+    @PreAuthorize("hasRole('GUEST')")
     @GetMapping
     public Mono<List<Product>> get(@RequestParam(defaultValue = "0") Long offset, @RequestParam(defaultValue = "10") Integer max) {
         return findService.get(offset, max).collectList();
     }
 
+    @PreAuthorize("hasRole('GUEST')")
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Product>> get(@PathVariable String id) {
         return findService.findById(id).map(ResponseEntity::ok);
     }
 
     /// * Form method for sharing an image
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping()
     public Mono<ResponseEntity<Product>> create(@RequestBody ProductInput input) {
         return createService.create(input)
                 .map(ResponseEntity::ok);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}")
     public Mono<Product> update(@RequestBody ProductInput input, @PathVariable String id) {
         return updateService.update(input, id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> delete(@PathVariable String id) {
         return deleteService.deleteById(id)
